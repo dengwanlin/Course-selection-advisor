@@ -1,0 +1,4 @@
+Flask
+pymongo
+plotly
+flask-wtf
