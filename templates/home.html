@@ -9,12 +9,12 @@
 <body>
     <h1>Welcome back {{ username }}</h1>
     <ul>
-        <li><a href="#" style="font-size: 20px;">Home</a></li>
-        <li><a href="#" style="font-size: 20px;">Course</a></li>
-        <li><a href="#" style="font-size: 20px;">Recommendation</a></li>
-        <li><a href="#" style="font-size: 20px;">More</a></li>
+        <li><a href="{{ url_for('home', username=username) }}" style="font-size: 20px;">Home</a></li>
+        <li><a href="{{ url_for('course') }}" style="font-size: 20px;">Course</a></li>
+        <li><a href="{{ url_for('recommendation') }}" style="font-size: 20px;">Recommendation</a></li>
+        <li><a href="{{ url_for('more') }}" style="font-size: 20px;">More</a></li>
     </ul>
-<a href="{{ url_for('questionnaire') }}" style="font-size: 20px;">Submit your study status!</a>
+    <a href="{{ url_for('questionnaire') }}" style="font-size: 20px;">Submit your study status!</a>
     <br>
     <a href="{{ url_for('logout') }}" style="font-size: 20px;">log out</a>
 </body>
