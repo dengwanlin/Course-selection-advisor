@@ -153,16 +153,16 @@ def submit_status():
     return redirect(url_for('home', username=session.get('username')))
 
 @app.route('/course')
-def show_course():
-    pass
+def course():
+    return render_template('course.html', username=session.get('username'))
 
 @app.route('/recommendation')
-def show_recommendation():
-    pass
+def recommendation():
+    return render_template('recommendation.html', username=session.get('username'))
 
 @app.route('/more')
-def show_more():
-    pass
+def more():
+    return render_template('more.html', username=session.get('username'))
 
 if __name__ == '__main__':
     app.run(debug=True)
