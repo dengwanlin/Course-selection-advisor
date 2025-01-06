@@ -77,11 +77,15 @@ def login():
 
 @app.route('/home/<username>')
 def home(username):
+    if 'student_id' not in session:
+        return redirect(url_for('login'))
     return render_template('home.html', username=username)
 
 
 @app.route('/logout')
 def logout():
+    session.pop('username', None)
+    session.pop('student_id', None)
     return redirect(url_for('welcome'))
 
 
