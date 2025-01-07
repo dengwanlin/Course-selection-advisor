@@ -2,3 +2,4 @@ Flask
 pymongo
 plotly
 flask-wtf
+pyspark

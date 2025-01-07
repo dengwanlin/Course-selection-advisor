@@ -3,16 +3,15 @@ from flask import Flask, render_template, request, redirect, url_for,session
 from datetime import datetime
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
+from db.connection import connect_to_cluster, get_collections, fetch_data
 #from mongodb.password import password
 
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
 
-uri = "mongodb+srv://whhxsg:whhxsg@coursecluster.ecl2n.mongodb.net/?retryWrites=true&w=majority&appName=CourseCluster"
-# Configure MongoDB connection (here it is assumed that MongoDB is running on the local default port)
-#client = MongoClient('localhost', 27017)
-# Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
+client = connect_to_cluster()
+get_collections()
+fetch_data('course')
 
 db = client['Course_Recommendation']
 student_collection = db['student']
