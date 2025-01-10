@@ -164,6 +164,40 @@ def course():
 def recommendation():
     return render_template('recommendation.html', username=session.get('username'))
 
+# Added a new route to display the modification form
+@app.route('/modify_form', methods=['GET', 'POST'])
+def modify_form():
+    student_id = session.get('student_id')
+    if not student_id:
+        return redirect(url_for('login'))
+
+    student_doc = student_collection.find_one({'student_id': student_id})
+    if not student_doc:
+        return redirect(url_for('questionnaire'))  # Redirect to questionnaire if no data exists
+
+    # Fetch data to pre-fill the form
+    semester = student_doc.get('Semester', '')
+    major = student_doc.get('Student_Major', {}).get('Major_Name', '')
+    direction = student_doc.get('Student_Major', {}).get('Direction_Name', '')
+    language_levels = student_doc.get('Student_Language_Level', [])
+
+    # Prepare the languages and levels to pre-fill
+    enums_data = enums_collection.find_one({})
+    terms = enums_data.get('Student_Term', [])
+    languages = enums_data.get('Student_Languge', [])
+    levels = enums_data.get('Student_Language_Level', [])
+
+    # Render the modification form
+    return render_template('modify_form.html', 
+                           terms=terms, 
+                           languages=languages, 
+                           levels=levels, 
+                           semester=semester, 
+                           major=major, 
+                           direction=direction, 
+                           language_levels=language_levels)
+
+
 @app.route('/more')
 def more():
     return render_template('more.html', username=session.get('username'))

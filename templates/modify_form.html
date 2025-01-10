@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Modify Your Study Status</title>
+</head>
+
+<body>
+    <form method="post" action="{{ url_for('submit_status') }}">
+      
+        <label for="term" style="font-size: 20px;">Term:</label>
+        <select id="term" name="semester">
+            {% for term in terms %}
+            <option value="{{ term }}" style="font-size: 20px;" {% if term == semester %}selected{% endif %}>{{ term }}</option>
+            {% endfor %}
+        </select><br>
+
+        {% for language in languages %}
+        <label for="{{ language }}_level" style="font-size: 20px;">{{ language }} language level:</label>
+        <select id="{{ language }}_level" name="{{ language }}_level">
+            {% for level in levels %}
+            <option value="{{ level }}" style="font-size: 20px;" 
+                {% for lang in language_levels %} 
+                    {% if lang.Language == language and lang.Level == level %}selected{% endif %}
+                {% endfor %}>{{ level }}</option>
+            {% endfor %}
+        </select><br>
+        {% endfor %}
+
+        <label for="major_name" style="font-size: 20px;">Major Name:</label>
+        <select id="major_name" name="major_name">
+            <option value="Computer Engineering" {% if major == "Computer Engineering" %}selected{% endif %}>Computer Engineering</option>
+            <option value="Others" {% if major == "Others" %}selected{% endif %}>Others</option>
+        </select><br>
+
+        <label for="direction_name" style="font-size: 20px;">Major Direction:</label>
+        <select id="direction_name" name="direction_name">
+            <option value="Intelligent Networked Systems" {% if direction == "Intelligent Networked Systems" %}selected{% endif %}>Intelligent Networked Systems</option>
+            <option value="Interactive Systems and Visualization" {% if direction == "Interactive Systems and Visualization" %}selected{% endif %}>Interactive Systems and Visualization</option>
+            <option value="Others" {% if direction == "Others" %}selected{% endif %}>Others</option>
+        </select><br>
+
+        <input type="submit" value="Update">
+    </form>
+</body>
+
+</html>
