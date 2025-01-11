@@ -94,18 +94,36 @@ def favicon():
     return '', 204
 
 # Add a new route to display the questionnaire page
-@app.route('/questionnaire')
+@app.route('/questionnaire', methods=['GET', 'POST'])
 def questionnaire():
+    student_id = session.get('student_id')
+    if not student_id:
+        return redirect(url_for('login'))
+    
     enums_data = enums_collection.find_one({})
     terms = enums_data.get('Student_Term', [])
     languages = enums_data.get('Student_Languge', [])
-    language_levels = enums_data.get('Student_Language_Level', [])
-    print("In questionnaire route - language_levels type:", type(language_levels))
-    if isinstance(language_levels, list):
-        for item in language_levels:
-            print("In questionnaire route - item type:", type(item))
-    return render_template('questionnaire.html', terms=terms, languages=languages, language_levels=language_levels)
+    levels = enums_data.get('Student_Language_Level', [])
 
+    student_doc = student_collection.find_one({'student_id': student_id})
+    semester = student_doc.get('Semester', '') if student_doc else ''
+    major = student_doc.get('Student_Major', {}).get('Major_Name', '') if student_doc else ''
+    direction = student_doc.get('Student_Major', {}).get('Direction_Name', '') if student_doc else ''
+    language_levels = student_doc.get('Student_Language_Level', []) if student_doc else {}
+
+    language_dict = {}
+    for lang_level in language_levels:
+        language_dict[lang_level.get('Language')] = lang_level.get('Level')
+
+    return render_template('questionnaire.html',
+        terms=terms,
+        languages=languages,
+        levels=levels,
+        semester=semester,
+        major=major,
+        direction=direction,
+        language_levels=language_dict,  
+        )
 
 # Added a new route to handle questionnaire submission logic
 @app.route('/submit_status', methods=['POST'])
@@ -164,6 +182,7 @@ def course():
 def recommendation():
     return render_template('recommendation.html', username=session.get('username'))
 
+'''
 # Added a new route to display the modification form
 @app.route('/modify_form', methods=['GET', 'POST'])
 def modify_form():
@@ -196,7 +215,7 @@ def modify_form():
                            major=major, 
                            direction=direction, 
                            language_levels=language_levels)
-
+'''
 
 @app.route('/more')
 def more():

@@ -12,33 +12,40 @@
         <label for="term" style="font-size: 20px;">term:</label>
         <select id="term" name="term">
             {% for term in terms %}
-            <option value="{{ term }}" style="font-size: 20px;">{{ term }}</option>
+            <option value="{{ term }}" style="font-size: 20px;" {% if term == semester %}selected{% endif %}>
+                {{ term }}
+            </option>
             {% endfor %}
         </select>
         <br>
 
-<!-- Select the language and the corresponding language level, and display them in the order of language first and then the corresponding language level -->
+        <!-- Select the language and the corresponding language level, and display them in the order of language first and then the corresponding language level -->
         {% for language in languages %}
-        <label for="{{ language }}_level" style="font-size: 20px;">{{ language }} language level:</label>
+        <label for="{{ language }}_level" style="font-size: 20px;">{{ language }} Language Level:</label>
         <select id="{{ language }}_level" name="{{ language }}_level">
-            {% for level in language_levels %}
-            <option value="{{ level }}" style="font-size: 20px;">{{ level }}</option>
+            {% for level in levels %}
+            <option value="{{ level }}" style="font-size: 20px;" 
+                {% if language_levels and language_levels[language] == level %}selected{% endif %}>
+                {{ level }}
+            </option>
             {% endfor %}
         </select><br>
         {% endfor %}
 
-
-        <label for="major_name" style="font-size: 20px;">major name:</label>
+        <label for="major_name" style="font-size: 20px;">Major Name:</label>
         <select id="major_name" name="major_name">
-            <option value="Computer Engineering" style="font-size: 20px;">Computer Engineering</option>
-            <option value="Others" style="font-size: 20px;">Others</option>
+            {% for option in ['Computer Engineering', 'Others'] %}
+            <option value="{{ option }}" style="font-size: 20px;" {% if major == option %}selected{% endif %}>
+                {{ option }}</option>
+            {% endfor %}
         </select><br>
 
-        <label for="direction_name" style="font-size: 20px;">major direction:</label>
+        <label for="direction_name" style="font-size: 20px;">Major Direction:</label>
         <select id="direction_name" name="direction_name">
-            <option value="Intelligent Networked Systems" style="font-size: 20px;">Intelligent Networked Systems</option>
-            <option value="Interactive Systems and Visualization" style="font-size: 20px;">Interactive Systems and Visualization</option>
-            <option value="Others" style="font-size: 20px;">Others</option>
+            {% for option in ['Intelligent Networked Systems', 'Interactive Systems and Visualization', 'Others'] %}
+            <option value="{{ option }}" style="font-size: 20px;" {% if direction == option %}selected{% endif %}>
+                {{ option }}</option> 
+            {% endfor %}
         </select><br>
 
         <input type="submit" value="submit">
