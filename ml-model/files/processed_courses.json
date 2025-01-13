@@ -1,0 +1,1017 @@
+[
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a3d"
+        },
+        "Course_ID": "ZKD50032",
+        "Course_Name": "Advanced Image Synthesis",
+        "Course_Description": "Abstract:\nThis lecture covers the fundamentals of photorealistic and interactive image synthesis. We focus on techniques to achieve interactive frame rates for realistic rendering of complex models and scenes using GPU acceleration. Key graphics algorithms and their efficient implementation via graphics APIs will be demonstrated. We will explore dedicated parts of the graphics pipeline, reviewing the functionality of consumer-class graphics accelerators, including programmable vertex, geometry, and fragment shaders. Additionally, we will discuss the governing equations of physics-based light transport and demonstrate effective solution methods for simulating global illumination. Topics include:\n\nInteractive image synthesis\nGraphics APIs & hardware, OpenGL, DirectX, Vulkan and Metal\nFixed function & programmable graphics pipeline\nIntroduction to General-purpose computation on graphics hardware (GPGPU)\nLighting\nLocal lighting models\nGPU implementation\nEnvironment mapping\nGPU shadowing techniques\nProjective shadows\nShadow volumes\nShadow Maps\nTransparent Objects:\n(depth) sorting with implementations on graphics hardware\nOrder independent transparency & depth peeling on GPUs\nPhysics based rendering\nRadiometric quantities, rendering equation\nRay tracing / path tracing\nradiosity\nIrradiance volumes\nPrecomputed radiance transfer (PRT)\nAmbient Occlusion with focus on GPU-based interactive methods\nSpecial topics:\nGPU friendly high quality terrain rendering & synthesis\nRendering of fur and hair\nScenegraph APIs\nAcceleration structures and culling techniques\nHuman visual perception and high dynamic range imaging (HDRI)\nREYES\nImage compression techniques",
+        "Term": "Winter 2024/25",
+        "Course_Language": "English",
+        "Course_Teacher": "Professor, Dr. Jens Krüger",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Oral exam without exercise bonus",
+        "Course_Required_Math_Level": "Very high",
+        "Course_Recommended_Background": [
+            "Computer graphics"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language": "C++",
+                "Level": "proficient"
+            }
+        ],
+        "Course_Class_Hours": 0.5,
+        "Homework_mandatorily required_hours": 0.0,
+        "Course_Module": "Interactive Systems and Visualization",
+        "Extracted_Concepts": [
+            "graphics",
+            "gpu",
+            "rendering",
+            "synthesis",
+            "apis",
+            "interactive",
+            "image",
+            "hardware",
+            "techniques",
+            "lighting",
+            "shadow",
+            "programmable",
+            "depth",
+            "physics",
+            "based",
+            "pipeline",
+            "high",
+            "implementation",
+            "volumes",
+            "acceleration"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Interactive Systems and Visualization"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a3e"
+        },
+        "Course_ID": "ZKD50056",
+        "Course_Name": "Cloud, Web & Mobile",
+        "Course_Description": "Cloud computing, web applications and mobile applications.",
+        "Term": "Winter 2024/25",
+        "Course_Language": "German",
+        "Course_Teacher": "Prof. Dr.-Ing. Torben Weis",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Difficult",
+        "Course_Exam_Type": "Klausur",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 0.0,
+        "Course_Module": "Intelligent Networked Systems",
+        "Extracted_Concepts": [
+            "applications",
+            "computing",
+            "mobile",
+            "cloud",
+            "web",
+            "xdr",
+            "fast",
+            "finite",
+            "filtering",
+            "field",
+            "feedback",
+            "feature",
+            "faulty",
+            "express",
+            "extensions",
+            "flask",
+            "explore",
+            "explicit",
+            "expected",
+            "exhibit"
+        ],
+        "Encoded_Language": [
+            "German"
+        ],
+        "Encoded_Module": [
+            "Intelligent Networked Systems"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a3f"
+        },
+        "Course_ID": "ZKD41171",
+        "Course_Name": "Distributed Systems",
+        "Course_Description": "Fundamental concepts and protocols for distributed systems.\n\nThe lecture begins with the basics of distributed communication:\n\nSerialization (ASN.1, CORBA XDR, SOAP)\nRemote Procedure Calls\nDistributed Objects\n\nIt then focuses on important foundational algorithms:\n\nPhysical Clocks\nLogical Clocks\nTransactions\nSynchronization\nReplication and Consistency\nGlobal State",
+        "Term": "Winter 2024/25",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr.-Ing. Torben Weis",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Klausur",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 0.5,
+        "Homework_mandatorily required_hours": 0.0,
+        "Course_Module": "Interactive Systems and Visualization",
+        "Extracted_Concepts": [
+            "distributed",
+            "clocks",
+            "xdr",
+            "logical",
+            "asn",
+            "begins",
+            "synchronization",
+            "calls",
+            "soap",
+            "foundational",
+            "transactions",
+            "serialization",
+            "consistency",
+            "corba",
+            "procedure",
+            "replication",
+            "remote",
+            "physical",
+            "objects",
+            "fundamental"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Interactive Systems and Visualization"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a40"
+        },
+        "Course_ID": "ZKD50039",
+        "Course_Name": "Learning Analytics",
+        "Course_Description": "Learning Analytics has attracted a great deal of attention as practitioners, institutions, and researchers are increasingly seeing the potential that LA has to shape the future technology-enhanced learning landscape. LA is an emerging data science field that represents the application of big data and analytics in education. It deals with the development of methods that harness educational data sets to support the learning process. LA is an interdisciplinary field involving competences from computer science, cognitive psychology, and pedagogy. It leverages various computer science methods. These include statistics, big data, machine learning, data/text mining, information visualization, visual analytics, and recommender systems. The first part of the course will provide a systematic overview on this emerging field and its key concepts through a reference model for LA based on four dimensions, namely data, environments, context (what?), stakeholders (who?), objectives (why?), and methods (how?). In the second part of this courses, we will discuss various methods and techniques required to develop innovative LA systems, in relation to each dimension of the LA reference model. In the last part of the course, current topics and trends in LA research will be presented and discussed in invited talks. The presented methods and technologies will be further investigated and applied in small student projects carried out throughout the course. The course topics will include:\n\nLearning analytics and related areas (e.g. educational data mining)\nA reference model for learning analytics\nBig Data (Hadoop ecosystem)\nLearner modeling\nEthics and privacy in learning analytics\nAssessment and feedback\nMachine Learning / Data Mining (classification, clustering, association rule mining)\nRecommender systems\nInformation visualisation and visual analytics\nSocial Network Analysis\nCurrent topics in learning analytics (invited lectures)",
+        "Term": "Winter 2024/25",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr. Mohamed Amine Chatti",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Exercise+Project",
+        "Course_Exam_Difficulty": "Easy",
+        "Course_Exam_Type": "Project Work + Oral Exam",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language ": "Python",
+                "Level": "qualified"
+            }
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 0.6666666666666666,
+        "Course_Module": "Basics",
+        "Extracted_Concepts": [
+            "analytics",
+            "la",
+            "learning",
+            "data",
+            "mining",
+            "model",
+            "big",
+            "science",
+            "reference",
+            "field",
+            "methods",
+            "course",
+            "invited",
+            "recommender",
+            "educational",
+            "various",
+            "emerging",
+            "current",
+            "visual",
+            "machine"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Basics"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a41"
+        },
+        "Course_ID": "ZKD50001",
+        "Course_Name": "Modeling of Concurrent Systems",
+        "Course_Description": "Concurrent systems – of which distributed systems are a special case – are often difficult for a user or programmer to fully understand. Even relatively small systems, consisting of multiple interacting components, can exhibit very complex behavior. Additionally, one encounters phenomena and problems (deadlocks, mutual exclusion) that cannot occur in sequential systems. Therefore, this lecture will cover relevant modeling techniques and analysis methods to improve the understanding of such systems. The following topics are expected to be covered:\n\n- Transition systems\n- Behavioral equivalences: language equivalence, bisimulation\n- Process calculi – CCS\n- Petri nets (partial order techniques)\n- Graph transformation systems",
+        "Term": "Winter 2024/25",
+        "Course_Language": "German",
+        "Course_Teacher": "Prof. Dr. Barbara König",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Middle",
+        "Course_Exam_Type": "Oral exam+Exercise bonus",
+        "Course_Required_Math_Level": "High",
+        "Course_Recommended_Background": [
+            "program logic"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language": "Java",
+                "Level": "basic"
+            }
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 0.3333333333333333,
+        "Course_Module": "Intelligent Networked Systems",
+        "Extracted_Concepts": [
+            "systems",
+            "techniques",
+            "relatively",
+            "equivalence",
+            "transformation",
+            "relevant",
+            "equivalences",
+            "graph",
+            "exclusion",
+            "phenomena",
+            "petri",
+            "exhibit",
+            "expected",
+            "consisting",
+            "fully",
+            "behavior",
+            "behavioral",
+            "concurrent",
+            "bisimulation",
+            "partial"
+        ],
+        "Encoded_Language": [
+            "German"
+        ],
+        "Encoded_Module": [
+            "Intelligent Networked Systems"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a42"
+        },
+        "Course_ID": "ZKD50050",
+        "Course_Name": "Digital Games Research",
+        "Course_Description": "Hot topics and the state-of-the-art in digital games research. We will examine digital games from the different perspectives of game design research, social and media psychology. Further, we dive into new technological advances and trends in computer entertainment. Digital Games Research complements the master's lecture Game Architecture and Design which focuses on the practical parts of designing and developing digital games. However, this lecture provides insight into research about and with digital games. Both courses are independent of each other.\n\nOur course concept is in line with the basic steps of scientific work in the domain of computer entertainment research. We will run through the process of the preparation and submission of a scientific paper to a course internal conference where the respective publications will be presented orally.",
+        "Term": "Winter 2024/25",
+        "Course_Language": "German",
+        "Course_Teacher": "Prof. Dr.-Ing. Maic Masuch",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Project",
+        "Course_Exam_Difficulty": "Easy",
+        "Course_Exam_Type": "Paper without exam",
+        "Course_Required_Math_Level": "Null",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 0.6666666666666666,
+        "Course_Module": "Interactive Systems and Visualization",
+        "Extracted_Concepts": [
+            "digital",
+            "games",
+            "research",
+            "entertainment",
+            "scientific",
+            "game",
+            "design",
+            "computer",
+            "course",
+            "lecture",
+            "technological",
+            "preparation",
+            "art",
+            "complements",
+            "respective",
+            "run",
+            "examine",
+            "steps",
+            "perspectives",
+            "hot"
+        ],
+        "Encoded_Language": [
+            "German"
+        ],
+        "Encoded_Module": [
+            "Interactive Systems and Visualization"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a43"
+        },
+        "Course_ID": "ZKD50034",
+        "Course_Name": "Advanced Web Technologies",
+        "Course_Description": "The World Wide Web and its underlying technologies are increasingly gaining importance for the development of interactive Web applications. This course introduces concepts, principles, and methods in current client and server-side Web technologies. Basic Web technologies such as HTML, CSS, JSON, JavaScript, etc. are a prerequisite to take this course. The focus of this course is rather on advanced topics in emerging Web technologies. These include extensions of Web standards, Web toolkits and development environments, current backend Web frameworks (e.g. Node/Express, Flask), frontend Web frameworks (e.g. Angular, React), and combination of different Web technologies (e.g. MEAN/MERN Stack, Dash). This course follows a student-centered and project-based learning approach. Web technologies will be presented in the lecture by student groups. The presented technologies are further investigated and applied in hands-on sessions as well as small student projects carried out throughout the course.\n\nPrerequisites:\n- Knowledge of basic Web technologies such as HTML, CSS, and JavaScript is required\n- Knowledge of Python is helpful\n- High motivation and commitment\n- Good teamwork skills",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr. Mohamed Amine Chatti",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Exercise+Project",
+        "Course_Exam_Difficulty": "Easy",
+        "Course_Exam_Type": "Project Work + Oral Exam",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language ": "HTML",
+                "Level": "basic"
+            },
+            {
+                "Language ": " CSS ",
+                "Level": "basic"
+            },
+            {
+                "Language ": "JavaScript",
+                "Level": "basic"
+            },
+            {
+                "Language ": "Python",
+                "Level": "basic"
+            }
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 0.6666666666666666,
+        "Course_Module": "Intelligent Networked Systems",
+        "Extracted_Concepts": [
+            "web",
+            "technologies",
+            "course",
+            "student",
+            "javascript",
+            "css",
+            "html",
+            "current",
+            "frameworks",
+            "knowledge",
+            "development",
+            "basic",
+            "presented",
+            "teamwork",
+            "motivation",
+            "json",
+            "frontend",
+            "backend",
+            "underlying",
+            "client"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Intelligent Networked Systems"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a44"
+        },
+        "Course_ID": "ZKD50037",
+        "Course_Name": "Computer Graphics",
+        "Course_Description": "Introductory course to Computer Graphics. The course teaches the algorithms used to program a computer to generate images of geometric models with associated appearance properties. Starting with introductory lectures on the basics of surfaces and light propagation, the course will focus on the two well-known rendering methods, CPU and GPU-based ray-tracing and GPU-accelerated raster graphics. Topics include:\n\nBasics\nGeometric Models: Meshes, Implicit Surfaces, Splines\nColor & Perception\nLight Transport\n3D Image Generation Methods\nOpenGL, DirectX, CUDA\nRay Tracing I: basics\nRay Tracing II: acceleration techniques\nFast Intersection Tests\nSpace Partitioning & Bounding Volume Hierarchies\nGPU-acceleration\nRasterization & GPU-based rendering\nLinear and Affine Transformations\nRasterization and Shading\nClipping\nVisibility & Shadows\nCurves & surfaces\nSampling Theory",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Professor, Dr. Jens Krüger",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Oral exam without exercise bonus",
+        "Course_Required_Math_Level": "Very high",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language": "C++",
+                "Level": "advanced"
+            }
+        ],
+        "Course_Class_Hours": 0.5,
+        "Homework_mandatorily required_hours": 0.0,
+        "Course_Module": "Interactive Systems and Visualization",
+        "Extracted_Concepts": [
+            "gpu",
+            "surfaces",
+            "tracing",
+            "ray",
+            "rasterization",
+            "basics",
+            "introductory",
+            "light",
+            "geometric",
+            "course",
+            "rendering",
+            "graphics",
+            "acceleration",
+            "models",
+            "computer",
+            "based",
+            "bounding",
+            "tests",
+            "transformations",
+            "known"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Interactive Systems and Visualization"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a45"
+        },
+        "Course_ID": "ZKD50049",
+        "Course_Name": "Game Architecture and Design",
+        "Course_Description": "Fundamentals of both topics, Game Architecture and Game Design, form the content of the lecture. Beyond that, an insight into the processes and proceedings of the games industry is given.\nThe learnt knowledge can be applied to the prototypic implementation of one’s own game project, which will be produced with Unity3D.\nThe topics of the lecture contain the following thematic priorities:\n\nGame Production and Project Engineering\nTheoretical foundations of Game Design\nGame Interface Design\nGameplay and Game Balance\nInteractive Storytelling and Character Development\n\nPlease note that the attendance is limited to 25 participants.\n\nRequirements:\n- Basic programming skills\n- Willingness to become acquainted with new application development systems",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr.-Ing. Maic Masuch",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Project",
+        "Course_Exam_Difficulty": "Easy",
+        "Course_Exam_Type": "Project Work without exam",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Unity3D"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language ": "C#",
+                "Level": "qualified"
+            }
+        ],
+        "Course_Class_Hours": 0.0,
+        "Homework_mandatorily required_hours": 1.0,
+        "Course_Module": "Interactive Systems and Visualization",
+        "Extracted_Concepts": [
+            "game",
+            "design",
+            "development",
+            "project",
+            "lecture",
+            "contain",
+            "priorities",
+            "produced",
+            "participants",
+            "balance",
+            "unity3d",
+            "learnt",
+            "engineering",
+            "content",
+            "requirements",
+            "storytelling",
+            "production",
+            "limited",
+            "gameplay",
+            "foundations"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Interactive Systems and Visualization"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a46"
+        },
+        "Course_ID": "ZKD50027",
+        "Course_Name": "Information Retrieval",
+        "Course_Description": "Fundamental concepts and techniques in Information Retrieval, focusing on the efficient organization and retrieval of information from large-scale data. Students will explore topics such as search engine fundamentals, indexing, ranking algorithms, natural language processing for search, and performance evaluation. Practical applications, including web search and recommendation systems, will be emphasized, and students will work with real-world datasets to develop and refine IR systems. The course also covers key issues like information retrieval models, query formulation, and relevance feedback.",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr. Dirk Lewandowski",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Difficult",
+        "Course_Exam_Type": "Oral exam+Exercise bonus",
+        "Course_Required_Math_Level": "Middle",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 0.5,
+        "Homework_mandatorily required_hours": 0.16666666666666666,
+        "Course_Module": "Intelligent Networked Systems",
+        "Extracted_Concepts": [
+            "retrieval",
+            "search",
+            "information",
+            "students",
+            "systems",
+            "emphasized",
+            "datasets",
+            "recommendation",
+            "refine",
+            "relevance",
+            "ranking",
+            "engine",
+            "ir",
+            "performance",
+            "formulation",
+            "focusing",
+            "issues",
+            "organization",
+            "query",
+            "indexing"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Intelligent Networked Systems"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a47"
+        },
+        "Course_ID": "ZKD50068",
+        "Course_Name": "Intelligent Learning Environments",
+        "Course_Description": "Computers and ‘machine-intelligence’ are frequently discussed as the means for addressing today’s critical educational challenges: learning remotely, learning at one’s own pace, learning according to one’s needs and background, providing quality education to all and for all. In this course, we welcome all master-level students with technical or non-technical backgrounds. Through the semester, we will cover topics on the intersection of Artificial Intelligence in Education, Educational Technologies, and Human-Computer Interaction, and we will carry out hands-on exercises to deepen our understanding of intelligent learning technologies.",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr. Irene-Angelica Chounta",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Project",
+        "Course_Exam_Difficulty": "Easy",
+        "Course_Exam_Type": "Klausur+Project Work",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 0.3333333333333333,
+        "Course_Module": "Intelligent Networked Systems",
+        "Extracted_Concepts": [
+            "learning",
+            "intelligence",
+            "education",
+            "educational",
+            "technical",
+            "technologies",
+            "challenges",
+            "frequently",
+            "artificial",
+            "today",
+            "means",
+            "addressing",
+            "background",
+            "backgrounds",
+            "carry",
+            "needs",
+            "according",
+            "pace",
+            "computers",
+            "semester"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Intelligent Networked Systems"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a48"
+        },
+        "Course_ID": "ZKD50017",
+        "Course_Name": "Interaktive Systeme",
+        "Course_Description": "Advanced topics on understanding, designing, and evaluating interactive systems. After completing the lecture, students understand the characteristics of interactive systems, they know contemporary areas of interactive systems and how to act in these areas, and they know how to do applied research in these areas. Besides other topics, the lecture will cover these areas:\n\nInformation Visualization\nTangible and natural user interfaces\nAugmented Reality\nHuman-Robot Interaction\nResearch Methods in Interactive Systems\nTheories and analysis frameworks for Interactive Systems\nDesigning Interactive Systems",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr-Ing. Michael Prilla\n Dr. Sebastian Büttner",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Middle",
+        "Course_Exam_Type": "Klausur+Exercise Bonus",
+        "Course_Required_Math_Level": "Null",
+        "Course_Recommended_Background": [
+            "Human-Machine interaction"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 0.6666666666666666,
+        "Course_Module": "Interactive Systems and Visualization",
+        "Extracted_Concepts": [
+            "interactive",
+            "areas",
+            "systems",
+            "know",
+            "designing",
+            "research",
+            "lecture",
+            "theories",
+            "tangible",
+            "act",
+            "contemporary",
+            "evaluating",
+            "characteristics",
+            "robot",
+            "natural",
+            "advanced",
+            "interfaces",
+            "augmented",
+            "completing",
+            "understanding"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Interactive Systems and Visualization"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a49"
+        },
+        "Course_ID": "ZGA42433",
+        "Course_Name": "Internet of Things: Protocols and System Software",
+        "Course_Description": "This master's course provides an introduction to the field of the 'Internet of Things' (IoT), where billions of embedded systems (sensors, actuators) continuously make data about the real world available on the Internet in real-time.\n\nTopics covered include: IoT system architectures (Cloud vs Edge vs Mesh), communication protocols (IEEE 802.15.4, NbIoT, 6LoWPAN, MQTT), update protocols, data modeling, data access (Stream Processing, Complex Event Processing), and data processing with machine learning techniques for IoT devices (Pruning, Quantization). In addition to theoretical knowledge, practical programming of IoT systems will also be taught in the lab, e.g., using Arduino devices, sensors, Raspberry Pis, and freely selectable cloud-based IoT platforms.",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr. Gregor Schiele",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Middle",
+        "Course_Exam_Type": "Klausur+Project Bonus",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Computer network"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language ": "C",
+                "Level": "qualified"
+            }
+        ],
+        "Course_Class_Hours": 0.0,
+        "Homework_mandatorily required_hours": 0.0,
+        "Course_Module": "Intelligent Networked Systems",
+        "Extracted_Concepts": [
+            "iot",
+            "data",
+            "processing",
+            "sensors",
+            "internet",
+            "devices",
+            "vs",
+            "protocols",
+            "cloud",
+            "real",
+            "systems",
+            "update",
+            "ieee",
+            "freely",
+            "nbiot",
+            "mqtt",
+            "15",
+            "mesh",
+            "stream",
+            "selectable"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Intelligent Networked Systems"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a4a"
+        },
+        "Course_ID": "ZGA42431",
+        "Course_Name": "Lineare und Diskrete Optimierung mit Anwendungen auf Graphen",
+        "Course_Description": "Mathematical optimization methods for graphics",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Dr. Claudia Gotzes",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Oral exam without exercise bonus",
+        "Course_Required_Math_Level": "Very high",
+        "Course_Recommended_Background": [
+            "Linear Algebra",
+            "Discrete Mathematics"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 0.0,
+        "Course_Module": "Basics",
+        "Extracted_Concepts": [
+            "mathematical",
+            "optimization",
+            "graphics",
+            "methods",
+            "fast",
+            "finite",
+            "filtering",
+            "field",
+            "feedback",
+            "feature",
+            "faulty",
+            "extensions",
+            "flask",
+            "express",
+            "explore",
+            "explicit",
+            "expected",
+            "exhibit",
+            "exercises",
+            "exclusion"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Basics"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a4b"
+        },
+        "Course_ID": "ZKD59002",
+        "Course_Name": "Modellierung, Analyse, Verifikation",
+        "Course_Description": "For the automatic verification and validation of programs and systems, methods are required that, when given a program and its associated specification, can decide whether the program fulfills this specification.\n\nIn general, this problem is undecidable, but there are many safety-critical programs that we would still like to analyze and verify automatically. These can be analyzed if we allow non-complete methods. The requirement is that these analysis methods never consider a faulty program as correct, although rejecting correct programs is permissible (one-sided error). In this way, a large number of programs can still be analyzed, and their correctness verified. Another important application area is program optimization in compiler construction.\n\nThe lecture will particularly cover the following topics:\n\n- Data flow analysis (Fixed-point theory, Monotone frameworks, Worklist algorithm, Application examples: Compiler construction, Java Bytecode Verifier)\n- Basics of abstract interpretation (Galois connections, Safe approximation of functions, Abstraction refinement)\n\nTools\nThe following tools will be used in the lecture:\n\n- PAG/WWW (Program analysis generator with WWW interface)\n- jasmin (Assembler for Java bytecode)",
+        "Term": "Sommer 2024",
+        "Course_Language": "German",
+        "Course_Teacher": "Prof. Dr. Barbara König",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Difficult",
+        "Course_Exam_Type": "Oral exam+Exercise bonus",
+        "Course_Required_Math_Level": "Middle",
+        "Course_Recommended_Background": [
+            "Logic"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language": "Java",
+                "Level": "basic"
+            }
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 0.0,
+        "Course_Module": "Basics",
+        "Extracted_Concepts": [
+            "program",
+            "programs",
+            "correct",
+            "analyzed",
+            "tools",
+            "bytecode",
+            "www",
+            "specification",
+            "java",
+            "analysis",
+            "compiler",
+            "construction",
+            "following",
+            "application",
+            "methods",
+            "lecture",
+            "approximation",
+            "assembler",
+            "point",
+            "automatic"
+        ],
+        "Encoded_Language": [
+            "German"
+        ],
+        "Encoded_Module": [
+            "Basics"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a4c"
+        },
+        "Course_ID": "ZKD50038",
+        "Course_Name": "Scientific Visualization",
+        "Course_Description": "The focus of this introductory course is on discussing efficient techniques to visually represent large-scale data sets from simulation and measurement. Starting with a brief introduction on the data generation processes, the visualization pipeline, data structures, mapping techniques, and special rendering techniques for scientific data will be discussed. Various examples will be given to outline the benefits of visualization techniques in practical applications. A particular focus is put on interactive methods using GPU-based techniques. Topics include:\n\n- History of Visualization Methods, from ancient wall paintings to GPU accelerated rendering\n- Data Sources\n- Simulation: basics of finite element discretization to GPU-based methods\n- Measurements: physical details of computed tomography to accelerated reconstruction\n- Data Representation: interpolation techniques, from data to meshes\n- Filtering: various filtering methods and their hardware acceleration\n- Scalar Volumes\n- The basics of direct volume rendering\n- GPU accelerated volume rendering I: slicing and ray-casting\n- GPU accelerated volume rendering II: ray guided volume rendering and out-of-core techniques\n- Indirect volume rendering\n- Unstructured data\n- Flow Visualization\n- Glyph based methods\n- Geometric methods\n- GPU-based particle tracing\n- Texture-based methods I: LIC\n- Texture-based methods II: Explicit Frequency Control\n- Feature based methods\n- Visualization methods for Virtual Reality",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Professor, Dr. Jens Krüger",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Oral exam without exercise bonus",
+        "Course_Required_Math_Level": "Very high",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language": "C++",
+                "Level": "Advanced"
+            }
+        ],
+        "Course_Class_Hours": 0.5,
+        "Homework_mandatorily required_hours": 0.0,
+        "Course_Module": "Interactive Systems and Visualization",
+        "Extracted_Concepts": [
+            "rendering",
+            "data",
+            "methods",
+            "gpu",
+            "volume",
+            "based",
+            "techniques",
+            "visualization",
+            "accelerated",
+            "texture",
+            "filtering",
+            "simulation",
+            "various",
+            "ii",
+            "ray",
+            "focus",
+            "basics",
+            "guided",
+            "representation",
+            "casting"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Interactive Systems and Visualization"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a4d"
+        },
+        "Course_ID": "ZKD60002",
+        "Course_Name": "Compilerbau",
+        "Course_Description": "To understand and to design compilers and interpreters, and to show them the practical problems of compiler construction.",
+        "Term": "Sommer 2024",
+        "Course_Language": "German",
+        "Course_Teacher": "Prof. Dr. Janis Voigtländer",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Project",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Klausur+Project Work",
+        "Course_Required_Math_Level": "High",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language ": "C",
+                "Level": "qualified"
+            }
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 1.0,
+        "Course_Module": "Basics",
+        "Extracted_Concepts": [
+            "interpreters",
+            "compilers",
+            "problems",
+            "construction",
+            "compiler",
+            "understand",
+            "design",
+            "practical",
+            "extensions",
+            "filtering",
+            "field",
+            "feedback",
+            "feature",
+            "faulty",
+            "fast",
+            "xdr",
+            "express",
+            "fixed",
+            "explore",
+            "explicit"
+        ],
+        "Encoded_Language": [
+            "German"
+        ],
+        "Encoded_Module": [
+            "Basics"
+        ]
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a4e"
+        },
+        "Course_ID": "ZKD50059",
+        "Course_Name": "Cooperation Systems",
+        "Course_Description": "The lecture teaches students how to design and evaluate systems that help humans to cooperate and collaborate with each other. It provides an overview of the research area Computer Supported Cooperative Work (CSCW). After completing the module, the students have learned principles of designing CSCW systems and know the most important technical methods for supporting social interaction. They are able to critically discuss CSCW systems as well as to design and evaluate them.\n\nIn particular, the lecture covers these and more topics:\n\n- Basics of human communication, cooperation, and coordination\n- Paradigms and concepts of computer-mediated group work\n- Case studies for IT support of cooperative work\n- Specific cooperation support such as Social Media, Augmented Reality, Meeting Support\n- Analysis and Design of User Interfaces for Groupware\n- Introduction and evaluation of CSCW systems\n- Practical application of lecture contents in accompanying project tasks",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr-Ing. Michael Prilla",
+        "Course_Credit": 0.0,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Project",
+        "Course_Exam_Difficulty": "Middle",
+        "Course_Exam_Type": "Klausur+Project Bonus",
+        "Course_Required_Math_Level": "Null",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 1.0,
+        "Homework_mandatorily required_hours": 0.0,
+        "Course_Module": "Interactive Systems and Visualization",
+        "Extracted_Concepts": [
+            "cscw",
+            "support",
+            "work",
+            "design",
+            "systems",
+            "cooperative",
+            "evaluate",
+            "cooperation",
+            "social",
+            "lecture",
+            "students",
+            "computer",
+            "studies",
+            "humans",
+            "help",
+            "supporting",
+            "tasks",
+            "supported",
+            "mediated",
+            "coordination"
+        ],
+        "Encoded_Language": [
+            "English"
+        ],
+        "Encoded_Module": [
+            "Interactive Systems and Visualization"
+        ]
+    }
+]

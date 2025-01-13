@@ -1,0 +1,513 @@
+[
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a3d"
+        },
+        "Course_ID": "ZKD50032",
+        "Course_Name": "Advanced Image Synthesis",
+        "Course_Description": "Photorealistic and interactive image synthesis",
+        "Term": "Winter 2024/25",
+        "Course_Language": "English",
+        "Course_Teacher": "Professor, Dr. Jens Krüger",
+        "Course_Credit": 6,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Oral exam without exercise bonus",
+        "Course_Required_Math_Level": "Very high",
+        "Course_Recommended_Background": [
+            "Computer graphics"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language": "C++",
+                "Level": "proficient"
+            }
+        ],
+        "Course_Class_Hours": 3,
+        "Homework_mandatorily required_hours": 0,
+        "Course_Module": "Interactive Systems and Visualization"
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a3e"
+        },
+        "Course_ID": "ZKD50056",
+        "Course_Name": "Cloud, Web & Mobile",
+        "Course_Description": "Cloud computing, web applications and mobile applications.",
+        "Term": "Winter 2024/25",
+        "Course_Language": "German",
+        "Course_Teacher": "Prof. Dr.-Ing. Torben Weis",
+        "Course_Credit": 6,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Difficult",
+        "Course_Exam_Type": "Klausur",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 0,
+        "Course_Module": "Intelligent Networked Systems"
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a3f"
+        },
+        "Course_ID": "ZKD41171",
+        "Course_Name": "Distributed Systems",
+        "Course_Description": "Distributed systems and distributed algorithms.",
+        "Term": "Winter 2024/25",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr.-Ing. Torben Weis",
+        "Course_Credit": 6,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Klausur",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 3,
+        "Homework_mandatorily required_hours": 0,
+        "Course_Module": "Interactive Systems and Visualization"
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a40"
+        },
+        "Course_ID": "ZKD50039",
+        "Course_Name": "Learning Analytics",
+        "Course_Description": " statistics, big data, machine learning, data/text mining, information visualization, visual analytics, and recommender systems.",
+        "Term": "Winter 2024/25",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr. Mohamed Amine Chatti",
+        "Course_Credit": 6,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Exercise+Project",
+        "Course_Exam_Difficulty": "Easy",
+        "Course_Exam_Type": "Project Work + Oral Exam",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language ": "Python",
+                "Level": "qualified"
+            }
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 4,
+        "Course_Module": "Basics"
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a41"
+        },
+        "Course_ID": "ZKD50001",
+        "Course_Name": "Modeling of Concurrent Systems",
+        "Course_Description": "Transition systems, behavioral equivalences: language equivalence, bisimulation, process calculi - ccs, petri nets (partial order techniques), graph transformation systems",
+        "Term": "Winter 2024/25",
+        "Course_Language": "German",
+        "Course_Teacher": "Prof. Dr. Barbara König",
+        "Course_Credit": 6,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Middle",
+        "Course_Exam_Type": "Oral exam+Exercise bonus",
+        "Course_Required_Math_Level": "High",
+        "Course_Recommended_Background": [
+            "program logic"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language": "Java",
+                "Level": "basic"
+            }
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 2,
+        "Course_Module": "Intelligent Networked Systems"
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a42"
+        },
+        "Course_ID": "ZKD50050",
+        "Course_Name": "Digital Games Research",
+        "Course_Description": "Hot topics and the state-of-the-art in digital games research.",
+        "Term": "Winter 2024/25",
+        "Course_Language": "German",
+        "Course_Teacher": "Prof. Dr.-Ing. Maic Masuch",
+        "Course_Credit": 6,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Project",
+        "Course_Exam_Difficulty": "Easy",
+        "Course_Exam_Type": "Paper without exam",
+        "Course_Required_Math_Level": "Null",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 4,
+        "Course_Module": "Interactive Systems and Visualization"
+    },
+    {
+        "_id": {
+            "$oid": "67755b588cd78ea1d39b7a43"
+        },
+        "Course_ID": "ZKD50034",
+        "Course_Name": "Advanced Web Technologies",
+        "Course_Description": "Concepts, principles, and methods in current client and server-side web technologies",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr. Mohamed Amine Chatti",
+        "Course_Credit": 6,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Exercise+Project",
+        "Course_Exam_Difficulty": "Easy",
+        "Course_Exam_Type": "Project Work + Oral Exam",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language ": "HTML",
+                "Level": "basic"
+            },
+            {
+                "Language ": " CSS ",
+                "Level": "basic"
+            },
+            {
+                "Language ": "JavaScript",
+                "Level": "basic"
+            },
+            {
+                "Language ": "Python",
+                "Level": "basic"
+            }
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 4,
+        "Course_Module": "Intelligent Networked Systems"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a44"
+        },
+        "Course_ID": "ZKD50037",
+        "Course_Name": "Computer Graphics",
+        "Course_Description": "Teaches the algorithms used to program a computer to generate images of a geometric models with associated appearance properties.",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Professor, Dr. Jens Krüger",
+        "Course_Credit": 6,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Oral exam without exercise bonus",
+        "Course_Required_Math_Level": "Very high",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language": "C++",
+                "Level": "advanced"
+            }
+        ],
+        "Course_Class_Hours": 3,
+        "Homework_mandatorily required_hours": 0,
+        "Course_Module": "Interactive Systems and Visualization"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a45"
+        },
+        "Course_ID": "ZKD50049",
+        "Course_Name": "Game Architecture and Design",
+        "Course_Description": "The fundamentals of both topics, game architecture and game design",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr.-Ing. Maic Masuch",
+        "Course_Credit": 6,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Project",
+        "Course_Exam_Difficulty": "Easy",
+        "Course_Exam_Type": "Project Work without exam",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Unity3D"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language ": "C#",
+                "Level": "qualified"
+            }
+        ],
+        "Course_Class_Hours": 2,
+        "Homework_mandatorily required_hours": 6,
+        "Course_Module": "Interactive Systems and Visualization"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a46"
+        },
+        "Course_ID": "ZKD50027",
+        "Course_Name": "Information Retrieval",
+        "Course_Description": "Search engines, information retrieval, information behavior",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr. Dirk Lewandowski",
+        "Course_Credit": 6,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Difficult",
+        "Course_Exam_Type": "Oral exam+Exercise bonus",
+        "Course_Required_Math_Level": "Middle",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 3,
+        "Homework_mandatorily required_hours": 1,
+        "Course_Module": "Intelligent Networked Systems"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a47"
+        },
+        "Course_ID": "ZKD50068",
+        "Course_Name": "Intelligent Learning Environments",
+        "Course_Description": "Intelligent tutoring systems, interactive and technology-enhanced learning and teaching environments and online learning platforms. ",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr. Irene-Angelica Chounta",
+        "Course_Credit": 6,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Project",
+        "Course_Exam_Difficulty": "Easy",
+        "Course_Exam_Type": "Klausur+Project Work",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 2,
+        "Course_Module": "Intelligent Networked Systems"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a48"
+        },
+        "Course_ID": "ZKD50017",
+        "Course_Name": "Interaktive Systeme",
+        "Course_Description": "Advanced topic on understanding, designing and evaluating interactice systems. ",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr-Ing. Michael Prilla\n Dr. Sebastian Büttner",
+        "Course_Credit": 6,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Middle",
+        "Course_Exam_Type": "Klausur+Exercise Bonus",
+        "Course_Required_Math_Level": "Null",
+        "Course_Recommended_Background": [
+            "Human-Machine interaction"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 4,
+        "Course_Module": "Interactive Systems and Visualization"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a49"
+        },
+        "Course_ID": "ZGA42433",
+        "Course_Name": "Internet of Things: Protocols and System Software",
+        "Course_Description": "To provide an introduction to the subject area of ​​the \"internet of things\" (iot), in which billions of embedded systems (sensors, actuators) continuously make data about the real world available on the internet in real time.",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr. Gregor Schiele",
+        "Course_Credit": 6,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Middle",
+        "Course_Exam_Type": "Klausur+Project Bonus",
+        "Course_Required_Math_Level": "Low",
+        "Course_Recommended_Background": [
+            "Computer network"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language ": "C",
+                "Level": "qualified"
+            }
+        ],
+        "Course_Class_Hours": 2,
+        "Homework_mandatorily required_hours": 0,
+        "Course_Module": "Intelligent Networked Systems"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a4a"
+        },
+        "Course_ID": "ZGA42431",
+        "Course_Name": "Lineare und Diskrete Optimierung mit Anwendungen auf Graphen",
+        "Course_Description": "Mathematical optimization methods for graphics",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Dr. Claudia Gotzes",
+        "Course_Credit": 6,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Oral exam without exercise bonus",
+        "Course_Required_Math_Level": "Very high",
+        "Course_Recommended_Background": [
+            "Linear Algebra",
+            "Discrete Mathematics"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 0,
+        "Course_Module": "Basics"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a4b"
+        },
+        "Course_ID": "ZKD59002",
+        "Course_Name": "Modellierung, Analyse, Verifikation",
+        "Course_Description": "Data flow analysis (fixed point theory, monotone frameworks, worklist algorithm, application examples: compiler construction, java bytecode verifier)\nfundamentals of abstract interpretation (galois connections, safe approximation of functions, abstraction refinement)",
+        "Term": "Sommer 2024",
+        "Course_Language": "German",
+        "Course_Teacher": "Prof. Dr. Barbara König",
+        "Course_Credit": 6,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Difficult",
+        "Course_Exam_Type": "Oral exam+Exercise bonus",
+        "Course_Required_Math_Level": "Middle",
+        "Course_Recommended_Background": [
+            "Logic"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language": "Java",
+                "Level": "basic"
+            }
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 0,
+        "Course_Module": "Basics"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a4c"
+        },
+        "Course_ID": "ZKD50038",
+        "Course_Name": "Scientific Visualization",
+        "Course_Description": " efficient techniques to visually represent large-scale data sets from simulation and measurement.",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Professor, Dr. Jens Krüger",
+        "Course_Credit": 6,
+        "With_Course_Videos": true,
+        "Course_Teaching_Style": "Course+Exercise",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Oral exam without exercise bonus",
+        "Course_Required_Math_Level": "Very high",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language": "C++",
+                "Level": "Advanced"
+            }
+        ],
+        "Course_Class_Hours": 3,
+        "Homework_mandatorily required_hours": 0,
+        "Course_Module": "Interactive Systems and Visualization"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a4d"
+        },
+        "Course_ID": "ZKD60002",
+        "Course_Name": " Compilerbau",
+        "Course_Description": "To understand and to design compilers and interpreters, and to show them the practical problems of compiler construction.",
+        "Term": "Sommer 2024",
+        "Course_Language": "German",
+        "Course_Teacher": "Prof. Dr. Janis Voigtländer",
+        "Course_Credit": 6,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Project",
+        "Course_Exam_Difficulty": "Very difficult",
+        "Course_Exam_Type": "Klausur+Project Work",
+        "Course_Required_Math_Level": "High",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {
+                "Language ": "C",
+                "Level": "qualified"
+            }
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 6,
+        "Course_Module": "Basics"
+    },
+    {
+        "_id": {
+            "$oid": "67755b598cd78ea1d39b7a4e"
+        },
+        "Course_ID": "ZKD50059",
+        "Course_Name": "Cooperation Systems",
+        "Course_Description": "How to design and evaluate systems that help humans to cooperate and collaborate with each other.",
+        "Term": "Sommer 2024",
+        "Course_Language": "English",
+        "Course_Teacher": "Prof. Dr-Ing. Michael Prilla",
+        "Course_Credit": 6,
+        "With_Course_Videos": false,
+        "Course_Teaching_Style": "Course+Project",
+        "Course_Exam_Difficulty": "Middle",
+        "Course_Exam_Type": "Klausur+Project Bonus",
+        "Course_Required_Math_Level": "Null",
+        "Course_Recommended_Background": [
+            "Null"
+        ],
+        "Programming_Requirements": [
+            {}
+        ],
+        "Course_Class_Hours": 4,
+        "Homework_mandatorily required_hours": 0,
+        "Course_Module": "Interactive Systems and Visualization"
+    }
+]

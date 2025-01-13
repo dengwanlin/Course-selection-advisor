@@ -3,3 +3,5 @@ pymongo
 plotly
 flask-wtf
 pyspark
+scikit-learn 
+numpy

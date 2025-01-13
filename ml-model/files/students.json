@@ -1,0 +1,122 @@
+[
+    {
+        "Student_ID": "S001",
+        "Major": "Intelligent Networked Systems",
+        "Year": 1,
+        "GPA": 3.8,
+        "Preferred_Language": "English",
+        "Technical_Skills": [{"Language": "Python", "Level": "Intermediate"}],
+        "Preferred_Exam_Type": "Project-based",
+        "Interest_Areas": ["AI", "Computer Vision"],
+        "Course_Feedback": {"ZKD50032": 4.5, "ZGA42433": 4.0},
+        "Learning_Style": "Course+Exercise"
+    },
+    {
+        "Student_ID": "S002",
+        "Major": "Interactive Systems and Visualization",
+        "Year": 2,
+        "GPA": 3.2,
+        "Preferred_Language": "German",
+        "Technical_Skills": [{"Language": "C++", "Level": "Proficient"}],
+        "Preferred_Exam_Type": "Oral",
+        "Interest_Areas": ["Graphics", "Rendering"],
+        "Course_Feedback": {"ZKD50032": 3.8, "ZKD50056": 4.2},
+        "Learning_Style": "Lecture+Exercise"
+    },
+    {
+        "Student_ID": "S003",
+        "Major": "Intelligent Networked Systems",
+        "Year": 3,
+        "GPA": 3.5,
+        "Preferred_Language": "English",
+        "Technical_Skills": [{"Language": "Java", "Level": "Beginner"}],
+        "Preferred_Exam_Type": "Written",
+        "Interest_Areas": ["Networking", "Distributed Systems"],
+        "Course_Feedback": {"ZKD50056": 4.0, "ZGA42431": 3.5},
+        "Learning_Style": "Hands-on Projects"
+    },
+    {
+        "Student_ID": "S004",
+        "Major": "Interactive Systems and Visualization",
+        "Year": 4,
+        "GPA": 3.9,
+        "Preferred_Language": "English",
+        "Technical_Skills": [{"Language": "C++", "Level": "Expert"}, {"Language": "Python", "Level": "Proficient"}],
+        "Preferred_Exam_Type": "Oral",
+        "Interest_Areas": ["AI", "Graphics"],
+        "Course_Feedback": {"ZKD50032": 4.7, "ZGA42431": 4.5},
+        "Learning_Style": "Course+Exercise"
+    },
+    {
+        "Student_ID": "S005",
+        "Major": "Intelligent Networked Systems",
+        "Year": 2,
+        "GPA": 3.1,
+        "Preferred_Language": "German",
+        "Technical_Skills": [{"Language": "Java", "Level": "Intermediate"}],
+        "Preferred_Exam_Type": "Project-based",
+        "Interest_Areas": ["Cybersecurity", "Cryptography"],
+        "Course_Feedback": {"ZKD50001": 3.6},
+        "Learning_Style": "Self-study"
+    },
+    {
+        "Student_ID": "S006",
+        "Major": "Interactive Systems and Visualization",
+        "Year": 1,
+        "GPA": 3.0,
+        "Preferred_Language": "English",
+        "Technical_Skills": [{"Language": "Python", "Level": "Beginner"}],
+        "Preferred_Exam_Type": "Written",
+        "Interest_Areas": ["Visualization", "Graphics"],
+        "Course_Feedback": {"ZKD50001": 4.0},
+        "Learning_Style": "Lecture+Exercise"
+    },
+    {
+        "Student_ID": "S007",
+        "Major": "Intelligent Networked Systems",
+        "Year": 3,
+        "GPA": 3.4,
+        "Preferred_Language": "English",
+        "Technical_Skills": [{"Language": "C++", "Level": "Proficient"}],
+        "Preferred_Exam_Type": "Project-based",
+        "Interest_Areas": ["AI", "Machine Learning"],
+        "Course_Feedback": {"ZKD50032": 4.3, "ZKD50001": 4.0},
+        "Learning_Style": "Course+Exercise"
+    },
+    {
+        "Student_ID": "S008",
+        "Major": "Interactive Systems and Visualization",
+        "Year": 4,
+        "GPA": 3.7,
+        "Preferred_Language": "German",
+        "Technical_Skills": [{"Language": "Java", "Level": "Expert"}],
+        "Preferred_Exam_Type": "Written",
+        "Interest_Areas": ["Computer Vision", "Graphics"],
+        "Course_Feedback": {"ZGA42431": 4.6, "ZKD60002": 4.8},
+        "Learning_Style": "Hands-on Projects"
+    },
+    {
+        "Student_ID": "S009",
+        "Major": "Intelligent Networked Systems",
+        "Year": 2,
+        "GPA": 3.0,
+        "Preferred_Language": "English",
+        "Technical_Skills": [{"Language": "Python", "Level": "Intermediate"}],
+        "Preferred_Exam_Type": "Oral",
+        "Interest_Areas": ["Networking", "Distributed Systems"],
+        "Course_Feedback": {"ZKD50001": 4.0},
+        "Learning_Style": "Self-study"
+    },
+    {
+        "Student_ID": "S010",
+        "Major": "Interactive Systems and Visualization",
+        "Year": 1,
+        "GPA": 2.8,
+        "Preferred_Language": "English",
+        "Technical_Skills": [{"Language": "Python", "Level": "Beginner"}],
+        "Preferred_Exam_Type": "Written",
+        "Interest_Areas": ["Visualization", "AI"],
+        "Course_Feedback": {"ZKD50032": 3.9},
+        "Learning_Style": "Course+Exercise"
+    }
+]
