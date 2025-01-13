@@ -1,3 +1,4 @@
+import bcrypt
 from flask import Flask, render_template, request, redirect, url_for,session
 #from pymongo import MongoClient
 from datetime import datetime
@@ -23,6 +24,7 @@ def welcome():
     return render_template('welcome.html')
 
 
+@app.route('/register', methods=['GET', 'POST'])
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -51,7 +53,6 @@ def register():
             return render_template('register_success.html', login_url=url_for('login'))
     return render_template('register.html')
 
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
@@ -74,7 +75,6 @@ def login():
                 url_for('register'))
     return render_template('login.html', error=error)
 
-
 @app.route('/home/<username>')
 def home(username):
     if 'student_id' not in session:
@@ -94,36 +94,31 @@ def favicon():
     return '', 204
 
 # Add a new route to display the questionnaire page
-@app.route('/questionnaire', methods=['GET', 'POST'])
+@app.route('/questionnaire')
 def questionnaire():
-    student_id = session.get('student_id')
-    if not student_id:
-        return redirect(url_for('login'))
-    
     enums_data = enums_collection.find_one({})
+
+    student_professional_backgrounds = enums_data.get('Course_Recommended_Background', [])
     terms = enums_data.get('Student_Term', [])
     languages = enums_data.get('Student_Languge', [])
-    levels = enums_data.get('Student_Language_Level', [])
+    language_levels = enums_data.get('Student_Language_Level', [])
+    programming_languages = enums_data.get('Course_Required_Programming_Language', [])
+    programming_levels = enums_data.get('Course_Required_Programming_Language_Level', [])
+    student_majors = enums_data.get('Student_Major', [])
+    for major in student_majors:
+        if 'Direction_Name' not in major:
+            major['Direction_Name'] = []
+    student_math_levels = enums_data.get('Student_Math_Level', [])
 
-    student_doc = student_collection.find_one({'student_id': student_id})
-    semester = student_doc.get('Semester', '') if student_doc else ''
-    major = student_doc.get('Student_Major', {}).get('Major_Name', '') if student_doc else ''
-    direction = student_doc.get('Student_Major', {}).get('Direction_Name', '') if student_doc else ''
-    language_levels = student_doc.get('Student_Language_Level', []) if student_doc else {}
+    return render_template('questionnaire.html', terms=terms,
+                           languages=languages,
+                           language_levels=language_levels,
+                           student_professional_backgrounds=student_professional_backgrounds,
+                           programming_languages=programming_languages,
+                           programming_levels=programming_levels,
+                           student_majors = student_majors,
+                           student_math_levels=student_math_levels)
 
-    language_dict = {}
-    for lang_level in language_levels:
-        language_dict[lang_level.get('Language')] = lang_level.get('Level')
-
-    return render_template('questionnaire.html',
-        terms=terms,
-        languages=languages,
-        levels=levels,
-        semester=semester,
-        major=major,
-        direction=direction,
-        language_levels=language_dict,  
-        )
 
 # Added a new route to handle questionnaire submission logic
 @app.route('/submit_status', methods=['POST'])
@@ -132,38 +127,46 @@ def submit_status():
     if student_id is None:
         return redirect(url_for('login'))
 
-    semester = request.form.get('semester')
-    # Get the raw language level data (originally a list of strings)
-    enums_data = enums_collection.find_one({})
-    languages = enums_data.get('Student_Languge', [])
-    language_levels_data_str_list = enums_data.get('Student_Language_Level', [])
-
-    # Convert a list of strings to a list of dictionaries (a simple example, assuming the format is {"Level": original string value})
-    language_levels_data = [{"Level": item} for item in language_levels_data_str_list]
-
+    term = request.form.get('terms')
+    selected_languages = request.form.getlist('languages')
     language_levels = []
-    for language in languages:
+    for language in selected_languages:
         level = request.form.get(f"{language}_level")
-        for lang_level_dict in language_levels_data:
+        language_levels.append({"Language": language, "Level": level})
 
-            if "Level" in lang_level_dict:
-                lang_level_dict["Language"] = language
-                lang_level_dict["Level"] = level
-                language_levels.append(lang_level_dict)
-                break
+    student_professional_background = request.form.getlist('student_professional_background')
+    selected_programming_languages = request.form.getlist('programming_languages')
+
+    programming_levels = {}
+    for language in selected_programming_languages:
+        level = request.form.get(f"{language}_level")
+        programming_levels[language] = level
 
     major_name = request.form.get('major_name')
     direction_name = request.form.get('direction_name')
+    student_math_background = request.form.get('student_math_background')
+    number_courses_to_choose = request.form.get('number_courses_to_choose')
+    available_exercise_time_per_week = request.form.get('available_exercise_time_per_week')
+
 
     student_doc = student_collection.find_one({'student_id': student_id})
+
     if student_doc:
         student_doc['Student_Language_Level'] = language_levels
+        student_programming_level = []
+        for language, level in zip(selected_programming_languages, programming_levels.values()):
+            student_programming_level.append({"Language": language, "Level": level})
+        student_doc['Student_Programming_Level'] = student_programming_level
+
+        student_doc['Term'] = term
+        student_doc['Student_Professional_Background'] = student_professional_background
         student_doc['Student_Major'] = {
             "Major_Name": major_name,
             "Direction_Name": direction_name
         }
-        student_doc['Semester'] = semester
-
+        student_doc['Student_Math_Background'] = student_math_background
+        student_doc['Number_Courses_To_Choose'] = int(number_courses_to_choose) if number_courses_to_choose else 0
+        student_doc['Available_Exercise_Time_Per_Week'] = int(available_exercise_time_per_week) if available_exercise_time_per_week else 0
         try:
             result = student_collection.update_one({'student_id': student_id}, {'$set': student_doc})
             print(f"Database update result: {result.modified_count} records were modified")
@@ -182,44 +185,38 @@ def course():
 def recommendation():
     return render_template('recommendation.html', username=session.get('username'))
 
-'''
-# Added a new route to display the modification form
-@app.route('/modify_form', methods=['GET', 'POST'])
-def modify_form():
-    student_id = session.get('student_id')
-    if not student_id:
-        return redirect(url_for('login'))
-
-    student_doc = student_collection.find_one({'student_id': student_id})
-    if not student_doc:
-        return redirect(url_for('questionnaire'))  # Redirect to questionnaire if no data exists
-
-    # Fetch data to pre-fill the form
-    semester = student_doc.get('Semester', '')
-    major = student_doc.get('Student_Major', {}).get('Major_Name', '')
-    direction = student_doc.get('Student_Major', {}).get('Direction_Name', '')
-    language_levels = student_doc.get('Student_Language_Level', [])
-
-    # Prepare the languages and levels to pre-fill
-    enums_data = enums_collection.find_one({})
-    terms = enums_data.get('Student_Term', [])
-    languages = enums_data.get('Student_Languge', [])
-    levels = enums_data.get('Student_Language_Level', [])
-
-    # Render the modification form
-    return render_template('modify_form.html', 
-                           terms=terms, 
-                           languages=languages, 
-                           levels=levels, 
-                           semester=semester, 
-                           major=major, 
-                           direction=direction, 
-                           language_levels=language_levels)
-'''
-
 @app.route('/more')
 def more():
     return render_template('more.html', username=session.get('username'))
 
+
+@app.route('/change_password', methods=['POST'])
+def change_password():
+    student_id = session.get('student_id')
+    if student_id is None:
+        return redirect(url_for('login'))
+
+    current_password = request.form.get('current_password')
+    new_password = request.form.get('new_password')
+    confirm_new_password = request.form.get('confirm_new_password')
+
+    student = student_collection.find_one({'student_id': student_id})
+    if not student:
+        return redirect(url_for('login'))
+
+    if student['password']!= current_password:
+        return render_template('more.html', error='Current password is incorrect.')
+
+    if new_password!= confirm_new_password:
+        return render_template('more.html', error='New passwords do not match.')
+
+    try:
+        #hashed_password = bcrypt.hashpw(new_password.encode('utf - 8'), bcrypt.gensalt())
+        student_collection.update_one({'student_id': student_id}, {'$set': {'password': confirm_new_password}})
+        session.pop('student_id', None)
+        session.pop('username', None)
+        return redirect(url_for('welcome'))
+    except Exception as e:
+        return render_template('more.html', error=f'Password change failed: {str(e)}')
 if __name__ == '__main__':
     app.run(debug=True)
