@@ -1,163 +1,194 @@
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.preprocessing import OneHotEncoder, MinMaxScaler
+import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 from gensim.corpora import Dictionary
 from gensim.models import TfidfModel
 from gensim.similarities import SparseTermSimilarityMatrix, WordEmbeddingSimilarityIndex
 import gensim.downloader as api
-from gensim.matutils import corpus2csc
-from nltk.corpus import stopwords
 from nltk import download
-import transformers
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 import numpy as np
 import json
 
 
 # Load resources
-# word_embeddings = models.KeyedVectors.load_word2vec_format("files/GoogleNews-vectors-negative300.bin", binary=True)
+# Download resources
+download('stopwords')
+download('punkt')
+download('punkt_tab')
 word_embeddings = api.load('word2vec-google-news-300')
-bert_tokenizer = transformers.BertTokenizer.from_pretrained("bert-base-uncased")
-bert_model = transformers.BertModel.from_pretrained("bert-base-uncased")
-bert_model.eval()
-
-
-download('stopwords')  # Download stopwords list.
-stop_words = stopwords.words('english')
-
 
 # Load the JSON file
 with open("files/processed_courses.json", "r") as file:
     courses_data = json.load(file)
 
+# Preprocess course text
+stop_words = set(stopwords.words('english'))
 
-# Combine descriptions and concepts for each course
+
 def preprocess_course(course):
-
     course_text = course["Course_Description"] + " " + " ".join(course["Extracted_Concepts"])
     return [word for word in course_text.lower().split() if word not in stop_words]
 
+# Text preprocessing function
+def preprocess_text(text):
+    tokens = word_tokenize(text.lower())  # Tokenize and convert to lowercase
+    tokens = [token for token in tokens if token.isalnum() and token not in stop_words]  # Remove stopwords and non-alphanumeric
+    return tokens
 
-def course_texts(courses):
-    texts = [preprocess_course(course) for course in courses]
+# Create a dictionary and similarity matrix for courses
+def create_similarity_resources(courses):
+    # Preprocess text for all courses
+    texts = [preprocess_text(course["Course_Description"] + " " + " ".join(course["Extracted_Concepts"])) for course in courses]
+    
+    # Create a dictionary and Bag-of-Words representations
     dictionary = Dictionary(texts)
-    documents = [dictionary(text) for text in texts]
-    return documents
-
-# Step 1: Soft Cosine Similarity
-def compute_soft_cosine_measure(course1, course2):
-    preprocess_text1 = preprocess_course(course1)
-    preprocess_text2 = preprocess_course(course2)
-
-    documents = [preprocess_text1, preprocess_text2]
-    dictionary = Dictionary(documents)
-
-    preprocess_text1 = dictionary.doc2bow(preprocess_text1)
-    preprocess_text2 = dictionary.doc2bow(preprocess_text2)
-
-    documents = [preprocess_text1, preprocess_text2]
-
-    tfidf = TfidfModel(documents)
-
-    preprocess_text1 = tfidf[preprocess_text1]
-    preprocess_text2 = tfidf[preprocess_text2]
-
+    bow_corpus = [dictionary.doc2bow(text) for text in texts]
+    
+    # Create a TF-IDF model
+    tfidf = TfidfModel(bow_corpus)
+    tfidf_corpus = [tfidf[doc] for doc in bow_corpus]
+    
+    # Create a WordEmbeddingSimilarityIndex and TermSimilarityMatrix
     termsim_index = WordEmbeddingSimilarityIndex(word_embeddings)
     termsim_matrix = SparseTermSimilarityMatrix(termsim_index, dictionary, tfidf)
+    
+    return dictionary, tfidf, termsim_matrix, tfidf_corpus
 
-    similarity = termsim_matrix.inner_product(preprocess_text1, preprocess_text2, normalized=(True, True))
-
-    return similarity
-
-# Function to calculate Jaccard similarity
-def jaccard_similarity(set1, set2):
-    intersection = len(set(set1).intersection(set(set2)))
-    union = len(set(set1).union(set(set2)))
-    return intersection / union if union != 0 else 0
-
-# Function to normalize and calculate numerical similarity
-def numerical_similarity(value1, value2):
-    diff = abs(value1 - value2)
-    return 1 - diff  # Inverse to make higher similarity values better
-
-# Overall similarity function
-def get_course_similarity(course1, course2, weights):
-    # Text similarity (concepts or descriptions)
-    text_sim = compute_soft_cosine_measure(course1, course2,)
-
-    # Categorical similarity (teaching language)
-    lang_sim = jaccard_similarity(course1["Encoded_Language"], course2["Encoded_Language"])
-
-    # Numerical similarity (credit hours)
-    credit_sim = numerical_similarity(course1["Course_Credit"], course2["Course_Credit"])
-
-    # Combine with weights
-    overall_similarity = (
-        weights["text"] * text_sim +
-        weights["categorical"] * lang_sim +
-        weights["numerical"] * credit_sim
-    )
-    return overall_similarity
+# Calculate soft cosine similarity
+def calculate_soft_cosine_similarity(user_text, courses, dictionary, tfidf, termsim_matrix):
+    # Preprocess and convert user input into Bag-of-Words and TF-IDF
+    user_tokens = preprocess_text(user_text)
+    user_bow = dictionary.doc2bow(user_tokens)
+    user_tfidf = tfidf[user_bow]
+    
+    # Compute similarities for all courses
+    similarities = []
+    for course_id, course_tfidf in enumerate(courses):
+        similarity = termsim_matrix.inner_product(user_tfidf, course_tfidf, normalized=(True, True))
+        similarities.append((course_id, similarity))
+    
+    return similarities
 
 
-weights = {
-    "text": 0.8, # Weight for text similarity (soft cosine)
-    "categorical": 0.1, # Weight for categorical similarity (e.g., teaching language)
-    "numerical": 0.1   # Weight for numerical similarity (e.g., credit hours)
+# Precompute similarity resources
+dictionary, tfidf, termsim_matrix, tfidf_corpus = create_similarity_resources(courses_data)
+
+
+# Vectorizer initialization (TF-IDF)
+tfidf_vectorizer = TfidfVectorizer(stop_words='english', max_features=1000)
+
+# Precompute text embeddings for all courses
+course_texts = [" ".join(preprocess_course(course)) for course in courses_data]
+tfidf_matrix = tfidf_vectorizer.fit_transform(course_texts)
+
+# Helper functions for encoding categorical and numerical features
+def encode_teaching_style(style):
+    mapping = {"Course+Exercise+Project": 0.0, "Course+Exercise": 1.0, "Course+Project": 2.0}
+    return mapping.get(style, 0.0)
+
+def encode_course_language(lang):
+    mapping = {"English": 0.0, "German": 1.0, "Both": 2.0}
+    return mapping.get(lang, 2.0)
+
+def encode_course_module(module):
+    mapping = {
+        "Interactive Systems and Visualization": 0.0,
+        "Intelligent Networked Systems": 1.0,
+        "Basic": 2.0,
+    }
+    return mapping.get(module, 0.0)
+
+def encode_user_input(user_input):
+    return {
+        "Course_Teaching_Style": encode_teaching_style(user_input.get("teaching_style")),
+        "Course_Language": encode_course_language(user_input.get("preferred_language")),
+        "Course_Module": encode_course_module(user_input.get("module")),
+    }
+
+def calculate_jaccard_similarity(vec1, vec2):
+    intersection = sum(1 for x, y in zip(vec1, vec2) if x == y)
+    union = len(vec1)
+    return intersection / union if union else 0
+
+# Recommendation function
+def get_course_recommendations(courses, user_input, dictionary, tfidf, termsim_matrix, tfidf_corpus, top_n=5):
+    # Encode user input
+    user_encoded_input = encode_user_input(user_input)
+
+    # Compute user vector
+    user_categorical_vector = [
+        user_encoded_input.get("Course_Language", 0.0),
+        user_encoded_input.get("Course_Module", 0.0),
+        user_encoded_input.get("Course_Teaching_Style", 0.0),
+    ]
+
+    # User TF-IDF vector
+    user_keywords_text = " ".join(user_input["keywords"])
+    # user_tfidf_vector = tfidf_vectorizer.transform([user_keywords_text])
+    user_tokens = preprocess_text(user_keywords_text)  # Preprocess user keywords
+    user_bow = dictionary.doc2bow(user_tokens)
+    user_tfidf_vector = tfidf[user_bow]
+
+    recommendations = []
+    for idx, course in enumerate(courses):
+        # # Textual similarity
+        # course_tfidf_vector = tfidf_matrix[idx]
+        # text_similarity = cosine_similarity(user_tfidf_vector, course_tfidf_vector)[0][0]
+
+        #   Textual similarity using soft cosine
+        course_tfidf_vector = tfidf_corpus[idx]
+        text_similarity = termsim_matrix.inner_product(
+            user_tfidf_vector, course_tfidf_vector, normalized=(True, True)
+        )
+
+        # Categorical similarity
+        course_categorical_vector = [
+            encode_course_language(course.get("Course_Language", "")),
+            encode_course_module(course.get("Course_Module", "")),
+            encode_teaching_style(course.get("Course_Teaching_Style", "")),
+        ]
+        categorical_similarity = calculate_jaccard_similarity(
+            course_categorical_vector, user_categorical_vector
+        )
+
+        # Weighted score
+        weight = user_input["weighting"]
+        final_score = (
+            weight["textual"] * text_similarity +
+            weight["categorical"] * categorical_similarity
+        )
+
+        recommendations.append({
+            "Course_ID": course["Course_ID"],
+            "Course_Name": course["Course_Name"],
+            "Score": final_score,
+        })
+
+    # Sort recommendations by score
+    recommendations.sort(key=lambda x: x["Score"], reverse=True)
+
+    return recommendations[:top_n]
+
+# User input
+user_input = {
+    "preferred_language": "German",
+    "math_level": "High",
+    "keywords": ["begins",
+            "synchronization",
+            "calls",
+            "soap",
+            "foundational",
+            "transactions"],
+    "module": "Basics",
+    "teaching_style": "Course+Exercise",
+    "weighting": {"textual": 0.8, "categorical": 0.2},
 }
 
-similarity_matrix = []
+# Get recommendations
+recommended_courses = get_course_recommendations(courses_data, user_input, dictionary, tfidf, termsim_matrix, tfidf_corpus)
 
-for i, course1 in enumerate(courses_data):
-    similarities = {}
-    for j, course2 in enumerate(courses_data):
-        # if i < j:  # Only calculate for unique pairs
-            similarity_score = get_course_similarity(course1, course2, weights)
-            similarities[course2["Course_ID"]] = similarity_score
-
-    similarity_matrix.append({
-        "_id": course1["Course_ID"],
-        "similarities": similarities
-    })
-
-# Save the similarity matrix to a new JSON file
-with open("files/similarity-matrix.json", "w") as file:
-    json.dump(similarity_matrix, file, indent=4)
-
-# # Load similarity matrix (if needed)
-# with open("similarity-matrix.json", "r") as file:
-#     similarity_matrix = json.load(file)
-
-# Define recommendation function
-def get_recommendations(course_id, top_n=5):
-    # Find the course in the similarity matrix
-    course_similarity = next((entry for entry in similarity_matrix if entry["Course_ID"] == course_id), None)
-    if not course_similarity:
-        return []
-
-    # Sort similarities in descending order
-    sorted_courses = sorted(
-        course_similarity["similarities"].items(),
-        key=lambda x: x[1],  # Sort by similarity score
-        reverse=True
-    )
-
-    # Retrieve details of the top N recommended courses
-    recommendations = [
-        next(course for course in courses_data if course["_id"] == course_id)
-        for course_id, score in sorted_courses[:top_n]
-    ]
-    return recommendations
-
-# # Example usage
-# course_id = courses_data[0]["Course_ID"]  # Replace with an actual course ID
-# top_recommendations = get_recommendations(course_id, top_n=5)
-
-# print("Recommended Courses:")
-# for rec in top_recommendations:
-#     print(rec["Course_Name"], rec["Course_Description"])
-
-
-
-
-
+# Output recommendations
+for idx, rec in enumerate(recommended_courses, 1):
+    print(f"{idx}. {rec['Course_Name']} - Score: {rec['Score']:.2f}")
