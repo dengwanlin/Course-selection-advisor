@@ -1,3 +1,4 @@
+from db.connection import connect_to_cluster, fetch_data
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
@@ -9,7 +10,11 @@ from nltk import download
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 import numpy as np
-import json
+
+
+#connect to cluster
+client = connect_to_cluster()
+courses_data = fetch_data('processed_courses')
 
 
 # Load resources
@@ -18,10 +23,6 @@ download('stopwords')
 download('punkt')
 download('punkt_tab')
 word_embeddings = api.load('word2vec-google-news-300')
-
-# Load the JSON file
-with open("files/processed_courses.json", "r") as file:
-    courses_data = json.load(file)
 
 # Preprocess course text
 stop_words = set(stopwords.words('english'))
@@ -171,24 +172,6 @@ def get_course_recommendations(courses, user_input, dictionary, tfidf, termsim_m
 
     return recommendations[:top_n]
 
-# User input
-user_input = {
-    "preferred_language": "German",
-    "math_level": "High",
-    "keywords": ["begins",
-            "synchronization",
-            "calls",
-            "soap",
-            "foundational",
-            "transactions"],
-    "module": "Basics",
-    "teaching_style": "Course+Exercise",
-    "weighting": {"textual": 0.8, "categorical": 0.2},
-}
+def get_similarity_resources():
+    return dictionary, tfidf, termsim_matrix, tfidf_corpus, courses_data
 
-# Get recommendations
-recommended_courses = get_course_recommendations(courses_data, user_input, dictionary, tfidf, termsim_matrix, tfidf_corpus)
-
-# Output recommendations
-for idx, rec in enumerate(recommended_courses, 1):
-    print(f"{idx}. {rec['Course_Name']} - Score: {rec['Score']:.2f}")

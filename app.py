@@ -4,18 +4,21 @@ from datetime import datetime
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from db.connection import connect_to_cluster, get_collections, fetch_data
+# from model.cf import get_course_recommendations, get_similarity_resources
+
 #from mongodb.password import password
 
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
 
 client = connect_to_cluster()
-get_collections()
-fetch_data('course')
+
 
 db = client['Course_Recommendation']
 student_collection = db['student']
 enums_collection = db['enums']
+
+
 
 @app.route('/')
 def welcome():
@@ -157,11 +160,33 @@ def show_course():
 
 @app.route('/recommendation')
 def show_recommendation():
+    
+#similarity_resources
+    # dictionary, tfidf, termsim_matrix, tfidf_corpus, courses_data = get_similarity_resources()
+
+# User input
+    user_input = {
+    "preferred_language": "German",
+    "math_level": "High",
+    "keywords": ["begins",
+            "synchronization",
+            "calls",
+            "soap",
+            "foundational",
+            "transactions"],
+    "module": "Basics",
+    "teaching_style": "Course+Exercise",
+    "weighting": {"textual": 0.8, "categorical": 0.2},
+}
+
+    # recommendation = get_course_recommendations(courses_data, user_input, dictionary, tfidf, termsim_matrix, tfidf_corpus)
     pass
 
 @app.route('/more')
 def show_more():
     pass
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

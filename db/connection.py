@@ -1,8 +1,6 @@
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
-
-
 def connect_to_cluster():
     uri = "mongodb+srv://whhxsg:whhxsg@coursecluster.ecl2n.mongodb.net/?retryWrites=true&w=majority&appName=CourseCluster"
 
@@ -33,7 +31,5 @@ def fetch_data(collection_name):
     db = client['Course_Recommendation']
     collection = db[collection_name]
     X = collection.find()
-    for data in X:
-        print(data)
-    return 
+    return list(X)
 
