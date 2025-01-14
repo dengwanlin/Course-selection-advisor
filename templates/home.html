@@ -3,171 +3,308 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>homepage</title>
     <style>
-        * {
+        /* General Reset */
+        body, html {
             margin: 0;
             padding: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: Arial, sans-serif;
+     .dashboard-container {
             display: flex;
-            min-height: 100vh;
-            margin: 0;
+            height: 100vh;
         }
 
-        .container {
-            display: flex;
-            width: 100%;
-        }
-
-        .left-panel {
-            background-color: #3b0150;
-            color: white;
-            width: 40%;
-            padding: 50px;
+        /* Sidebar */
+     .sidebar {
+            width: 250px;
+            background-color: #f9f9f9;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
+            justify-content: space-between;
+            padding: 20px;
         }
 
-        .left-panel img {
-            width: 80px;
-            margin-bottom: 30px;
+     .logo h2 {
+            color: #6a1b9a;
+            text-align: center;
+            margin-bottom: 40px;
         }
 
-        .left-panel h1 {
-            font-size: 2rem;
+     .sidebar nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+     .sidebar nav ul li {
+            margin: 15px 0;
+        }
+
+     .sidebar nav ul li a {
+            text-decoration: none;
+            font-weight: bold;
+            color: #333;
+            padding: 10px;
+            display: block;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+     .sidebar nav ul li a:hover,
+     .sidebar nav ul li a.active {
+            background-color: #6a1b9a;
+            color: white;
+        }
+
+     .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+     .user-profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+     .user-profile p {
             font-weight: bold;
         }
 
-        .right-panel {
-            background-color: #ffffff;
-            width: 60%;
-            padding: 50px;
+        /* Main Content */
+        main {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            justify-content: center;
         }
 
-        .right-panel a {
+        /* Header */
+     .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 20px;
+            background-color: white;
+            border-bottom: 1px solid #ddd;
+            justify-content: flex-end;
+        }
+
+     .top-header nav {
+            display: flex;
+            gap: 15px;
+        }
+
+     .top-header nav a {
             text-decoration: none;
-            font-size: 14px;
-            color: #a027a1;
+            color: #6a1b9a;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        .right-panel a:hover {
+     .top-header nav a.active {
             text-decoration: underline;
         }
 
-        .back-home {
-            font-size: 14px;
-            color: #3b0150;
-            margin-bottom: 20px;
+     .top-header nav a.logout {
+            color: #d9534f;
         }
 
-        .form-container {
+        /* Fullscreen dropdown */
+     .fullscreen-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 400px;
-            margin: auto;
-            text-align: center;
+            height: 100%;
+            background-color: rgb(135 46 189);
+            color: white;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
 
-        .form-container h2 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+     .fullscreen-menu a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 15px 0;
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s;
         }
 
-        .form-container p {
-            font-size: 14px;
-            margin-bottom: 30px;
-            color: #555;
+     .fullscreen-menu a:hover {
+            color: #ffccff;
+            transform: scale(1.1);
         }
 
-        .form-group {
-            text-align: left;
-            margin-bottom: 20px;
+     .fullscreen-menu.show {
+            display: flex;
         }
 
-        .form-group label {
-            font-size: 14px;
-            display: block;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-
-        .form-group a {
-            display: block;
-            font-size: 12px;
-            color: #a027a1;
-            text-align: right;
-            margin-top: 5px;
-        }
-
-        .form-group a:hover {
-            text-decoration: underline;
-        }
-
-        .btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #a027a1;
+        /* Close Button */
+     .close-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            background: none;
             border: none;
             color: white;
-            font-size: 16px;
-            border-radius: 5px;
             cursor: pointer;
+            transition: transform 0.3s ease;
         }
 
-        .btn:hover {
-            background-color: #880e7a;
+     .close-button:hover {
+            transform: scale(1.2);
         }
 
+        /* Menu Button */
+     .menu-button {
+            display: none; /* Initially hidden */
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #6a1b9a;
+        }
+     .dashboard-content{
+            border-radius: 10px;
+            margin: 10px 30px 0 30px;
+        }
+     .banner{
+            text-align: center;
+            padding: 40px;
+            background-color: #aaaaaa7a;
+            border-radius: 10px;
+        }
+     .word1{
+            font-size: 30px;
+        }
+     .word2{
+            font-size: 40px;
+        }
+        /* Responsive Design */
+        @media screen and (max-width: 1024px) {
+         .top-header nav {
+                display: none;
+            }
+
+         .menu-button {
+                display: block; /* Show menu button */
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Left Panel -->
-        <div class="left-panel">
-            <img src="logo.png" alt="Smart CS Logo">
-            <h1>Smarter way of selecting courses</h1>
-        </div>
-
-        <!-- Right Panel -->
-        <div class="right-panel">
-            <a href="#" class="back-home">&larr; Back to Home</a>
-            <div class="form-container">
-                <h2>Welcome Back!</h2>
-                <p>We're excited to see you again!</p>
-
-                    <form method="post">
-
-                        <div class="form-group"><label for="student_id" style="font-size: 20px;">student_ID:</label><input type="text" id="student_id" name="student_id" required></div>
-
-                        <div class="form-group"><label for="password" style="font-size: 20px;">password</label><input type="password" id="password" name="password" required><br>
-                        </div>
-                        <input class="btn" type="submit" value="login">
-                    </form>
-                {% if error %}
-                        <p>{{ error|safe }}</p>
-                {% endif %}
-
-                <p style="margin-top: 20px; font-size: 14px;">
-                    Need an account? <a href="{{ url_for('register') }}">Register</a>
-                </p>
+    <!-- Sidebar -->
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Smart CS</h2>
             </div>
-        </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a></li>
+                    <li><a href="{{ url_for('course') }}">Courses</a></li>
+                    <li><a href="{{ url_for('insights') }}">Insights</a></li>
+                    <li><a href="{{ url_for('setting') }}">Setting</a></li>
+                    <li><a href="{{ url_for('questionnaire') }}">Questionnaire</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile">
+                <img src="https://via.placeholder.com/50" alt="User Profile">
+                <p>Welcome back {{ username }}</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Header -->
+            <header class="top-header">
+                <button class="menu-button" id="menuButton">☰</button>
+                <nav>
+                    <a href="#">Home</a>
+                    <a href="#" class="active">Dashboard</a>
+                    <a href="#">About Us</a>
+                    <a href="#">Contact Us</a>
+                    <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
+                </nav>
+            </header>
+
+            <!-- Fullscreen Menu -->
+            <div class="fullscreen-menu" id="fullscreenMenu">
+                <button class="close-button" id="closeButton">✖</button>
+                <a href="#">Home</a>
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">About Us</a>
+                <a href="#">Contact Us</a>
+                <a href="#" class="logout">Log Out</a>
+            </div>
+
+            <!-- Dashboard Content -->
+            <section class="dashboard-content">
+                <div class="banner">
+                    <h1 class="word1">Course Selection Advisor</h1>
+                    <h2 class="word2">MSc. Informatik - Duisburg</h2>
+                </div>
+                <div class="charts-container">
+
+                </div>
+            </section>
+        </main>
     </div>
+    <script>
+        // Ensure DOM is loaded before running the script
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuButton = document.getElementById('menuButton');
+            const fullscreenMenu = document.getElementById('fullscreenMenu');
+            const closeButton = document.getElementById('closeButton');
+
+            // Open the fullscreen menu
+            menuButton.addEventListener('click', () => {
+                fullscreenMenu.classList.add('show');
+            });
+
+            // Close the fullscreen menu
+            closeButton.addEventListener('click', () => {
+                fullscreenMenu.classList.remove('show');
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const searchCoursesTab = document.getElementById('searchCoursesTab');
+            const myCoursesTab = document.getElementById('myCoursesTab');
+            const searchCoursesForm = document.getElementById('searchCoursesForm');
+
+            searchCoursesTab.addEventListener('click', () => {
+                searchCoursesTab.classList.add('active');
+                myCoursesTab.classList.remove('active');
+                searchCoursesForm.style.display = 'block';
+            });
+
+            myCoursesTab.addEventListener('click', () => {
+                searchCoursesTab.classList.remove('active');
+                myCoursesTab.classList.add('active');
+                searchCoursesForm.style.display = 'none';
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('.sidebar nav a');
+            links.forEach(link => {
+                if (link.href === window.location.href) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
