@@ -183,13 +183,13 @@ def course():
     courses = course_collection.find({"Course_Name": {"$ne": None}}).sort("Course_Name", 1)
     return render_template('course.html', courses=courses, username=session.get('username'))
 
-@app.route('/recommendation')
-def recommendation():
-    return render_template('recommendation.html', username=session.get('username'))
+@app.route('/insights')
+def insights():
+    return render_template('insights.html', username=session.get('username'))
 
-@app.route('/more')
-def more():
-    return render_template('more.html', username=session.get('username'))
+@app.route('/setting')
+def setting():
+    return render_template('setting.html', username=session.get('username'))
 
 
 @app.route('/change_password', methods=['POST'])
@@ -199,6 +199,7 @@ def change_password():
         return redirect(url_for('welcome'))
 
     current_password = request.form.get('current_password')
+
     new_password = request.form.get('new_password')
     confirm_new_password = request.form.get('confirm_new_password')
 
@@ -207,10 +208,10 @@ def change_password():
         return redirect(url_for('welcome'))
 
     if student['password']!= current_password:
-        return render_template('more.html', error='Current password is incorrect.')
+        return render_template('setting.html', error='Current password is incorrect.')
 
     if new_password!= confirm_new_password:
-        return render_template('more.html', error='New passwords do not match.')
+        return render_template('setting.html', error='New passwords do not match.')
 
     try:
         #hashed_password = bcrypt.hashpw(new_password.encode('utf - 8'), bcrypt.gensalt())
@@ -219,6 +220,6 @@ def change_password():
         session.pop('username', None)
         return redirect(url_for('welcome'))
     except Exception as e:
-        return render_template('more.html', error=f'Password change failed: {str(e)}')
+        return render_template('setting.html', error=f'Password change failed: {str(e)}')
 if __name__ == '__main__':
     app.run(debug=True)
