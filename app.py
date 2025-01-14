@@ -1,11 +1,13 @@
 import bcrypt
+import plotly
 from flask import Flask, render_template, request, redirect, url_for,session
 #from pymongo import MongoClient
 from datetime import datetime
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-#from mongodb.password import password
-
+import plotly.graph_objects as go
+import json
+import pandas as pd
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
 
@@ -182,10 +184,34 @@ def submit_status():
 def course():
     courses = course_collection.find({"Course_Name": {"$ne": None}}).sort("Course_Name", 1)
     return render_template('course.html', courses=courses, username=session.get('username'))
-
 @app.route('/insights')
 def insights():
-    return render_template('insights.html', username=session.get('username'))
+    # Query courses with Course_Level as Master_Level
+    master_level_courses = course_collection.find({"Course_Level": "Master level"})
+    english_count = 0
+    german_count = 0
+    for course in master_level_courses:
+        if course.get('Course_Language') == 'English':
+            english_count += 1
+        elif course.get('Course_Language') == 'German':
+            german_count += 1
+    # Create Plotly figure
+    fig = go.Figure(
+        data=[go.Bar(x=['English Courses', 'German Courses'], y=[english_count, german_count])],
+
+    )
+    fig.update_layout(
+        polar=dict(
+            radialaxis=dict(
+                visible=True,
+                range=[0, 5]
+            )),
+        title=f"Master course language",
+        title_x=0.5
+    )
+    # Convert the figure to JSON
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    return render_template('insights.html', graphJSON=graphJSON, username=session.get('username'))
 
 @app.route('/setting')
 def setting():
