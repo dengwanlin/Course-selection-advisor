@@ -17,44 +17,12 @@ client = MongoClient(uri, server_api=ServerApi('1'))
 
 db = client['Course_Recommendation']
 student_collection = db['student']
+course_collection=db['course']
 enums_collection = db['enums']
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
+#@app.route('/welcome', methods=['GET', 'POST'])
 def welcome():
-    return render_template('welcome.html')
-
-
-@app.route('/register', methods=['GET', 'POST'])
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        student_id = request.form.get('student_id')
-        first_name = request.form.get('first_name')
-        last_name = request.form.get('last_name')
-        password = request.form.get('password')
-
-        # Get the current time as the registration time
-        register_time = datetime.now()
-
-        # Check if the student ID already exists
-        existing_student = student_collection.find_one({'student_id': student_id})
-        if existing_student:
-            message = "The student number has been registered, please enter <a href='{}'>Login Page</a>to Log in, or you can re-fill in your information to register.".format(url_for('login'))
-            return render_template('register.html', exist_message=message)
-        else:
-            student_info = {
-                "student_id": student_id,
-                "first_name": first_name,
-                "last_name": last_name,
-                "password": password,
-                "register_time": register_time
-            }
-            student_collection.insert_one(student_info)
-            return render_template('register_success.html', login_url=url_for('login'))
-    return render_template('register.html')
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
     error = None
     if request.method == 'POST':
         student_id = request.form.get('student_id')
@@ -73,12 +41,45 @@ def login():
 
             error = "The account does not exist, please enter <a href='{}'>register page</a> to register, or you can re-fill in your information to log in.".format(
                 url_for('register'))
-    return render_template('login.html', error=error)
+    return render_template('welcome.html', error=error)
+
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        student_id = request.form.get('student_id')
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        password = request.form.get('password')
+
+        # Get the current time as the registration time
+        register_time = datetime.now()
+
+        # Check if the student ID already exists
+        existing_student = student_collection.find_one({'student_id': student_id})
+        if existing_student:
+            message = "The student number has been registered, please enter <a href='{}'>welcome Page</a>to Log in, or you can re-fill in your information to register.".format(url_for('welcome'))
+            return render_template('register.html', exist_message=message)
+        else:
+            student_info = {
+                "student_id": student_id,
+                "first_name": first_name,
+                "last_name": last_name,
+                "password": password,
+                "register_time": register_time
+            }
+            student_collection.insert_one(student_info)
+            return render_template('register_success.html', welcome_url=url_for('welcome'))
+    return render_template('register.html')
+
+
+#def login():
+
 
 @app.route('/home/<username>')
 def home(username):
     if 'student_id' not in session:
-        return redirect(url_for('login'))
+        return redirect(url_for('welcome'))
     return render_template('home.html', username=username)
 
 
@@ -125,7 +126,7 @@ def questionnaire():
 def submit_status():
     student_id = session.get('student_id')
     if student_id is None:
-        return redirect(url_for('login'))
+        return redirect(url_for('welcome'))
 
     term = request.form.get('terms')
     selected_languages = request.form.getlist('languages')
@@ -179,7 +180,8 @@ def submit_status():
 
 @app.route('/course')
 def course():
-    return render_template('course.html', username=session.get('username'))
+    courses = course_collection.find({"Course_Name": {"$ne": None}}).sort("Course_Name", 1)
+    return render_template('course.html', courses=courses, username=session.get('username'))
 
 @app.route('/recommendation')
 def recommendation():
@@ -194,7 +196,7 @@ def more():
 def change_password():
     student_id = session.get('student_id')
     if student_id is None:
-        return redirect(url_for('login'))
+        return redirect(url_for('welcome'))
 
     current_password = request.form.get('current_password')
     new_password = request.form.get('new_password')
@@ -202,7 +204,7 @@ def change_password():
 
     student = student_collection.find_one({'student_id': student_id})
     if not student:
-        return redirect(url_for('login'))
+        return redirect(url_for('welcome'))
 
     if student['password']!= current_password:
         return render_template('more.html', error='Current password is incorrect.')
