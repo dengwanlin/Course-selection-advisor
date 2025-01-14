@@ -19,6 +19,7 @@
 </head>
 
 <body>
+    <a href="{{ url_for('home', username=session.get('username')) }}" style="font-size: 20px;">Back to Home</a>
     <form method="post" action="{{ url_for('submit_status') }}">
         <!-- select your term -->
         <label for="terms" style="font-size: 20px;">Term:</label>
@@ -112,7 +113,7 @@
         <input type="number" id="available_exercise_time_per_week" name="available_exercise_time_per_week" style="font-size: 20px;">
         <br>
 
-        <input type="submit" value="submit">
+        <input type="submit" style="font-size: 20px;" value="submit">
     </form>
 
     <script>
