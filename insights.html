@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Insights</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <a href="{{ url_for('home', username=session.get('username')) }}" style="font-size: 20px;">Back to Home</a>
+    <div id="plotly-chart"></div>
+    <script>
+        var graphJSON = {{graphJSON | safe}};
+        Plotly.newPlot('plotly-chart', graphJSON.data, graphJSON.layout);
+    </script>
+</body>
+</html>
