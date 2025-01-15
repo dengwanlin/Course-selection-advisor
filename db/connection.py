@@ -33,3 +33,5 @@ def fetch_data(collection_name):
     X = collection.find()
     return list(X)
 
+
+

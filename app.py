@@ -13,6 +13,7 @@ app.secret_key = 'my_secret_key'
 
 client = connect_to_cluster()
 courses_data = fetch_data('processed_courses')
+print(courses_data)
 
 
 db = client['Course_Recommendation']
