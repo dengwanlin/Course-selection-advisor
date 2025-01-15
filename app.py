@@ -162,9 +162,6 @@ def show_course():
 
 @app.route('/recommendation')
 def show_recommendation():
-    
-#similarity_resources
-    # dictionary, tfidf, termsim_matrix, tfidf_corpus, courses_data = get_similarity_resources()
 
     pass
 
