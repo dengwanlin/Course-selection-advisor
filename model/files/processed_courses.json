@@ -42,12 +42,8 @@
             "Fur rendering",
             "High dynamic range imaging"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Interactive Systems and Visualization"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Interactive Systems and Visualization"
     },
     {
         "_id": {
@@ -73,7 +69,7 @@
         ],
         "Course_Class_Hours": 1.0,
         "Homework_mandatorily required_hours": 0.0,
-        "Course_Module": 1.0,
+        "Course_Module": 2.0,
         "Extracted_Concepts": [
             "Cloud computing architecture",
             "Cloud application development",
@@ -81,12 +77,8 @@
             "Front-end technologies",
             "Cloud integration"
         ],
-        "Encoded_Language": [
-            "German"
-        ],
-        "Encoded_Module": [
-            "Intelligent Networked Systems"
-        ]
+        "Encoded_Language": "German",
+        "Encoded_Module": "Intelligent Networked Systems"
     },
     {
         "_id": {
@@ -118,12 +110,8 @@
             "Communication protocols",
             "Algorithm application"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Interactive Systems and Visualization"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Interactive Systems and Visualization"
     },
     {
         "_id": {
@@ -165,12 +153,8 @@
             "big data processing",
             "data visualization"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Basics"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Basics"
     },
     {
         "_id": {
@@ -199,7 +183,7 @@
         ],
         "Course_Class_Hours": 1.0,
         "Homework_mandatorily required_hours": 0.3333333333333333,
-        "Course_Module": 1.0,
+        "Course_Module": 2.0,
         "Extracted_Concepts": [
             "Concurrent modeling",
             "Process calculus",
@@ -207,12 +191,8 @@
             "Analysis techniques",
             "Technique judgment"
         ],
-        "Encoded_Language": [
-            "German"
-        ],
-        "Encoded_Module": [
-            "Intelligent Networked Systems"
-        ]
+        "Encoded_Language": "German",
+        "Encoded_Module": "Intelligent Networked Systems"
     },
     {
         "_id": {
@@ -246,12 +226,8 @@
             "Programming",
             "Application scenarios"
         ],
-        "Encoded_Language": [
-            "German"
-        ],
-        "Encoded_Module": [
-            "Interactive Systems and Visualization"
-        ]
+        "Encoded_Language": "German",
+        "Encoded_Module": "Interactive Systems and Visualization"
     },
     {
         "_id": {
@@ -292,7 +268,7 @@
         ],
         "Course_Class_Hours": 1.0,
         "Homework_mandatorily required_hours": 0.6666666666666666,
-        "Course_Module": 0.0,
+        "Course_Module": 2.0,
         "Extracted_Concepts": [
             "Web technology concepts",
             "Web applications",
@@ -305,12 +281,8 @@
             "Innovative solutions",
             "Team collaboration"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Intelligent Networked Systems"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Intelligent Networked Systems"
     },
     {
         "_id": {
@@ -348,12 +320,8 @@
             "Rasterization",
             "Method selection"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Interactive Systems and Visualization"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Interactive Systems and Visualization"
     },
     {
         "_id": {
@@ -390,12 +358,8 @@
             "Team development",
             "Project management"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Interactive Systems and Visualization"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Interactive Systems and Visualization"
     },
     {
         "_id": {
@@ -421,7 +385,7 @@
         ],
         "Course_Class_Hours": 0.5,
         "Homework_mandatorily required_hours": 0.16666666666666666,
-        "Course_Module": 1.0,
+        "Course_Module": 2.0,
         "Extracted_Concepts": [
             "Retrieval models",
             "Multimedia retrieval",
@@ -429,12 +393,8 @@
             "System implementation",
             "Evaluation methods"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Intelligent Networked Systems"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Intelligent Networked Systems"
     },
     {
         "_id": {
@@ -460,19 +420,15 @@
         ],
         "Course_Class_Hours": 1.0,
         "Homework_mandatorily required_hours": 0.3333333333333333,
-        "Course_Module": 1.0,
+        "Course_Module": 2.0,
         "Extracted_Concepts": [
             "Educational technology",
             "Cognitive modeling",
             "Learning environment",
             "Technology application"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Intelligent Networked Systems"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Intelligent Networked Systems"
     },
     {
         "_id": {
@@ -505,12 +461,8 @@
             "Technology application",
             "Research evaluation"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Interactive Systems and Visualization"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Interactive Systems and Visualization"
     },
     {
         "_id": {
@@ -539,19 +491,15 @@
         ],
         "Course_Class_Hours": 0.0,
         "Homework_mandatorily required_hours": 0.0,
-        "Course_Module": 1.0,
+        "Course_Module": 2.0,
         "Extracted_Concepts": [
             "IoT concepts",
             "Protocol architecture",
             "Technology application",
             "Technology differences"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Intelligent Networked Systems"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Intelligent Networked Systems"
     },
     {
         "_id": {
@@ -578,16 +526,12 @@
         ],
         "Course_Class_Hours": 1.0,
         "Homework_mandatorily required_hours": 0.0,
-        "Course_Module": 1.0,
+        "Course_Module": 0.0,
         "Extracted_Concepts": [
             "1"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Basics"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Basics"
     },
     {
         "_id": {
@@ -616,19 +560,15 @@
         ],
         "Course_Class_Hours": 1.0,
         "Homework_mandatorily required_hours": 0.0,
-        "Course_Module": 1.0,
+        "Course_Module": 0.0,
         "Extracted_Concepts": [
             "Program verification",
             "Data flow analysis",
             "Abstract interpretation",
             "Method evaluation"
         ],
-        "Encoded_Language": [
-            "German"
-        ],
-        "Encoded_Module": [
-            "Basics"
-        ]
+        "Encoded_Language": "German",
+        "Encoded_Module": "Basics"
     },
     {
         "_id": {
@@ -665,12 +605,8 @@
             "Method selection",
             "Data processing"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Interactive Systems and Visualization"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Interactive Systems and Visualization"
     },
     {
         "_id": {
@@ -699,7 +635,7 @@
         ],
         "Course_Class_Hours": 1.0,
         "Homework_mandatorily required_hours": 1.0,
-        "Course_Module": 1.0,
+        "Course_Module": 0.0,
         "Extracted_Concepts": [
             "Lexical Analysis",
             "Syntax Analysis",
@@ -708,12 +644,8 @@
             "Code Optimization\"",
             "Target Code Generation"
         ],
-        "Encoded_Language": [
-            "German"
-        ],
-        "Encoded_Module": [
-            "Basics"
-        ]
+        "Encoded_Language": "German",
+        "Encoded_Module": "Basics"
     },
     {
         "_id": {
@@ -753,11 +685,7 @@
             "Prompting",
             "Nudges and Notification"
         ],
-        "Encoded_Language": [
-            "English"
-        ],
-        "Encoded_Module": [
-            "Interactive Systems and Visualization"
-        ]
+        "Encoded_Language": "English",
+        "Encoded_Module": "Interactive Systems and Visualization"
     }
 ]
