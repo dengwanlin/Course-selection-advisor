@@ -6,7 +6,6 @@ from datetime import datetime
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 from db.connection import connect_to_cluster, fetch_data
-from model.cbf import get_course_recommendations, get_similarity_resources
 import plotly.graph_objects as go
 import json
 import pandas as pd
