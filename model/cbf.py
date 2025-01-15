@@ -101,6 +101,8 @@ def get_course_recommendations(courses, user_input, top_n=5):
         recommendations.append({
             "Course_ID": course["Course_ID"],
             "Course_Name": course["Course_Name"],
+            "Course_Teacher": course["Course_Teacher"],
+            "Term": course["Term"],
             "Score": final_score,
         })
 
@@ -111,18 +113,19 @@ def get_course_recommendations(courses, user_input, top_n=5):
 
 # User input
 user_input = {
-    "preferred_language": "German",
+    "preferred_language": "English",
     "math_level": "High",
-    "keywords": ["Communication protocols"],
+    "keywords": ["Data Analysis"],
     "module": "Basics",
     "teaching_style": "Course+Exercise",
-    "weighting": {"textual": 0.8, "categorical": 0.2},
+    "weighting": {"textual": 0.7, "categorical": 0.3},
 }
 
 recommendation = get_course_recommendations(courses_data, user_input)
 
-for rec in recommendation:
-    print(rec['Course_Name'], rec['Score'])
+for idx, rec in enumerate(recommendation):
+    print(f"{idx + 1}. {rec['Course_Name']} - Score: {rec['Score']:.2f} - Lecturer: {rec['Course_Teacher']} - Semester: {rec['Term']}")
+
 
 
 
