@@ -213,10 +213,10 @@
             <nav>
                 <ul>
                     <li><a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a></li>
-                    <li><a href="{{ url_for('course') }}">Courses</a></li>
-                    <li><a href="{{ url_for('insights') }}">Insights</a></li>
-                    <li><a href="{{ url_for('setting') }}">Setting</a></li>
-                    <li><a href="{{ url_for('questionnaire') }}">Questionnaire</a></li>
+                    <li><a href="{{ url_for('questionnaire', username=username) }}">Questionnaire</a></li>
+                    <li><a href="{{ url_for('course', username=username) }}">Courses</a></li>
+                    <li><a href="{{ url_for('insights', username=username) }}">Insights</a></li>
+                    <li><a href="{{ url_for('setting', username=username) }}">Setting</a></li>
                 </ul>
             </nav>
             <div class="user-profile">

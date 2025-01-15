@@ -1,16 +1,181 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:font-size="http://www.w3.org/1999/xhtml">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to our website</title>
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        .left-panel {
+            background-color: #3b0150;
+            color: white;
+            width: 40%;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .left-panel img {
+            width: 80px;
+            margin-bottom: 30px;
+        }
+
+        .left-panel h1 {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .right-panel {
+            background-color: #ffffff;
+            width: 60%;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-panel a {
+            text-decoration: none;
+            font-size: 14px;
+            color: #a027a1;
+        }
+
+        .right-panel a:hover {
+            text-decoration: underline;
+        }
+
+        .back-home {
+            font-size: 14px;
+            color: #3b0150;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .form-container h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .form-container p {
+            font-size: 14px;
+            margin-bottom: 30px;
+            color: #555;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .form-group a {
+            display: block;
+            font-size: 12px;
+            color: #a027a1;
+            text-align: right;
+            margin-top: 5px;
+        }
+
+        .form-group a:hover {
+            text-decoration: underline;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #a027a1;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #880e7a;
+        }
+
+    </style>
+</head>
 <body>
+<<<<<<< HEAD
     <h1>Welcome to our website</h1>
     <a href="{{ url_for('login') }}"style="font-size: 20px;">log in</a>
     <br>
     <a href="{{ url_for('register') }}"style="font-size: 20px;">sign up</a>
 </body>
+=======
+    <div class="container">
+        <!-- Left Panel -->
+        <div class="left-panel">
+            <img src="logo.png" alt="Smart CS Logo">
+            <h1>Smarter way of selecting courses</h1>
+        </div>
+>>>>>>> 7bb097a8d45a466ac5239a05497b81e023972660
 
+        <!-- Right Panel -->
+        <div class="right-panel">
+            <a href="#" class="back-home">&larr; Back to Home</a>
+            <div class="form-container">
+                <h2>Welcome Back!</h2>
+                <p>We're excited to see you again!</p>
+
+                    <form method="post">
+
+                        <div class="form-group"><label for="student_id" style="font-size: 20px;">student_ID:</label><input type="text" id="student_id" name="student_id" required></div>
+
+                        <div class="form-group"><label for="password" style="font-size: 20px;">password</label><input type="password" id="password" name="password" required><br>
+                        </div>
+                        <input class="btn" type="submit" value="login">
+                    </form>
+                {% if error %}
+                        <p>{{ error|safe }}</p>
+                {% endif %}
+
+                <p style="margin-top: 20px; font-size: 14px;">
+                    Need an account? <a href="{{ url_for('register') }}">Register</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
