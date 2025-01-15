@@ -1,31 +1,42 @@
-from db.connection import connect_to_cluster, fetch_data
 import numpy as np
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, ENGLISH_STOP_WORDS
 from sklearn.metrics.pairwise import cosine_similarity
-from gensim.corpora import Dictionary
-from gensim.models import TfidfModel
-from gensim.similarities import SparseTermSimilarityMatrix, WordEmbeddingSimilarityIndex
-import gensim.downloader as api
-from nltk import download
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
 import numpy as np
+from pymongo import MongoClient
+from pymongo.server_api import ServerApi
+# from gensim.corpora import Dictionary
+# from gensim.models import TfidfModel
+# from gensim.similarities import SparseTermSimilarityMatrix, WordEmbeddingSimilarityIndex
+# import gensim.downloader as api
+# from nltk import download
+# from nltk.corpus import stopwords
+# from nltk.tokenize import word_tokenize
+
+uri = "mongodb+srv://whhxsg:whhxsg@coursecluster.ecl2n.mongodb.net/?retryWrites=true&w=majority&appName=CourseCluster"
+
+    # Create a new client and connect to the server
+client = MongoClient(uri, server_api=ServerApi('1'))
+db = client['Course_Recommendation']
+collection = db['processed_courses']
+X = collection.find()
+courses_data = list(X)
 
 
-#connect to cluster
-client = connect_to_cluster()
-courses_data = fetch_data('processed_courses')
+# #connect to cluster
+# client = connect_to_cluster()
+# courses_data = fetch_data('processed_courses')
 
 
 # Load resources
 # Download resources
-download('stopwords')
-download('punkt')
-download('punkt_tab')
-word_embeddings = api.load('word2vec-google-news-300')
+# download('stopwords')
+# download('punkt')
+# download('punkt_tab')
+# word_embeddings = api.load('word2vec-google-news-300')
 
 # Preprocess course text
-stop_words = set(stopwords.words('english'))
+# stop_words = set(stopwords.words('english'))
+stop_words  = ENGLISH_STOP_WORDS
 
 
 def preprocess_course(course):
@@ -33,13 +44,13 @@ def preprocess_course(course):
     return [word for word in course_text.lower().split() if word not in stop_words]
 
 # Text preprocessing function
-def preprocess_text(text):
-    tokens = word_tokenize(text.lower())  # Tokenize and convert to lowercase
-    tokens = [token for token in tokens if token.isalnum() and token not in stop_words]  # Remove stopwords and non-alphanumeric
-    return tokens
+# def preprocess_text(text):
+#     tokens = word_tokenize(text.lower())  # Tokenize and convert to lowercase
+#     tokens = [token for token in tokens if token.isalnum() and token not in stop_words]  # Remove stopwords and non-alphanumeric
+#     return tokens
 
-# Create a dictionary and similarity matrix for courses
-def create_similarity_resources(courses):
+# # Create a dictionary and similarity matrix for courses
+# def create_similarity_resources(courses):
     # Preprocess text for all courses
     texts = [preprocess_text(course["Course_Description"] + " " + " ".join(course["Extracted_Concepts"])) for course in courses]
     
@@ -58,23 +69,23 @@ def create_similarity_resources(courses):
     return dictionary, tfidf, termsim_matrix, tfidf_corpus
 
 # Calculate soft cosine similarity
-def calculate_soft_cosine_similarity(user_text, courses, dictionary, tfidf, termsim_matrix):
-    # Preprocess and convert user input into Bag-of-Words and TF-IDF
-    user_tokens = preprocess_text(user_text)
-    user_bow = dictionary.doc2bow(user_tokens)
-    user_tfidf = tfidf[user_bow]
+# def calculate_soft_cosine_similarity(user_text, courses, dictionary, tfidf, termsim_matrix):
+#     # Preprocess and convert user input into Bag-of-Words and TF-IDF
+#     user_tokens = preprocess_text(user_text)
+#     user_bow = dictionary.doc2bow(user_tokens)
+#     user_tfidf = tfidf[user_bow]
     
-    # Compute similarities for all courses
-    similarities = []
-    for course_id, course_tfidf in enumerate(courses):
-        similarity = termsim_matrix.inner_product(user_tfidf, course_tfidf, normalized=(True, True))
-        similarities.append((course_id, similarity))
+#     # Compute similarities for all courses
+#     similarities = []
+#     for course_id, course_tfidf in enumerate(courses):
+#         similarity = termsim_matrix.inner_product(user_tfidf, course_tfidf, normalized=(True, True))
+#         similarities.append((course_id, similarity))
     
-    return similarities
+#     return similarities
 
 
 # Precompute similarity resources
-dictionary, tfidf, termsim_matrix, tfidf_corpus = create_similarity_resources(courses_data)
+# dictionary, tfidf, termsim_matrix, tfidf_corpus = create_similarity_resources(courses_data)
 
 
 # Vectorizer initialization (TF-IDF)
@@ -114,7 +125,7 @@ def calculate_jaccard_similarity(vec1, vec2):
     return intersection / union if union else 0
 
 # Recommendation function
-def get_course_recommendations(courses, user_input, dictionary, tfidf, termsim_matrix, tfidf_corpus, top_n=5):
+def get_course_recommendations(courses, user_input, top_n=5):
     # Encode user input
     user_encoded_input = encode_user_input(user_input)
 
@@ -127,22 +138,22 @@ def get_course_recommendations(courses, user_input, dictionary, tfidf, termsim_m
 
     # User TF-IDF vector
     user_keywords_text = " ".join(user_input["keywords"])
-    # user_tfidf_vector = tfidf_vectorizer.transform([user_keywords_text])
-    user_tokens = preprocess_text(user_keywords_text)  # Preprocess user keywords
-    user_bow = dictionary.doc2bow(user_tokens)
-    user_tfidf_vector = tfidf[user_bow]
+    user_tfidf_vector = tfidf_vectorizer.transform([user_keywords_text])
+    # user_tokens = preprocess_text(user_keywords_text)  # Preprocess user keywords
+    # user_bow = dictionary.doc2bow(user_tokens)
+    # user_tfidf_vector = tfidf[user_bow]
 
     recommendations = []
     for idx, course in enumerate(courses):
         # # Textual similarity
-        # course_tfidf_vector = tfidf_matrix[idx]
-        # text_similarity = cosine_similarity(user_tfidf_vector, course_tfidf_vector)[0][0]
+        course_tfidf_vector = tfidf_matrix[idx]
+        text_similarity = cosine_similarity(user_tfidf_vector, course_tfidf_vector)[0][0]
 
         #   Textual similarity using soft cosine
-        course_tfidf_vector = tfidf_corpus[idx]
-        text_similarity = termsim_matrix.inner_product(
-            user_tfidf_vector, course_tfidf_vector, normalized=(True, True)
-        )
+        # course_tfidf_vector = tfidf_corpus[idx]
+        # text_similarity = termsim_matrix.inner_product(
+        #     user_tfidf_vector, course_tfidf_vector, normalized=(True, True)
+        # )
 
         # Categorical similarity
         course_categorical_vector = [
@@ -173,5 +184,24 @@ def get_course_recommendations(courses, user_input, dictionary, tfidf, termsim_m
     return recommendations[:top_n]
 
 def get_similarity_resources():
-    return dictionary, tfidf, termsim_matrix, tfidf_corpus, courses_data
+    ''
+    # return dictionary, tfidf, termsim_matrix, tfidf_corpus, courses_data
+
+
+
+
+# User input
+user_input = {
+    "preferred_language": "German",
+    "math_level": "High",
+    "keywords": ["Communication protocols"],
+    "module": "Basics",
+    "teaching_style": "Course+Exercise",
+    "weighting": {"textual": 0.8, "categorical": 0.2},
+}
+
+recommendation = get_course_recommendations(courses_data, user_input)
+
+for rec in recommendation:
+    print(rec['Course_Name'], rec['Score'])
 
