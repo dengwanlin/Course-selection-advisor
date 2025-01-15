@@ -178,7 +178,7 @@ def submit_status():
     else:
         print(f"No student document found for student ID {student_id}")
 
-    return redirect(url_for('home', username=session.get('username')))
+    return redirect(url_for('course', username=session.get('username')))
 
 @app.route('/course')
 def course():
