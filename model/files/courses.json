@@ -2,32 +2,7 @@
   "_id": {
     "$oid": "67755b588cd78ea1d39b7a3d"
   },
-  "Course_ID": "ZKD50032",
-  "Course_Name": "Advanced Image Synthesis",
-  "Course_Description": "In this lecture a number of state of the art concepts of 3D environments are explained in a systematic way. In particular the lecture contains topics such as: the architecture of graphics hardware, low- and high-level APIs, OpenGL and DirectX, interactive reflection and refraction, methods to simulate shadow, an introduction to radiometric quantities, radiosity, irradiance volumes, precomputed radiance transfer, ambient occlusion, terrain rendering and terrain synthesis, hair and fur rendering, and high dynamic range imaging.",
-  "Term": "Winter 2024/25",
-  "Course_Language": "English",
-  "Course_Teacher": "Professor, Dr. Jens Krüger",
-  "Course_Credit": "6",
-  "With_Course_Videos": "Yes",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "very difficult",
-  "Course_Exam_Type": "Oral exam without exercise bonus",
-  "Course_Required_Math_Level": "very high",
-  "Course_Recommended_Background": [
-    "Computer graphics"
-  ],
-  "Programming_Requirements": [
-    {
-      "Language": "C++",
-      "Level": "proficient"
-    }
-  ],
-  "Course_Class_Hours": "3",
-  "Homework_mandatorily required_hours": "0",
-  "Course_Module": "Interactive Systems and Visualization",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Graphics processor architecture",
     "Shader languages",
     "Graphics libraries",
@@ -41,104 +16,104 @@
     "Terrain rendering",
     "Fur rendering",
     "High dynamic range imaging"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "In this lecture a number of state of the art concepts of 3D environments are explained in a systematic way. In particular the lecture contains topics such as: the architecture of graphics hardware, low- and high-level APIs, OpenGL and DirectX, interactive reflection and refraction, methods to simulate shadow, an introduction to radiometric quantities, radiosity, irradiance volumes, precomputed radiance transfer, ambient occlusion, terrain rendering and terrain synthesis, hair and fur rendering, and high dynamic range imaging.",
+  "exam_difficulty": "very difficult",
+  "exam_type": "Oral exam without exercise bonus",
+  "language": "English",
+  "lecture_duration": "3",
+  "lecturer": "Professor, Dr. Jens Krüger",
+  "math_level": "very high",
+  "module": "Interactive Systems and Visualization",
+  "name": "Advanced Image Synthesis",
+  "prerequisite": [
+    "Computer graphics"
+  ],
+  "programming_requirements": [
+    {
+      "Language": "C++",
+      "Level": "proficient"
+    }
+  ],
+  "self_study_hours": "0",
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes",
+  "id": "ZKD50032"
 },
 {
   "_id": {
     "$oid": "67755b588cd78ea1d39b7a3e"
   },
-  "Course_ID": "ZKD50056",
-  "Course_Name": "Cloud, Web & Mobile",
-  "Course_Description": "Cloud computing, web applications and mobile applications.",
-  "Term": "Winter 2024/25",
-  "Course_Language": "German",
-  "Course_Teacher": "Prof. Dr.-Ing. Torben Weis",
-  "Course_Credit": "6",
-  "With_Course_Videos": "Yes",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "difficult",
-  "Course_Exam_Type": "Klausur",
-  "Course_Required_Math_Level": "low",
-  "Course_Recommended_Background": [
-    "Null"
-  ],
-  "Programming_Requirements": [
-    {}
-  ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "0",
-  "Course_Module": "Intelligent Networked Systems",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Cloud computing architecture",
     "Cloud application development",
     "Billing models",
     "Front-end technologies",
     "Cloud integration"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "Cloud computing, web applications and mobile applications.",
+  "exam_difficulty": "difficult",
+  "exam_type": "Klausur",
+  "language": "German",
+  "lecture_duration": "4",
+  "lecturer": "Prof. Dr.-Ing. Torben Weis",
+  "math_level": "low",
+  "module": "Intelligent Networked Systems",
+  "name": "Cloud, Web & Mobile",
+  "prerequisite": [
+    "Null"
+  ],
+  "programming_requirements": [
+    {}
+  ],
+  "self_study_hours": "0",
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes",
+  "id": "ZKD50056"
 },
 {
   "_id": {
     "$oid": "67755b588cd78ea1d39b7a3f"
   },
-  "Course_ID": "ZKD41171",
-  "Course_Name": "Distributed Systems",
-  "Course_Description": "distributed systems and distributed algorithms.",
-  "Term": "Winter 2024/25",
-  "Course_Language": "English",
-  "Course_Teacher": "Prof. Dr.-Ing. Torben Weis",
-  "Course_Credit": "6",
-  "With_Course_Videos": "Yes",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "very difficult",
-  "Course_Exam_Type": "Klausur",
-  "Course_Required_Math_Level": "low",
-  "Course_Recommended_Background": [
-    "Null"
-  ],
-  "Programming_Requirements": [
-    {}
-  ],
-  "Course_Class_Hours": "3",
-  "Homework_mandatorily required_hours": "0",
-  "Course_Module": "Interactive Systems and Visualization",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Distributed concepts",
     "Communication protocols",
     "Algorithm application"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "distributed systems and distributed algorithms.",
+  "exam_difficulty": "very difficult",
+  "exam_type": "Klausur",
+  "language": "English",
+  "lecture_duration": "3",
+  "lecturer": "Prof. Dr.-Ing. Torben Weis",
+  "math_level": "low",
+  "module": "Interactive Systems and Visualization",
+  "name": "Distributed Systems",
+  "prerequisite": [
+    "Null"
+  ],
+  "programming_requirements": [
+    {}
+  ],
+  "self_study_hours": "0",
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes",
+  "id": "ZKD41171"
 },
 {
   "_id": {
     "$oid": "67755b588cd78ea1d39b7a40"
   },
-  "Course_ID": "ZKD50039",
-  "Course_Name": "Learning Analytics",
-  "Course_Description": " statistics, big data, machine learning, data/text mining, information visualization, visual analytics, and recommender systems.",
-  "Term": "Winter 2024/25",
-  "Course_Language": "English",
-  "Course_Teacher": "Prof. Dr. Mohamed Amine Chatti",
-  "Course_Credit": "6",
-  "With_Course_Videos": "No",
-  "Course_Teaching_Style": "Course+Exercise+Project",
-  "Course_Exam_Difficulty": "easy",
-  "Course_Exam_Type": "Project Work + Oral Exam",
-  "Course_Required_Math_Level": "low",
-  "Course_Recommended_Background": [
-    "Null"
-  ],
-  "Programming_Requirements": [
-    {
-      "Language ": "Python",
-      "Level": "qualified"
-    }
-  ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "4",
-  "Course_Module": "Basics",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Analytics theory",
     "System development",
     "Method application",
@@ -149,99 +124,135 @@
     "recommendation system",
     "big data processing",
     "data visualization"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": " statistics, big data, machine learning, data/text mining, information visualization, visual analytics, and recommender systems.",
+  "exam_difficulty": "easy",
+  "exam_type": "Project Work + Oral Exam",
+  "language": "English",
+  "lecture_duration": "4",
+  "lecturer": "Prof. Dr. Mohamed Amine Chatti",
+  "math_level": "low",
+  "module": "Basics",
+  "name": "Learning Analytics",
+  "prerequisite": [
+    "Null"
+  ],
+  "programming_requirements": [
+    {
+      "Language ": "Python",
+      "Level": "qualified"
+    }
+  ],
+  "self_study_hours": "4",
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise+Project",
+  "with_videos": "No",
+  "id": "ZKD50039"
 },
 {
   "_id": {
     "$oid": "67755b588cd78ea1d39b7a41"
   },
-  "Course_ID": "ZKD50001",
-  "Course_Name": "Modeling of Concurrent Systems",
-  "Course_Description": "Transition systems, behavioral equivalences: language equivalence, bisimulation, Process calculi - CCS, Petri nets (partial order techniques), Graph transformation systems",
-  "Term": "Winter 2024/25",
-  "Course_Language": "German",
-  "Course_Teacher": "Prof. Dr. Barbara König",
-  "Course_Credit": "6",
-  "With_Course_Videos": "Yes",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Exam_Type": "Oral exam+Exercise bonus",
-  "Course_Required_Math_Level": "high",
-  "Course_Recommended_Background": [
-    "program logic"
-  ],
-  "Programming_Requirements": [
-    {
-      "Language": "Java",
-      "Level": "basic"
-    }
-  ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "2",
-  "Course_Module": "Intelligent Networked Systems",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Concurrent modeling",
     "Process calculus",
     "Petri nets",
     "Analysis techniques",
     "Technique judgment"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "Transition systems, behavioral equivalences: language equivalence, bisimulation, Process calculi - CCS, Petri nets (partial order techniques), Graph transformation systems",
+  "exam_difficulty": "middle",
+  "exam_type": "Oral exam+Exercise bonus",
+  "language": "German",
+  "lecture_duration": "4",
+  "lecturer": "Prof. Dr. Barbara König",
+  "math_level": "high",
+  "module": "Intelligent Networked Systems",
+  "name": "Modeling of Concurrent Systems",
+  "prerequisite": [
+    "program logic"
+  ],
+  "programming_requirements": [
+    {
+      "Language": "Java",
+      "Level": "basic"
+    }
+  ],
+  "self_study_hours": "2",
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes",
+  "id": "ZKD50001"
 },
 {
   "_id": {
     "$oid": "67755b588cd78ea1d39b7a42"
   },
-  "Course_ID": "ZKD50050",
-  "Course_Name": "Digital Games Research",
-  "Course_Description": " hot topics and the state-of-the-art in digital games research.",
-  "Term": "Winter 2024/25",
-  "Course_Language": "German",
-  "Course_Teacher": "Prof. Dr.-Ing. Maic Masuch",
-  "Course_Credit": "6",
-  "With_Course_Videos": "No",
-  "Course_Teaching_Style": "Course+Project",
-  "Course_Exam_Difficulty": "easy",
-  "Course_Exam_Type": "Paper without exam",
-  "Course_Required_Math_Level": "Null",
-  "Course_Recommended_Background": [
-    "Null"
-  ],
-  "Programming_Requirements": [
-    {}
-  ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "4",
-  "Course_Module": "Interactive Systems and Visualization",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Game development",
     "Interdisciplinarity",
     "Game principles",
     "Programming",
     "Application scenarios"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": " hot topics and the state-of-the-art in digital games research.",
+  "exam_difficulty": "easy",
+  "exam_type": "Paper without exam",
+  "language": "German",
+  "lecture_duration": "4",
+  "lecturer": "Prof. Dr.-Ing. Maic Masuch",
+  "math_level": "Null",
+  "module": "Interactive Systems and Visualization",
+  "name": "Digital Games Research",
+  "prerequisite": [
+    "Null"
+  ],
+  "programming_requirements": [
+    {}
+  ],
+  "self_study_hours": "4",
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Project",
+  "with_videos": "No",
+  "id": "ZKD50050"
 },
 {
   "_id": {
     "$oid": "67755b588cd78ea1d39b7a43"
   },
-  "Course_ID": "ZKD50034",
-  "Course_Name": "Advanced Web Technologies",
-  "Course_Description": "concepts, principles, and methods in current client and server-side Web technologies",
-  "Term": "Sommer 2024",
-  "Course_Language": "English",
-  "Course_Teacher": "Prof. Dr. Mohamed Amine Chatti",
-  "Course_Credit": "6",
-  "With_Course_Videos": "No",
-  "Course_Teaching_Style": "Course+Exercise+Project",
-  "Course_Exam_Difficulty": "easy",
-  "Course_Exam_Type": "Project Work + Oral Exam",
-  "Course_Required_Math_Level": "low",
-  "Course_Recommended_Background": [
+  "core_concepts": [
+    "Web technology concepts",
+    "Web applications",
+    "Problem-solving",
+    "Requirement analysis",
+    "Technology selection",
+    "Technology combination",
+    "Technology presentation",
+    "Project application",
+    "Innovative solutions",
+    "Team collaboration"
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "concepts, principles, and methods in current client and server-side Web technologies",
+  "exam_difficulty": "easy",
+  "exam_type": "Project Work + Oral Exam",
+  "language": "English",
+  "lecture_duration": "4",
+  "lecturer": "Prof. Dr. Mohamed Amine Chatti",
+  "math_level": "low",
+  "module": "Intelligent Networked Systems",
+  "name": "Advanced Web Technologies",
+  "prerequisite": [
     "Null"
   ],
-  "Programming_Requirements": [
+  "programming_requirements": [
     {
       "Language ": "HTML",
       "Level": "basic"
@@ -259,403 +270,370 @@
       "Level": "basic"
     }
   ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "4",
-  "Course_Module": "Intelligent Networked Systems",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
-    "Web technology concepts",
-    "Web applications",
-    "Problem-solving",
-    "Requirement analysis",
-    "Technology selection",
-    "Technology combination",
-    "Technology presentation",
-    "Project application",
-    "Innovative solutions",
-    "Team collaboration"
-  ]
+  "self_study_hours": "4",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Exercise+Project",
+  "with_videos": "No",
+  "id": "ZKD50034"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a44"
   },
-  "Course_ID": "ZKD50037",
-  "Course_Name": "Computer Graphics",
-  "Course_Description": "teaches the algorithms used to program a computer to generate images of a geometric models with associated appearance properties.",
-  "Term": "Sommer 2024",
-  "Course_Language": "English",
-  "Course_Teacher": "Professor, Dr. Jens Krüger",
-  "Course_Credit": "6",
-  "With_Course_Videos": "Yes",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "very difficult",
-  "Course_Exam_Type": "Oral exam without exercise bonus",
-  "Course_Required_Math_Level": "very high",
-  "Course_Recommended_Background": [
-    "Null"
-  ],
-  "Programming_Requirements": [
-    {
-      "Language": "C++",
-      "Level": "advanced"
-    }
-  ],
-  "Course_Class_Hours": "3",
-  "Homework_mandatorily required_hours": "0",
-  "Course_Module": "Interactive Systems and Visualization",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Graphics concepts",
     "Geometric modeling",
     "Appearance modeling",
     "Ray tracing",
     "Rasterization",
     "Method selection"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "teaches the algorithms used to program a computer to generate images of a geometric models with associated appearance properties.",
+  "exam_difficulty": "very difficult",
+  "exam_type": "Oral exam without exercise bonus",
+  "language": "English",
+  "lecture_duration": "3",
+  "lecturer": "Professor, Dr. Jens Krüger",
+  "math_level": "very high",
+  "module": "Interactive Systems and Visualization",
+  "name": "Computer Graphics",
+  "prerequisite": [
+    "Null"
+  ],
+  "programming_requirements": [
+    {
+      "Language": "C++",
+      "Level": "advanced"
+    }
+  ],
+  "self_study_hours": "0",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes",
+  "id": "ZKD50037"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a45"
   },
-  "Course_ID": "ZKD50049",
-  "Course_Name": "Game Architecture and Design",
-  "Course_Description": "The fundamentals of both topics, Game Architecture and Game Design",
-  "Term": "Sommer 2024",
-  "Course_Language": "English",
-  "Course_Teacher": "Prof. Dr.-Ing. Maic Masuch",
-  "Course_Credit": "6",
-  "With_Course_Videos": "No",
-  "Course_Teaching_Style": "Course+Project",
-  "Course_Exam_Difficulty": "easy",
-  "Course_Exam_Type": "Project Work without exam",
-  "Course_Required_Math_Level": "low",
-  "Course_Recommended_Background": [
-    "Unity3D"
-  ],
-  "Programming_Requirements": [
-    {
-      "Language ": "C#",
-      "Level": "qualified"
-    }
-  ],
-  "Course_Class_Hours": "2",
-  "Homework_mandatorily required_hours": "6",
-  "Course_Module": "Interactive Systems and Visualization",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Game design",
     "Production process",
     "Industry understanding",
     "Team development",
     "Project management"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "The fundamentals of both topics, Game Architecture and Game Design",
+  "exam_difficulty": "easy",
+  "exam_type": "Project Work without exam",
+  "language": "English",
+  "lecture_duration": "2",
+  "lecturer": "Prof. Dr.-Ing. Maic Masuch",
+  "math_level": "low",
+  "module": "Interactive Systems and Visualization",
+  "name": "Game Architecture and Design",
+  "prerequisite": [
+    "Unity3D"
+  ],
+  "programming_requirements": [
+    {
+      "Language ": "C#",
+      "Level": "qualified"
+    }
+  ],
+  "self_study_hours": "6",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Project",
+  "with_videos": "No",
+  "﻿id": "ZKD50049"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a46"
   },
-  "Course_ID": "ZKD50027",
-  "Course_Name": "Information Retrieval",
-  "Course_Description": "search engines, information retrieval, information behavior",
-  "Term": "Sommer 2024",
-  "Course_Language": "English",
-  "Course_Teacher": "Prof. Dr. Dirk Lewandowski",
-  "Course_Credit": "6",
-  "With_Course_Videos": "No",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "difficult",
-  "Course_Exam_Type": "Oral exam+Exercise bonus",
-  "Course_Required_Math_Level": "middle",
-  "Course_Recommended_Background": [
-    "Null"
-  ],
-  "Programming_Requirements": [
-    {}
-  ],
-  "Course_Class_Hours": "3",
-  "Homework_mandatorily required_hours": "1",
-  "Course_Module": "Intelligent Networked Systems",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Retrieval models",
     "Multimedia retrieval",
     "Distributed retrieval",
     "System implementation",
     "Evaluation methods"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "search engines, information retrieval, information behavior",
+  "exam_difficulty": "difficult",
+  "exam_type": "Oral exam+Exercise bonus",
+  "language": "English",
+  "lecture_duration": "3",
+  "lecturer": "Prof. Dr. Dirk Lewandowski",
+  "math_level": "middle",
+  "module": "Intelligent Networked Systems",
+  "name": "Information Retrieval",
+  "prerequisite": [
+    "Null"
+  ],
+  "programming_requirements": [
+    {}
+  ],
+  "self_study_hours": "1",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "No",
+  "id": "ZKD50027"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a47"
   },
-  "Course_ID": "ZKD50068",
-  "Course_Name": "Intelligent Learning Environments",
-  "Course_Description": "intelligent tutoring systems, interactive and technology-enhanced learning and teaching environments and online learning platforms. ",
-  "Term": "Sommer 2024",
-  "Course_Language": "English",
-  "Course_Teacher": "Prof. Dr. Irene-Angelica Chounta",
-  "Course_Credit": "6",
-  "With_Course_Videos": "No",
-  "Course_Teaching_Style": "Course+Project",
-  "Course_Exam_Difficulty": "easy",
-  "Course_Exam_Type": "Klausur+Project Work",
-  "Course_Required_Math_Level": "low",
-  "Course_Recommended_Background": [
-    "Null"
-  ],
-  "Programming_Requirements": [
-    {}
-  ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "2",
-  "Course_Module": "Intelligent Networked Systems",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Educational technology",
     "Cognitive modeling",
     "Learning environment",
     "Technology application"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "intelligent tutoring systems, interactive and technology-enhanced learning and teaching environments and online learning platforms. ",
+  "exam_difficulty": "easy",
+  "exam_type": "Klausur+Project Work",
+  "language": "English",
+  "lecture_duration": "4",
+  "lecturer": "Prof. Dr. Irene-Angelica Chounta",
+  "math_level": "low",
+  "module": "Intelligent Networked Systems",
+  "name": "Intelligent Learning Environments",
+  "prerequisite": [
+    "Null"
+  ],
+  "programming_requirements": [
+    {}
+  ],
+  "self_study_hours": "2",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Project",
+  "with_videos": "No",
+  "id": "ZKD50068"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a48"
   },
- "Course_ID": "ZKD50017",
-  "Course_Name": "Interaktive Systeme",
-  "Course_Description": "advanced topic on understanding, designing and evaluating interactice systems. ",
-  "Term": "Sommer 2024",
-  "Course_Language": "English",
-  "Course_Teacher": "Prof. Dr-Ing. Michael Prilla\n Dr. Sebastian Büttner",
-  "Course_Credit": "6",
-  "With_Course_Videos": "No",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Exam_Type": "Klausur+Exercise Bonus",
-  "Course_Required_Math_Level": "Null",
-  "Course_Recommended_Background": [
-    "Human-Machine interaction"
-  ],
-  "Programming_Requirements": [
-    {}
-  ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "4",
-  "Course_Module": "Interactive Systems and Visualization",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Interaction concepts",
     "Interaction design",
     "Technology application",
     "Research evaluation"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "advanced topic on understanding, designing and evaluating interactice systems. ",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur+Exercise Bonus",
+  "language": "English",
+  "lecture_duration": "4",
+  "lecturer": "Prof. Dr-Ing. Michael Prilla\n Dr. Sebastian Büttner",
+  "math_level": "Null",
+  "module": "Interactive Systems and Visualization",
+  "name": "Interaktive Systeme",
+  "prerequisite": [
+    "Human-Machine interaction"
+  ],
+  "programming_requirements": [
+    {}
+  ],
+  "self_study_hours": "4",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "No",
+  "id": "ZKD50017"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a49"
   },
- "Course_ID": "ZGA42433",
-  "Course_Name": "Internet of Things: Protocols and System Software",
-  "Course_Description": "to provide an introduction to the subject area of ​​the \"Internet of Things\" (IoT), in which billions of embedded systems (sensors, actuators) continuously make data about the real world available on the Internet in real time.",
-  "Term": "Sommer 2024",
-  "Course_Language": "English",
-  "Course_Teacher": "Prof. Dr. Gregor Schiele",
-  "Course_Credit": "6",
-  "With_Course_Videos": "Yes",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Exam_Type": "Klausur+Project Bonus",
-  "Course_Required_Math_Level": "low",
-  "Course_Recommended_Background": [
+  "core_concepts": [
+    "IoT concepts",
+    "Protocol architecture",
+    "Technology application",
+    "Technology differences"
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "to provide an introduction to the subject area of ​​the \"Internet of Things\" (IoT), in which billions of embedded systems (sensors, actuators) continuously make data about the real world available on the Internet in real time.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur+Project Bonus",
+  "language": "English",
+  "lecture_duration": "2",
+  "lecturer": "Prof. Dr. Gregor Schiele",
+  "math_level": "low",
+  "module": "Intelligent Networked Systems",
+  "name": "Internet of Things: Protocols and System Software",
+  "prerequisite": [
     "Computer network"
   ],
-  "Programming_Requirements": [
+  "programming_requirements": [
     {
       "Language ": "C",
       "Level": "qualified"
     }
   ],
-  "Course_Class_Hours": "2",
-  "Homework_mandatorily required_hours": "0",
-  "Course_Module": "Intelligent Networked Systems",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
-    "IoT concepts",
-    "Protocol architecture",
-    "Technology application",
-    "Technology differences"
-  ]
+  "self_study_hours": "0",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes",
+  "id": "ZGA42433"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a4a"
   },
- "Course_ID": "ZGA42431",
-  "Course_Name": "Lineare und Diskrete Optimierung mit Anwendungen auf Graphen",
-  "Course_Description": "Mathematical Optimization Methods for Graphics",
-  "Term": "Sommer 2024",
-  "Course_Language": "English",
-  "Course_Teacher": "Dr. Claudia Gotzes",
-  "Course_Credit": "6",
-  "With_Course_Videos": "No",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "very difficult",
-  "Course_Exam_Type": "Oral exam without exercise bonus",
-  "Course_Required_Math_Level": "very high",
-  "Course_Recommended_Background": [
+  "core_concepts": [
+    "1"
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "Mathematical Optimization Methods for Graphics",
+  "exam_difficulty": "very difficult",
+  "exam_type": "Oral exam without exercise bonus",
+  "language": "English",
+  "lecture_duration": "4",
+  "lecturer": "Dr. Claudia Gotzes",
+  "math_level": "very high",
+  "module": "Basics",
+  "name": "Lineare und Diskrete Optimierung mit Anwendungen auf Graphen",
+  "prerequisite": [
     "Linear Algebra",
     "Discrete Mathematics"
   ],
-  "Programming_Requirements": [
+  "programming_requirements": [
     {}
   ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "0",
-  "Course_Module": "Basics",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
-    "1"
-  ]
+  "self_study_hours": "0",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "No",
+  "id": "ZGA42431"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a4b"
   },
- "Course_ID": "ZKD59002",
-  "Course_Name": "Modellierung, Analyse, Verifikation",
-  "Course_Description": "Data flow analysis (fixed point theory, monotone frameworks, worklist algorithm, application examples: compiler construction, Java bytecode verifier)\nFundamentals of abstract interpretation (Galois connections, safe approximation of functions, abstraction refinement)",
-  "Term": "Sommer 2024",
-  "Course_Language": "German",
-  "Course_Teacher": "Prof. Dr. Barbara König",
-  "Course_Credit": "6",
-  "With_Course_Videos": "Yes",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "difficult",
-  "Course_Exam_Type": "Oral exam+Exercise bonus",
-  "Course_Required_Math_Level": "middle",
-  "Course_Recommended_Background": [
+  "core_concepts": [
+    "Program verification",
+    "Data flow analysis",
+    "Abstract interpretation",
+    "Method evaluation"
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "Data flow analysis (fixed point theory, monotone frameworks, worklist algorithm, application examples: compiler construction, Java bytecode verifier)\nFundamentals of abstract interpretation (Galois connections, safe approximation of functions, abstraction refinement)",
+  "exam_difficulty": "difficult",
+  "exam_type": "Oral exam+Exercise bonus",
+  "language": "German",
+  "lecture_duration": "4",
+  "lecturer": "Prof. Dr. Barbara König",
+  "math_level": "middle",
+  "module": "Basics",
+  "name": "Modellierung, Analyse, Verifikation",
+  "prerequisite": [
     "Logic"
   ],
-  "Programming_Requirements": [
+  "programming_requirements": [
     {
       "Language": "Java",
       "Level": "basic"
     }
   ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "0",
-  "Course_Module": "Basics",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
-    "Program verification",
-    "Data flow analysis",
-    "Abstract interpretation",
-    "Method evaluation"
-  ]
+  "self_study_hours": "0",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes",
+  "id": "ZKD59002"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a4c"
   },
- "Course_ID": "ZKD50038",
-  "Course_Name": "Scientific Visualization",
-  "Course_Description": " efficient techniques to visually represent large-scale data sets from simulation and measurement.",
-  "Term": "Sommer 2024",
-  "Course_Language": "English",
-  "Course_Teacher": "Professor, Dr. Jens Krüger",
-  "Course_Credit": "6",
-  "With_Course_Videos": "Yes",
-  "Course_Teaching_Style": "Course+Exercise",
-  "Course_Exam_Difficulty": "very difficult",
-  "Course_Exam_Type": "Oral exam without exercise bonus",
-  "Course_Required_Math_Level": "very high",
-  "Course_Recommended_Background": [
-    "Null"
-  ],
-  "Programming_Requirements": [
-    {
-      "Language": "C++",
-      "Level": "Advanced"
-    }
-  ],
-  "Course_Class_Hours": "3",
-  "Homework_mandatorily required_hours": "0",
-  "Course_Module": "Interactive Systems and Visualization",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Visualization algorithms",
     "Datasets",
     "Basic concepts",
     "Method selection",
     "Data processing"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": " efficient techniques to visually represent large-scale data sets from simulation and measurement.",
+  "exam_difficulty": "very difficult",
+  "exam_type": "Oral exam without exercise bonus",
+  "language": "English",
+  "lecture_duration": "3",
+  "lecturer": "Professor, Dr. Jens Krüger",
+  "math_level": "very high",
+  "module": "Interactive Systems and Visualization",
+  "name": "Scientific Visualization",
+  "prerequisite": [
+    "Null"
+  ],
+  "programming_requirements": [
+    {
+      "Language": "C++",
+      "Level": "Advanced"
+    }
+  ],
+  "self_study_hours": "0",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes",
+  "id": "ZKD50038"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a4d"
   },
- "Course_ID": "ZKD60002",
-  "Course_Name": " Compilerbau",
-  "Course_Description": "to understand and to design compilers and interpreters, and to show them the practical problems of compiler construction.",
-  "Term": "Sommer 2024",
-  "Course_Language": "German",
-  "Course_Teacher": "Prof. Dr. Janis Voigtländer",
-  "Course_Credit": "6",
-  "With_Course_Videos": "No",
-  "Course_Teaching_Style": "Course+Project",
-  "Course_Exam_Difficulty": "very difficult",
-  "Course_Exam_Type": "Klausur+Project Work",
-  "Course_Required_Math_Level": "high",
-  "Course_Recommended_Background": [
-    "Null"
-  ],
-  "Programming_Requirements": [
-    {
-      "Language ": "C",
-      "Level": "qualified"
-    }
-  ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "6",
-  "Course_Module": "Basics",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Lexical Analysis",
     "Syntax Analysis",
     "Semantic Analysis",
     "Intermediate Code Generation",
     "Code Optimization\"",
     "Target Code Generation"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "to understand and to design compilers and interpreters, and to show them the practical problems of compiler construction.",
+  "exam_difficulty": "very difficult",
+  "exam_type": "Klausur+Project Work",
+  "language": "German",
+  "lecture_duration": "4",
+  "lecturer": "Prof. Dr. Janis Voigtländer",
+  "math_level": "high",
+  "module": "Basics",
+  "name": "Compilerbau",
+  "prerequisite": [
+    "Null"
+  ],
+  "programming_requirements": [
+    {
+      "Language ": "C",
+      "Level": "qualified"
+    }
+  ],
+  "self_study_hours": "6",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Project",
+  "with_videos": "No",
+  "id": "ZKD60002"
 },
 {
   "_id": {
     "$oid": "67755b598cd78ea1d39b7a4e"
   },
- "Course_ID": "ZKD50059",
-  "Course_Name": "Cooperation Systems",
-  "Course_Description": "how to design and evaluate systems that help humans to cooperate and collaborate with each other.",
-  "Term": "Sommer 2024",
-  "Course_Language": "English",
-  "Course_Teacher": "Prof. Dr-Ing. Michael Prilla",
-  "Course_Credit": "6",
-  "With_Course_Videos": "No",
-  "Course_Teaching_Style": "Course+Project",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Exam_Type": "Klausur+Project Bonus",
-  "Course_Required_Math_Level": "Null",
-  "Course_Recommended_Background": [
-    "Null"
-  ],
-  "Programming_Requirements": [
-    {}
-  ],
-  "Course_Class_Hours": "4",
-  "Homework_mandatorily required_hours": "0",
-  "Course_Module": "Interactive Systems and Visualization",
-  "Course_Level": "Master level",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "cooperation system",
     "Communication",
     "Group",
@@ -667,16 +645,36 @@
     "Human Robot cooperation",
     "Prompting",
     "Nudges and Notification"
-  ]
+  ],
+  "credit": "6",
+  "degree": "Master level",
+  "description": "how to design and evaluate systems that help humans to cooperate and collaborate with each other.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur+Project Bonus",
+  "language": "English",
+  "lecture_duration": "4",
+  "lecturer": "Prof. Dr-Ing. Michael Prilla",
+  "math_level": "Null",
+  "module": "Interactive Systems and Visualization",
+  "name": "Cooperation Systems",
+  "prerequisite": [
+    "Null"
+  ],
+  "programming_requirements": [
+    {}
+  ],
+  "self_study_hours": "0",
+  "semester": "Sommer 2024",
+  "teaching_style": "Course+Project",
+  "with_videos": "No",
+  "﻿id": "ZKD50059"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b96ff"
   },
-  "Course_ID": "ZKD 93004",
   "Course_Name_German": "Grundlegende Programmiertechniken",
-  "Course_Name": "Fundamental Programming Techniques",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Programming fundamentals",
     "Programming language structures",
     "Data types",
@@ -685,31 +683,31 @@
     "Exception handling",
     "Algorithm implementation"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "difficult",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Basic Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 4,
-  "Homework_mandatorily required_hours": 8,
-  "Course_Credit": "4",
-  "Course_Teacher": "Prof. Dr. Jens Krüger",
-  "Term": "Winter 2024/25, SoSe 2024 ",
-  "Course_Description": "This course teaches fundamental programming techniques through modern programming languages like Python. It covers the basic structure of programs, data types and variables, expressions and statements, input and output using pipes and streams, exception handling, functions, and constructs of modern programming languages. Students will learn to transform elementary problem statements into algorithms and implement them in Python and Java. They are expected to produce understandable and well-documented source code in line with standards and conventions."
+  "credit": "4",
+  "degree": "Bachelor level",
+  "description": "This course teaches fundamental programming techniques through modern programming languages like Python. It covers the basic structure of programs, data types and variables, expressions and statements, input and output using pipes and streams, exception handling, functions, and constructs of modern programming languages. Students will learn to transform elementary problem statements into algorithms and implement them in Python and Java. They are expected to produce understandable and well-documented source code in line with standards and conventions.",
+  "exam_difficulty": "difficult",
+  "exam_type": "Klausur",
+  "id": "ZKD 93004",
+  "language": "German",
+  "lecture_duration": 4,
+  "lecturer": "Prof. Dr. Jens Krüger",
+  "math_level": "low",
+  "module": "Basic Courses",
+  "name": "Fundamental Programming Techniques",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 8,
+  "semester": "Winter 2024/25, SoSe 2024 ",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9700"
   },
-  "Course_ID": "ZKD 30001",
   "Course_Name_German": "Logik",
-  "Course_Name": "Logic",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Propositional logic",
     "First-order predicate logic",
     "Logical concepts",
@@ -717,152 +715,152 @@
     "Natural language to logical formula conversion",
     "Proof techniques"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "easy",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Basic Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 4,
-  "Homework_mandatorily required_hours": 8,
-  "Course_Credit": "6",
-  "Course_Teacher": "Prof. Dr. Barbara König",
-  "Term": "Winter 2024/25",
-  "Course_Description": "The course focuses on teaching propositional logic and first-order predicate logic. Students will become familiar with the basic concepts of mathematical logic, learn important theorems like the Compactness Theorem and the undecidability of predicate logic. Emphasis is placed on the algorithmic aspects of logic, such as the resolution method and the fundamentals of logic programming. Students will be able to translate natural language statements into logical formulas and proficiently use tools for automatic proof."
+  "credit": "6",
+  "degree": "Bachelor level",
+  "description": "The course focuses on teaching propositional logic and first-order predicate logic. Students will become familiar with the basic concepts of mathematical logic, learn important theorems like the Compactness Theorem and the undecidability of predicate logic. Emphasis is placed on the algorithmic aspects of logic, such as the resolution method and the fundamentals of logic programming. Students will be able to translate natural language statements into logical formulas and proficiently use tools for automatic proof.",
+  "exam_difficulty": "easy",
+  "exam_type": "Klausur",
+  "id": "ZKD 30001",
+  "language": "German",
+  "lecture_duration": 4,
+  "lecturer": "Prof. Dr. Barbara König",
+  "math_level": "low",
+  "module": "Basic Courses",
+  "name": "Logic",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 8,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9701"
   },
-  "Course_ID": "ZKD 59506",
   "Course_Name_German": "Modellierung",
-  "Course_Name": "Modeling",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "UML diagrams (Petrinetze, class, object, activity, state diagrams)",
     "Model analysis",
     "Model creation",
     "Relationship analysis among models"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Basic Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 3,
-  "Homework_mandatorily required_hours": 5,
-  "Course_Credit": "4",
-  "Course_Teacher": "Prof. Dr. Janis Voigtländer",
-  "Term": "Winter 2024/25",
-  "Course_Description": "This course introduces essential practical modeling languages, including Petrinetze and key diagram types in UML such as class diagrams, object diagrams, activity diagrams, and state diagrams. Students will learn to visually and mathematically analyze specific diagrams of these languages to identify properties, correct errors, and supplement subsequent steps in dynamic behavior. They can determine the relationships between instances of different diagram types through the application of semantics or presented algorithms, and use modeling techniques to analyze real-world scenarios and create models."
+  "credit": "4",
+  "degree": "Bachelor level",
+  "description": "This course introduces essential practical modeling languages, including Petrinetze and key diagram types in UML such as class diagrams, object diagrams, activity diagrams, and state diagrams. Students will learn to visually and mathematically analyze specific diagrams of these languages to identify properties, correct errors, and supplement subsequent steps in dynamic behavior. They can determine the relationships between instances of different diagram types through the application of semantics or presented algorithms, and use modeling techniques to analyze real-world scenarios and create models.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "id": "ZKD 59506",
+  "language": "German",
+  "lecture_duration": 3,
+  "lecturer": "Prof. Dr. Janis Voigtländer",
+  "math_level": "low",
+  "module": "Basic Courses",
+  "name": "Modeling",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 5,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9702"
   },
-  "Course_ID": "ZKA 41509",
   "Course_Name_German": "Grundlagen der technischen Informatik",
-  "Course_Name": "Fundamentals of Technical Informatics",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Boolean algebra",
     "Digital circuits",
     "Binary coding",
     "Logic expression minimization",
     "Microprogramming"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "easy",
-  "Course_Teaching_Style": "Course+Exercise+Project",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Basic Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 3,
-  "Homework_mandatorily required_hours": 5,
-  "Course_Credit": "4",
-  "Course_Teacher": "Prof. Dr. Elsa Kirchner",
-  "Term": "Winter 2024/25",
-  "Course_Description": "This course provides students with a fundamental understanding of technical informatics necessary for hardware design and analysis. Based on Boolean algebra, students will learn to distinguish the use of 0 and 1 in basic methods of switching algebra for minimizing logical expressions, the application of binary codes in arithmetic processing, representation coding, and the control of functions in computer construction. The design of digital circuits (combinational and sequential) is derived from the understanding of truth tables and characteristic equations of flip-flops. The fundamentals of automata theory lead to microprogramming. Finally, the realization of complex functions required for computer construction is introduced and discussed."
+  "credit": "4",
+  "degree": "Bachelor level",
+  "description": "This course provides students with a fundamental understanding of technical informatics necessary for hardware design and analysis. Based on Boolean algebra, students will learn to distinguish the use of 0 and 1 in basic methods of switching algebra for minimizing logical expressions, the application of binary codes in arithmetic processing, representation coding, and the control of functions in computer construction. The design of digital circuits (combinational and sequential) is derived from the understanding of truth tables and characteristic equations of flip-flops. The fundamentals of automata theory lead to microprogramming. Finally, the realization of complex functions required for computer construction is introduced and discussed.",
+  "exam_difficulty": "easy",
+  "exam_type": "Klausur",
+  "id": "ZKA 41509",
+  "language": "German",
+  "lecture_duration": 3,
+  "lecturer": "Prof. Dr. Elsa Kirchner",
+  "math_level": "low",
+  "module": "Basic Courses",
+  "name": "Fundamentals of Technical Informatics",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 5,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise+Project",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9703"
   },
-  "Course_ID": "ZKA 41510",
   "Course_Name_German": "GTI Praktikum",
-  "Course_Name": "Practical Course of Technical Informatics",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Digital circuit design",
     "Digital circuit simulation",
     "Software for circuit design and analysis"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Project Work",
-  "Course_Exam_Difficulty": "easy",
-  "Course_Teaching_Style": "Course+Exercise+Project",
-  "With_Course_Videos": "No",
-  "Course_Language": "German",
-  "Course_Module": "Basic Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 1,
-  "Homework_mandatorily required_hours": 1,
-  "Course_Credit": "1",
-  "Course_Teacher": "Prof. Dr. Elsa Kirchner, Dipl.-Ing. Joachim Zumbrägel",
-  "Term": "Winter 2024/25",
-  "Course_Description": "In this laboratory course, students will use appropriate design and simulation software for digital circuits to explore the capabilities of computer-aided development of digital circuits. In the first step, students will simulate and analyze basic components of digital technology. Based on these experiences, they will design and test simple combinational and sequential circuits."
+  "credit": "1",
+  "degree": "Bachelor level",
+  "description": "In this laboratory course, students will use appropriate design and simulation software for digital circuits to explore the capabilities of computer-aided development of digital circuits. In the first step, students will simulate and analyze basic components of digital technology. Based on these experiences, they will design and test simple combinational and sequential circuits.",
+  "exam_difficulty": "easy",
+  "exam_type": "Project Work",
+  "id": "ZKA 41510",
+  "language": "German",
+  "lecture_duration": 1,
+  "lecturer": "Prof. Dr. Elsa Kirchner, Dipl.-Ing. Joachim Zumbrägel",
+  "math_level": "low",
+  "module": "Basic Courses",
+  "name": "Practical Course of Technical Informatics",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 1,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise+Project",
+  "with_videos": "No"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9704"
   },
-  "Course_ID": "ZGA 43008",
   "Course_Name_German": "Diskrete Mathematik 1",
-  "Course_Name": "Discrete Mathematics 1",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Sets",
     "Relations",
     "Mappings",
     "Algebraic structures (groups, rings, fields)",
     "Linear algebra (vector spaces, linear mappings)"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "middle",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Basic Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 5,
-  "Homework_mandatorily required_hours": 8,
-  "Course_Credit": "5",
-  "Course_Teacher": "Dr. Claudia Gotzes",
-  "Term": "Winter 2024/25",
-  "Course_Description": "The course begins by teaching students to handle essential methodological concepts in mathematics, such as logic and proofs. Subsequently, elementary mathematical concepts like sets, relations, and mappings are introduced, and their properties are studied. Based on this knowledge, basic algebraic structures such as groups, rings, and fields, their substructures (subgroups, normal subgroups, ideals), and structure-preserving mappings (homomorphisms) are presented and examined. In the second half of the course, students will learn the essential concepts and methods of linear algebra, including vector spaces, subspaces, bases, dimensions, and linear mappings. These knowledge are applied in matrix calculus and solving linear equation systems. Accompanying the lectures, exercises are provided to reinforce the learned material through tasks and additional examples."
+  "credit": "5",
+  "degree": "Bachelor level",
+  "description": "The course begins by teaching students to handle essential methodological concepts in mathematics, such as logic and proofs. Subsequently, elementary mathematical concepts like sets, relations, and mappings are introduced, and their properties are studied. Based on this knowledge, basic algebraic structures such as groups, rings, and fields, their substructures (subgroups, normal subgroups, ideals), and structure-preserving mappings (homomorphisms) are presented and examined. In the second half of the course, students will learn the essential concepts and methods of linear algebra, including vector spaces, subspaces, bases, dimensions, and linear mappings. These knowledge are applied in matrix calculus and solving linear equation systems. Accompanying the lectures, exercises are provided to reinforce the learned material through tasks and additional examples.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "id": "ZGA 43008",
+  "language": "German",
+  "lecture_duration": 5,
+  "lecturer": "Dr. Claudia Gotzes",
+  "math_level": "middle",
+  "module": "Basic Courses",
+  "name": "Discrete Mathematics 1",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 8,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9705"
   },
-  "Course_ID": "ZKD 41011",
   "Course_Name_German": "Fortgeschrittene Programmiertechniken",
-  "Course_Name": "Advanced Programming Techniques",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Object-oriented programming",
     "Design patterns",
     "Object serialization",
@@ -872,33 +870,33 @@
     "Network programming",
     "MVC principle (graphical user interface)"
   ],
-  "Programming_Requirements": [
+  "credit": "4",
+  "degree": "Bachelor level",
+  "description": "Building on the fundamental programming techniques learned in an earlier semester, this course deepens students' understanding and application of programming concepts and techniques to more complex problems. It focuses on advanced language elements and APIs in Java. Students will understand object-oriented programming, architecture and design patterns, object serialization and reflection, database connectivity, concurrent programming, and network programming. They will also learn to develop graphical user interfaces using the Model-View-Controller principle, enabling them to implement larger applications in the network and database domains.",
+  "exam_difficulty": "difficult",
+  "exam_type": "Klausur",
+  "id": "ZKD 41011",
+  "language": "German",
+  "lecture_duration": 4,
+  "lecturer": "Prof. Dr. Josef Pauli",
+  "math_level": "middle",
+  "module": "Advanced Courses",
+  "name": "Advanced Programming Techniques",
+  "prerequisite": "null",
+  "programming_requirements": [
     ""
   ],
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "middle",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "difficult",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Advanced Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 4,
-  "Homework_mandatorily required_hours": 8,
-  "Course_Credit": "4",
-  "Course_Teacher": "Prof. Dr. Josef Pauli",
-  "Term": "Winter 2024/25, SoSe 2024 ",
-  "Course_Description": "Building on the fundamental programming techniques learned in an earlier semester, this course deepens students' understanding and application of programming concepts and techniques to more complex problems. It focuses on advanced language elements and APIs in Java. Students will understand object-oriented programming, architecture and design patterns, object serialization and reflection, database connectivity, concurrent programming, and network programming. They will also learn to develop graphical user interfaces using the Model-View-Controller principle, enabling them to implement larger applications in the network and database domains."
+  "self_study_hours": 8,
+  "semester": "Winter 2024/25, SoSe 2024 ",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9706"
   },
-  "Course_ID": "ZKD 41008",
   "Course_Name_German": "Datenstrukturen und Algorithmen",
-  "Course_Name": "Data Structures and Algorithms",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Abstract data types",
     "Searching algorithms",
     "Sorting algorithms",
@@ -910,31 +908,31 @@
     "Graphs",
     "Algorithm development and analysis"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "difficult",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Professional Core Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 6,
-  "Homework_mandatorily required_hours": 9,
-  "Course_Credit": "6",
-  "Course_Teacher": "Prof. Dr. Jens Krüger",
-  "Term": "SoSe 2024",
-  "Course_Description": "This course introduces the concept of abstract data types, presents important examples of abstract data types, and demonstrates their application in handling fundamental algorithms. Students will learn to explain the concept of algorithms, develop algorithms through stepwise refinement, and distinguish important complexity classes to evaluate the complexity of an algorithm. They will master basic data structures and be able to choose and implement the appropriate representation for a given context, understanding the differences, advantages, and disadvantages of various data structures."
+  "credit": "6",
+  "degree": "Bachelor level",
+  "description": "This course introduces the concept of abstract data types, presents important examples of abstract data types, and demonstrates their application in handling fundamental algorithms. Students will learn to explain the concept of algorithms, develop algorithms through stepwise refinement, and distinguish important complexity classes to evaluate the complexity of an algorithm. They will master basic data structures and be able to choose and implement the appropriate representation for a given context, understanding the differences, advantages, and disadvantages of various data structures.",
+  "exam_difficulty": "difficult",
+  "exam_type": "Klausur",
+  "id": "ZKD 41008",
+  "language": "German",
+  "lecture_duration": 6,
+  "lecturer": "Prof. Dr. Jens Krüger",
+  "math_level": "low",
+  "module": "Professional Core Courses",
+  "name": "Data Structures and Algorithms",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 9,
+  "semester": "SoSe 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9707"
   },
-  "Course_ID": "ZGA43009",
   "Course_Name_German": "Mathematik für Informatiker 1",
-  "Course_Name": "Mathematics for Computer Scientists 1",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Real numbers",
     "Complex numbers",
     "Sequences and series",
@@ -942,91 +940,91 @@
     "Integration",
     "Mathematics application in computer science"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "middle",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "No",
-  "Course_Language": "German",
-  "Course_Module": "Basic Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 6,
-  "Homework_mandatorily required_hours": 9,
-  "Course_Credit": "6",
-  "Course_Teacher": "Dr. Katarína Bellová",
-  "Term": "SoSe 2024",
-  "Course_Description": "This course focuses on teaching the fundamentals of analysis. Students will master the knowledge of real and complex numbers, sequences and series, limits, continuity, elementary functions, and differential and integral calculus of functions of one variable through solving related problems. In particular, students will understand that the results obtained from the axiomatic characterization of real numbers need to be treated with caution when applied to computers."
+  "credit": "6",
+  "degree": "Bachelor level",
+  "description": "This course focuses on teaching the fundamentals of analysis. Students will master the knowledge of real and complex numbers, sequences and series, limits, continuity, elementary functions, and differential and integral calculus of functions of one variable through solving related problems. In particular, students will understand that the results obtained from the axiomatic characterization of real numbers need to be treated with caution when applied to computers.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "id": "ZGA43009",
+  "language": "German",
+  "lecture_duration": 6,
+  "lecturer": "Dr. Katarína Bellová",
+  "math_level": "middle",
+  "module": "Basic Courses",
+  "name": "Mathematics for Computer Scientists 1",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 9,
+  "semester": "SoSe 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "No"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9708"
   },
-  "Course_ID": "ZKD 41019",
   "Course_Name_German": "Rechnernetze und Kommunikationssysteme",
-  "Course_Name": "Computer Networks and Communication Systems",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Computer network architecture",
     "Packet transmission technologies",
     "TCP/IP protocol suite",
     "Network applications (DNS, FTP, WWW)"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Professional Core Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 3,
-  "Homework_mandatorily required_hours": 5,
-  "Course_Credit": "3",
-  "Course_Teacher": "Dr. Werner Otten, Prof. Dr. Torben Weis",
-  "Term": "Winter 2024/25",
-  "Course_Description": "The course covers the hardware fundamentals of computer networks, packet transmission technologies, the layered model and protocols, and network applications. Students will understand computer communication based on layered models, be able to assign physical and logical components such as addresses and services to different layers, and identify various communication forms in different architectures. They will learn important access standards and protocol families and understand their significance in data exchange."
+  "credit": "3",
+  "degree": "Bachelor level",
+  "description": "The course covers the hardware fundamentals of computer networks, packet transmission technologies, the layered model and protocols, and network applications. Students will understand computer communication based on layered models, be able to assign physical and logical components such as addresses and services to different layers, and identify various communication forms in different architectures. They will learn important access standards and protocol families and understand their significance in data exchange.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "id": "ZKD 41019",
+  "language": "German",
+  "lecture_duration": 3,
+  "lecturer": "Dr. Werner Otten, Prof. Dr. Torben Weis",
+  "math_level": "low",
+  "module": "Professional Core Courses",
+  "name": "Computer Networks and Communication Systems",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 5,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9709"
   },
-  "Course_ID": "ZKD 21741",
   "Course_Name_German": "Berechenbarkeit und Komplexität",
-  "Course_Name": "Computability and Complexity",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Turing machines",
     "Computability theory",
     "Undecidable problems",
     "Complexity classes (P, NP problems)"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Professional Core Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 4,
-  "Homework_mandatorily required_hours": 8,
-  "Course_Credit": "4",
-  "Course_Teacher": "Prof. Dr. Barbara König",
-  "Term": "Winter 2024/25",
-  "Course_Description": "This course provides fundamental knowledge in the fields of computability and complexity. Students will learn different computing models such as Turing machines, LOOP, WHILE, GOTO programs, primitive recursive and mu-recursive functions. Through proving the equivalence of these computing models, they will understand Church's Thesis. They will learn concepts such as undecidability and reducibility, and be able to identify and prove undecidable problems. In the field of complexity theory, they will become familiar with different complexity classes, understand the P-NP problem and the concept of (NP-)completeness, and be able to estimate the complexity of problems and perform simple reductions."
+  "credit": "4",
+  "degree": "Bachelor level",
+  "description": "This course provides fundamental knowledge in the fields of computability and complexity. Students will learn different computing models such as Turing machines, LOOP, WHILE, GOTO programs, primitive recursive and mu-recursive functions. Through proving the equivalence of these computing models, they will understand Church's Thesis. They will learn concepts such as undecidability and reducibility, and be able to identify and prove undecidable problems. In the field of complexity theory, they will become familiar with different complexity classes, understand the P-NP problem and the concept of (NP-)completeness, and be able to estimate the complexity of problems and perform simple reductions.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "id": "ZKD 21741",
+  "language": "German",
+  "lecture_duration": 4,
+  "lecturer": "Prof. Dr. Barbara König",
+  "math_level": "low",
+  "module": "Professional Core Courses",
+  "name": "Computability and Complexity",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 8,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b970a"
   },
-  "Course_ID": "ZKD 41021",
   "Course_Name_German": "Softwaretechnik",
-  "Course_Name": "Software Engineering",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Software engineering principles",
     "Software development life cycle models (V-model, agile methods)",
     "Requirements elicitation",
@@ -1034,305 +1032,307 @@
     "Configuration management",
     "Quality assurance"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "middle",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Professional Core Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 6,
-  "Homework_mandatorily required_hours": 9,
-  "Course_Credit": "6",
-  "Course_Teacher": "Prof. Dr. Andreas Metzger, Prof. Dr. Maritta Heisel",
-  "Term": "Winter 2024/25",
-  "Course_Description": "This course provides fundamental knowledge in the fields of computability and complexity. Students will learn different computing models such as Turing machines, LOOP, WHILE, GOTO programs, primitive recursive and mu-recursive functions. Through proving the equivalence of these computing models, they will understand Church's Thesis. They will learn concepts such as undecidability and reducibility, and be able to identify and prove undecidable problems. In the field of complexity theory, they will become familiar with different complexity classes, understand the P-NP problem and the concept of (NP-)completeness, and be able to estimate the complexity of problems and perform simple reductions."
+  "credit": "6",
+  "degree": "Bachelor level",
+  "description": "This course provides fundamental knowledge in the fields of computability and complexity. Students will learn different computing models such as Turing machines, LOOP, WHILE, GOTO programs, primitive recursive and mu-recursive functions. Through proving the equivalence of these computing models, they will understand Church's Thesis. They will learn concepts such as undecidability and reducibility, and be able to identify and prove undecidable problems. In the field of complexity theory, they will become familiar with different complexity classes, understand the P-NP problem and the concept of (NP-)completeness, and be able to estimate the complexity of problems and perform simple reductions.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "id": "ZKD 41021",
+  "language": "German",
+  "lecture_duration": 6,
+  "lecturer": "Prof. Dr. Andreas Metzger, Prof. Dr. Maritta Heisel",
+  "math_level": "middle",
+  "module": "Professional Core Courses",
+  "name": "Software Engineering",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 9,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b970b"
   },
   "Course_Name_German": "Wahlpflichtmodul Vertiefung der Mathematik 1",
-  "Course_Name": "Elective Module for Deepening Mathematics 1",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Advanced algebra",
     "Advanced analysis",
     "Extended mathematical knowledge"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Elective Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": "-",
-  "Homework_mandatorily required_hours": "-",
-  "Course_Credit": "4",
-  "Term": "Winter 2024/25"
+  "credit": "4",
+  "degree": "Bachelor level",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "language": "German",
+  "lecture_duration": "-",
+  "math_level": "low",
+  "module": "Elective Courses",
+  "name": "Elective Module for Deepening Mathematics 1",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": "-",
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b970c"
   },
-  "Course_ID": "ZKD 41020",
   "Course_Name_German": "Sicherheit in Kommunikationsnetzen",
-  "Course_Name": "Security in Communication Networks",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Communication network security",
     "Cryptography fundamentals",
     "Authentication and key exchange protocols",
     "Security management"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Professional Core Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 3,
-  "Homework_mandatorily required_hours": 5,
-  "Course_Credit": "3",
-  "Course_Teacher": "Dr. Werner Otten, Prof. Dr. Torben Weis",
-  "Term": "SoSe 2024",
-  "Course_Description": "The course covers fundamental technologies, protocols, architectures, and subsystems for security in communication networks. Students will learn the various aspects of security, master the process of communication protocols starting from key generation and signature methods, and be familiar with the concept of Zero Knowledge Proof. They will be able to identify learned concepts in comprehensive security architectures, handle basic security aspects when accessing computing facilities, and be familiar with important software anomalies and necessary protection measures. Finally, they will analyze the extensions of network protocols for security and privacy features."
+  "credit": "3",
+  "degree": "Bachelor level",
+  "description": "The course covers fundamental technologies, protocols, architectures, and subsystems for security in communication networks. Students will learn the various aspects of security, master the process of communication protocols starting from key generation and signature methods, and be familiar with the concept of Zero Knowledge Proof. They will be able to identify learned concepts in comprehensive security architectures, handle basic security aspects when accessing computing facilities, and be familiar with important software anomalies and necessary protection measures. Finally, they will analyze the extensions of network protocols for security and privacy features.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "id": "ZKD 41020",
+  "language": "German",
+  "lecture_duration": 3,
+  "lecturer": "Dr. Werner Otten, Prof. Dr. Torben Weis",
+  "math_level": "low",
+  "module": "Professional Core Courses",
+  "name": "Security in Communication Networks",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 5,
+  "semester": "SoSe 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b970d"
   },
-  "Course_ID": "ZKD 41017",
   "Course_Name_German": "Rechnerarchitektur",
-  "Course_Name": "Computer Architecture",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Computer hardware architecture",
     "Processor",
     "Memory",
     "Bus systems",
     "Parallel computing architectures"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "middle",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Professional Core Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 4,
-  "Homework_mandatorily required_hours": 8,
-  "Course_Credit": "4",
-  "Course_Teacher": "Dr. Werner Otten, Prof. Dr. Torben Weis",
-  "Term": "SoSe 2024",
-  "Course_Description": "Starting from the basic structure of processors and computers, this course introduces the classical architecture of von Neumann computers, presents microcomputers and microprocessor systems up to the modern PC, and covers high-performance computers. Students will understand the structure and operation of current computer hardware, different philosophies of computer architecture, and various approaches to parallelism in computer architectures. They will also learn to program small tasks in assembler."
+  "credit": "4",
+  "degree": "Bachelor level",
+  "description": "Starting from the basic structure of processors and computers, this course introduces the classical architecture of von Neumann computers, presents microcomputers and microprocessor systems up to the modern PC, and covers high-performance computers. Students will understand the structure and operation of current computer hardware, different philosophies of computer architecture, and various approaches to parallelism in computer architectures. They will also learn to program small tasks in assembler.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "id": "ZKD 41017",
+  "language": "German",
+  "lecture_duration": 4,
+  "lecturer": "Dr. Werner Otten, Prof. Dr. Torben Weis",
+  "math_level": "middle",
+  "module": "Professional Core Courses",
+  "name": "Computer Architecture",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 8,
+  "semester": "SoSe 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b970e"
   },
-  "Course_ID": "ZKD 41016",
   "Course_Name_German": "Programmierparadigmen",
-  "Course_Name": "Programming Paradigms",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Functional programming (Haskell)",
     "Logical programming (Prolog)",
     "Algebraic and logical programming foundations",
     "Programming paradigm comparison and application"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "difficult",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Advanced Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 4,
-  "Homework_mandatorily required_hours": 8,
-  "Course_Credit": "6",
-  "Course_Teacher": "Prof. Dr. Janis Voigtländer",
-  "Term": "SoSe 2024",
-  "Course_Description": "This course approaches programming from an algebraic and logical foundation and introduces specific programming languages, including functional programming with Haskell and logical programming with Prolog. Students will learn to implement familiar algorithms in these languages, use abstraction concepts to model problem domains and structure programs appropriately. They will be able to make semantic statements about given programs regarding static correctness and dynamic behavior, and relate programs of different paradigms (functional, logical, imperative) to each other."
+  "credit": "6",
+  "degree": "Bachelor level",
+  "description": "This course approaches programming from an algebraic and logical foundation and introduces specific programming languages, including functional programming with Haskell and logical programming with Prolog. Students will learn to implement familiar algorithms in these languages, use abstraction concepts to model problem domains and structure programs appropriately. They will be able to make semantic statements about given programs regarding static correctness and dynamic behavior, and relate programs of different paradigms (functional, logical, imperative) to each other.",
+  "exam_difficulty": "difficult",
+  "exam_type": "Klausur",
+  "id": "ZKD 41016",
+  "language": "German",
+  "lecture_duration": 4,
+  "lecturer": "Prof. Dr. Janis Voigtländer",
+  "math_level": "low",
+  "module": "Advanced Courses",
+  "name": "Programming Paradigms",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 8,
+  "semester": "SoSe 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b970f"
   },
   "Course_Name_German": "Wahlpflichtmodul Vertiefung der Informatik 1",
-  "Course_Name": "Elective Module for Deepening Informatics 1",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Digital media",
     "E-commerce",
     "Artificial intelligence fundamentals"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Elective Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": "-",
-  "Homework_mandatorily required_hours": "-",
-  "Course_Credit": "4",
-  "Term": "SoSe 2024",
-  "Course_Description": "This is an elective course for deepening informatics knowledge. The specific content depends on the students' choices, which may include Internet technology and Web engineering, human-computer interaction, and other fields, aiming to deepen students' understanding and skills in specific areas of informatics."
+  "credit": "4",
+  "degree": "Bachelor level",
+  "description": "This is an elective course for deepening informatics knowledge. The specific content depends on the students' choices, which may include Internet technology and Web engineering, human-computer interaction, and other fields, aiming to deepen students' understanding and skills in specific areas of informatics.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "language": "German",
+  "lecture_duration": "-",
+  "math_level": "low",
+  "module": "Elective Courses",
+  "name": "Elective Module for Deepening Informatics 1",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": "-",
+  "semester": "SoSe 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9710"
   },
   "Course_Name_German": "Wahlpflichtmodul Vertiefung der Informatik 2",
-  "Course_Name": "Elective Module for Deepening Informatics 2",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Internet technology",
     "Web engineering",
     "Human-computer interaction"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Elective Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": "-",
-  "Homework_mandatorily required_hours": "-",
-  "Course_Credit": "4",
-  "Term": "SoSe 2024"
+  "credit": "4",
+  "degree": "Bachelor level",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "language": "German",
+  "lecture_duration": "-",
+  "math_level": "low",
+  "module": "Elective Courses",
+  "name": "Elective Module for Deepening Informatics 2",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": "-",
+  "semester": "SoSe 2024",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9711"
   },
-  "Course_ID": "ZKD 41001",
   "Course_Name_German": "Betriebssysteme",
-  "Course_Name": "Operating Systems",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Process management",
     "Memory management",
     "File systems",
     "Device management",
     "Operating system security"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Professional Core Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 4,
-  "Homework_mandatorily required_hours": 8,
-  "Course_Credit": "4",
-  "Course_Teacher": "Dr. Werner Otten, Prof. Torben Weis",
-  "Term": "Winter 2024/25",
-  "Course_Description": "The course teaches the theories and concepts of operating system design and helps students understand the models for process and memory management in modern operating systems. Students will be able to evaluate the suitability and application of different file systems and peripheral devices, and assess the mechanisms and procedures necessary for operating system security."
+  "credit": "4",
+  "degree": "Bachelor level",
+  "description": "The course teaches the theories and concepts of operating system design and helps students understand the models for process and memory management in modern operating systems. Students will be able to evaluate the suitability and application of different file systems and peripheral devices, and assess the mechanisms and procedures necessary for operating system security.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "id": "ZKD 41001",
+  "language": "German",
+  "lecture_duration": 4,
+  "lecturer": "Dr. Werner Otten, Prof. Torben Weis",
+  "math_level": "low",
+  "module": "Professional Core Courses",
+  "name": "Operating Systems",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 8,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9712"
   },
-  "Course_ID": "ZKD 41006",
   "Course_Name_German": "Datenbanken",
-  "Course_Name": "Databases",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Relational databases",
     "SQL language",
     "Database transactions",
     "Views",
     "Database architecture design and development"
   ],
-  "Programming_Requirements": "null",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Klausur",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise+Project",
-  "With_Course_Videos": "Yes",
-  "Course_Language": "German",
-  "Course_Module": "Professional Core Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 3,
-  "Homework_mandatorily required_hours": 5,
-  "Course_Credit": "3",
-  "Course_Teacher": "Prof. Dr. Dirk Lewandowski",
-  "Term": "Winter 2024/25",
-  "Course_Description": "The course aims to teach students the theory and concepts of relational databases, basic concepts of relational query languages, and the fundamentals of database design. Students will learn to use SQL and methods of database schema design, understand concepts such as views, access rights, and transactions. They will be able to evaluate the suitability and limitations of the relational data model, assess the consequences of database schema changes, and understand the risks of poorly designed DB schemas."
+  "credit": "3",
+  "degree": "Bachelor level",
+  "description": "The course aims to teach students the theory and concepts of relational databases, basic concepts of relational query languages, and the fundamentals of database design. Students will learn to use SQL and methods of database schema design, understand concepts such as views, access rights, and transactions. They will be able to evaluate the suitability and limitations of the relational data model, assess the consequences of database schema changes, and understand the risks of poorly designed DB schemas.",
+  "exam_difficulty": "middle",
+  "exam_type": "Klausur",
+  "id": "ZKD 41006",
+  "language": "German",
+  "lecture_duration": 3,
+  "lecturer": "Prof. Dr. Dirk Lewandowski",
+  "math_level": "low",
+  "module": "Professional Core Courses",
+  "name": "Databases",
+  "prerequisite": "null",
+  "programming_requirements": "null",
+  "self_study_hours": 5,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise+Project",
+  "with_videos": "Yes"
 },
 {
   "_id": {
     "$oid": "6782ff4cd22d8f9de93b9713"
   },
-  "Course_ID": "ZKD 41007",
   "Course_Name_German": "Datenbanken Prakt.",
-  "Course_Name": "Database Practice",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Database schema definition",
     "Permission setting",
     "SQL query writing",
     "Database application development"
   ],
-  "Programming_Requirements": "HTML basic\nCSS basic\nJavascript basic",
-  "Course_Recommended_Background": "null",
-  "Course_Required_Math_Level": "low",
-  "Course_Exam_Type": "Project Work",
-  "Course_Exam_Difficulty": "middle",
-  "Course_Teaching_Style": "Course+Exercise+Project",
-  "With_Course_Videos": "No",
-  "Course_Language": "German",
-  "Course_Module": "Basic Courses\n Professional Core Courses",
-  "Course_Level": "Bachelor level",
-  "Course_Class_Hours": 1,
-  "Homework_mandatorily required_hours": 3,
-  "Course_Credit": "1",
-  "Course_Teacher": "Prof. Dr. Dirk Lewandowski",
-  "Term": "Winter 2024/25",
-  "Course_Description": "In this practical course, students will learn to perform standard tasks of database administration, including defining database schemas, setting access rights, integrity constraints, and database triggers, creating complex SQL queries, developing database application programs, and developing web-based database applications. The course covers the entire process of database development from the conceptual phase to the programming of an application."
+  "credit": "1",
+  "degree": "Bachelor level",
+  "description": "In this practical course, students will learn to perform standard tasks of database administration, including defining database schemas, setting access rights, integrity constraints, and database triggers, creating complex SQL queries, developing database application programs, and developing web-based database applications. The course covers the entire process of database development from the conceptual phase to the programming of an application.",
+  "exam_difficulty": "middle",
+  "exam_type": "Project Work",
+  "id": "ZKD 41007",
+  "language": "German",
+  "lecture_duration": 1,
+  "lecturer": "Prof. Dr. Dirk Lewandowski",
+  "math_level": "low",
+  "module": "Basic Courses\n Professional Core Courses",
+  "name": "Database Practice",
+  "prerequisite": "null",
+  "programming_requirements": "HTML basic\nCSS basic\nJavascript basic",
+  "self_study_hours": 3,
+  "semester": "Winter 2024/25",
+  "teaching_style": "Course+Exercise+Project",
+  "with_videos": "No"
 },
 {
   "_id": {
     "$oid": "678323c5f22afbd94da99b8d"
   },
-  "Course_Name": "Fehlerdiagnose und Fehlertoleranz in technischen Systemen",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "Fault diagnosis",
     "Fault-tolerant control",
     "Method application"
-  ]
+  ],
+  "name": "Fehlerdiagnose und Fehlertoleranz in technischen Systemen"
 },
 {
   "_id": {
     "$oid": "678323c7f22afbd94da99b99"
   },
-  "Course_Name": "Peer-to-Peer Systeme",
-  "Course_Core_Concept": [
+  "core_concepts": [
     "P2P principles",
     "System structure",
     "Data processing",
     "Advantages & disadvantages"
-  ]
+  ],
+  "name": "Peer-to-Peer Systeme"
 }]

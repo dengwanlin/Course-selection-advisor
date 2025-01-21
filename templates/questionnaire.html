@@ -3,167 +3,233 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>your study status questionnaire</title>
-    <style>
-        input[type="radio"] {
-            margin-right: 5px;
-        }
-
-      .programming-level {
-            display: none;
-        }
-      input[type="number"] {
-            width: 50px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses Page</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/courses.css') }}">
 </head>
 
 <body>
-    <a href="{{ url_for('home', username=session.get('username')) }}" style="font-size: 20px;">Back to Home</a>
-    <form method="post" action="{{ url_for('submit_status') }}">
-        <!-- select your term -->
-        <label for="terms" style="font-size: 20px;">Term:</label>
-        <br>
-        {% for term in terms %}
-        <input type="radio" id="{{ term }}" name="terms" value="{{ term }}" style="font-size: 20px;">
-        <label for="{{ term }}" style="font-size: 20px;">{{ term }}</label>
-        {% endfor %}
-        <br>
-        <!-- select your Student_Professional_Background -->
-        <label for="student_professional_background" style="font-size: 20px;">Your Professional Background:</label>
-        <br>
-        <div>
-            {% for background in student_professional_backgrounds %}
-                <input type="checkbox" id="{{ background }}" name="student_professional_background" value="{{ background }}" style="font-size: 20px;">
-                <label for="{{ background }}" style="font-size: 20px;">{{ background }}</label><br>
-            {% endfor %}
-        </div>
-        <br>
-        <!-- Select the language and the corresponding language level -->
-        <h2>Select Languages:</h2>
-        {% for language in languages %}
-        <div>
-            <input type="checkbox" id="{{ language }}" name="languages" value="{{ language }}" onchange="showLanguageLevel(event)">
-            <label for="{{ language }}">{{ language }}</label>
-            <div class="language-level">
-                <label for="{{ language }}_level">Language Level:</label>
-                <select id="{{ language }}_level" name="{{ language }}_level">
-                    {% for level in language_levels %}
-                    <option value="{{ level }}">{{ level }}</option>
-                    {% endfor %}
-                </select>
+    <!-- Sidebar -->
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Smart CS</h2>
             </div>
-        </div>
-        {% endfor %}
-        <br>
-<!-- which programming skill do you know -->
-<label for="programming_level" style="font-size: 20px;">your programming skill:</label>
-<div>
-        {% for programming_language in programming_languages %}
-        <div>
-        <input type="checkbox" id="{{ programming_language }}" name="programming_languages" value="{{ programming_language }}" onchange="showProgrammingLevel(event)">
-        <label for="{{ programming_language }}">{{ programming_language }}</label>
-        <div class="programming-level">
-            <label for="{{ programming_language }}_level">Programming Level:</label>
-            <select id="{{ programming_language }}_level" name="{{ programming_language }}_level">
-                {% for level in programming_levels %}
-                <option value="{{ level }}">{{ level }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        </div>
-        {% endfor %}
-</div>
-    <!-- select your major name -->
-<label for="major_name" style="font-size: 20px;">Major Name:</label>
-<br>
-{% for major in student_majors %}
-<div>
-    <input type="radio" id="major_{{ major.Major_Name }}" name="major_name" value="{{ major.Major_Name }}" style="font-size: 20px;" onchange="showMajorDirection(this.value)">
-    <label for="major_{{ major.Major_Name }}" style="font-size: 20px;">{{ major.Major_Name }}</label>
-    <div id="direction_{{ major.Major_Name }}" class="direction - container" style="display:none;">
-        <label for="direction_name" style="font-size: 15px;">Major Direction:</label>
-        <div id="directionSubOptions_{{ major.Major_Name }}">
-            {% for direction in major.Direction_Name %}
-            <input type="radio" id="direction_{{ direction }}" name="direction_name" value="{{ direction }}" style="font-size: 20px;">
-            <label for="direction_{{ direction }}" style="font-size: 15px;">{{ direction }}</label><br>
-            {% endfor %}
-        </div>
+            <nav>
+                <ul>
+                <li><a href="{{ url_for('home', username=username) }}" class="">Dashboard</a></li>
+                <li><a href="{{ url_for('course') }}">Courses</a></li>
+                <li><a href="{{ url_for('insights') }}">Insights</a></li>
+                <li><a href="{{ url_for('setting') }}">Setting</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile">
+                <img src="{{ url_for('static', filename='images/user_image.png') }}" alt="User Profile">
+                <p>Hey {{ username }}</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Header -->
+            <header class="top-header">
+                <button class="menu-button" id="menuButton">☰</button>
+                <nav>
+                    <a href="home.html">Home</a>
+                    <a href="dashboard.html" class="active">Dashboard</a>
+                    <a href="{{ url_for('logout') }}"  class="logout">Log Out</a>
+                </nav>
+            </header>
+
+            <!-- Fullscreen Menu -->
+            <div class="fullscreen-menu" id="fullscreenMenu">
+                <button class="close-button" id="closeButton">✖</button>
+                <a href="home.html">Home</a>
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="logout.html" class="logout">Log Out</a>
+            </div>
+
+            <!-- Courses Content -->
+            <section class="courses-content">
+                <div class="tabs">
+                    <button class="tab active" id="searchCoursesTab">Search Courses</button>
+                    
+                    <button class="tab" id="myCoursesTab">My Courses</button>
+                    <button class="tab" id="allCoursesTab">All Courses</button>
+                </div>
+
+                <!-- Form Content -->
+                 <div class="form-and-rec-content">
+                
+                        <div class="course-list"  id="recommendationContent" >
+                        <!-- {% if recommendations %} -->
+                        <div class="results-header">
+                            <h3>Below are a list of courses we believe fit your criteria</h3>
+                        
+                            <a class="back-button" href="{{ url_for('course') }}"> ← Back to Search Courses</a>
+                        </div>
+                        {% for rec in recommendations %}
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="{{ url_for('static', filename='images/lesen.png') }}" alt="Course Image">
+                            </div>
+                            <div class="course-info">
+                                <!-- <p class="course-type">ELECTIVE <span>📍 Campus, Duisburg</span></p> -->
+                                <h4 class="course-title">{{ rec.name }}</h4>
+                                <p class="course-semester">{{ rec.semester }}</p>
+                                <p class="course-details">
+                                    <strong> Match Score:</strong> <span class="score-level">{{ rec.score }}%</span><br>
+                                    <!-- <strong>Programming Languages:</strong> C++... -->
+                                </p>
+                            </div>
+                            <div class="course-actions">
+                               <a href="{{ url_for('get_single_course', course_id=rec.id) }}">
+                                <button class="view-button" type="submit">View</button>
+                               </a> 
+                                <a href="{{ url_for('add_course', course_id=rec.id, course_name=rec.name, type='add') }}" method="post">
+                                <button class="add-button" >Add</button>
+                                </a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!-- {% endif %} -->
+                        </div>
+                         
+                        <div class="form-container" id="searchCoursesForm">
+                             <h3>Answer these questions to get the best selections</h3>
+                                    <form method="post" action="{{ url_for('course') }}">
+                                        <div class="form-group">
+                                            <label for="keywords">Enter a concept you would like your courses to be about *</label>
+                                            <input type="text" id="keywords" name="keywords" placeholder="Enter concepts separated by commas" required>
+                                        </div>
+                                
+                                        <div class="form-group">
+                                            <label for="teaching_style">Select a teaching style</label>
+                                            <select id="teaching_style" name="teaching_style" required>
+                                                <option value="Course+Exercise+Project">Course + Exercise + Project </option>
+                                                <option value="Course+Exercise">Course + Exercise</option>
+                                                <option value="Course+Project">Course + Project</option>
+                                            </select>
+                                        </div>
+                                
+                                        <div class="form-group">
+                                            <label for="math_level">How math intensive do you want this course to be? *</label>
+                                            <!-- <input type="text" id="math" placeholder="Enter level (e.g., High)"> -->
+                                            <select id="math_level" name="math_level" required>
+                                                <option value="High">High</option>
+                                                <option value="Medium">Medium</option>
+                                                <option value="Low">Low</option>
+                                            </select>
+                                        </div>
+                                
+                                
+                                        <div class="form-group">
+                                            <label for="language">What language do you want the course to be in? *</label>
+                                            <select id="language" required>
+                                                <option value="English">English</option>
+                                                <option value="German">German</option>
+                                            </select>
+                                        </div>
+                                
+                                        <div class="form-group">
+                                            <label for="preference">Choose a course module *</label>
+                                            <select id="preference" required>
+                                                <option value="Interactive Systems and Visualization">Interactive Systems and Visualization</option>
+                                                <option value="Intelligent Networked Systems">Intelligent Networked Systems</option>
+                                                <option value="Basic">Basics</option>
+                                            </select>
+                                        </div>
+                                
+                                        <button type="submit" class="submit-button">
+                                            <a class="submit-button"> Search Courses
+                                                <span>🔍</span></a>
+                                        </button>
+                                    </form>
+                        </div>
+                   
+
+                  
+                 </div>
+                
+
+                <!-- All Courses Content -->
+                    <div class="course-list" id="allCoursesContent">
+
+                      
+                        {% for course in courses %}
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="{{ url_for('static', filename='images/lesen.png') }}" alt="Course Image">
+                            </div>
+                            <div class="course-info">
+                                <!-- <p class="course-type">ELECTIVE <span>📍 Campus, Duisburg</span></p> -->
+                                <h4 class="course-title">{{ course.name }}</h4>
+                                <p class="course-semester">{{ course.semester }}</p>
+                                <p class="course-details">
+                                    <strong>Math Level:</strong> <span class="math-level">Very High</span><br>
+                                </p>
+                            </div>
+                            <div class="course-actions">
+                                <a href="{{ url_for('get_single_course', course_id=course.id)}}">
+                                    <button class="view-button" type="submit">View</button>
+                                </a>
+                                <a class="add-button">Add</a>
+                            </div>
+                        </div>
+                      {% endfor %}
+                    </div>
+
+                <!-- All Recommendation Content -->
+                   
+                <section class="search-results-content" >
+                    <div class="course-list"  id="myCoursesContent">
+                        {% if student_courses.my_courses %}
+                        {% for course in student_courses.my_courses %}
+                        <div class="course-card">
+                            <div class="course-image">
+                                <img src="{{ url_for('static', filename='images/lesen.png') }}" alt="Course Image">
+                            </div>
+                            <div class="course-info">
+                                <!-- <p class="course-type">ELECTIVE <span>📍 Campus, Duisburg</span></p> -->
+                                <h4 class="course-title">{{ course.name }}</h4>
+                                <p class="course-semester">{{ course.semester }}</p>
+                                <p class="course-details">
+                                    <strong>Math Level:</strong> <span class="math-level">Very High</span><br>
+                                </p>
+                            </div>
+                            <div class="course-actions">
+                                <a href="{{ url_for('get_single_course', course_id=course.id)}}">
+                                    <button class="view-button" type="submit">View</button>
+                                </a>
+                                <a class="remove-button" href="{{ url_for('add_course', course_id=course.id, course_name=course.name, type='remove') }}">Remove</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="form-container" style="display: flex; flex-direction: column; gap: 20px;">Fill form to see your
+                            recommendations
+                            <div class="result-header">
+                                <a class="back-button" href="{{ url_for('course') }}"> ← Back to Search Courses</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                
+                </section>
+              
+            </section>
+        </main>
     </div>
-</div>
-<br>
-{% endfor %}
+        <script>
+            const activeTab = "{{ active_tab }}"
+            const available_recommendations = "{{ available_recommendations }}";
+            const error = "{{ error }}";
 
-        <!-- select your Student_Math_Background -->
-        <label for="student_math_background" style="font-size: 20px;">Your Math Background:</label>
-        <br>
-        <div>
-            {% for level in student_math_levels %}
-            <input type="radio" id="{{ level }}" name="student_math_background" value="{{ level }}" style="font-size: 20px;">
-            <label for="{{ level }}" style="font-size: 20px;">{{ level }}</label><br>
-            {% endfor %}
-        </div>
-        <br>
-         <!-- Number of courses to choose -->
-        <label for="number_courses_to_choose" style="font-size: 20px;">Number of Courses to Choose:</label>
-        <input type="number" id="number_courses_to_choose" name="number_courses_to_choose" style="font-size: 20px;">
-        <br>
-        <!-- Available exercise time per week -->
-        <label for="available_exercise_time_per_week" style="font-size: 20px;">Available Exercise Time Per Week (hours):</label>
-        <input type="number" id="available_exercise_time_per_week" name="available_exercise_time_per_week" style="font-size: 20px;">
-        <br>
-
-        <input type="submit" style="font-size: 20px;" value="submit">
-    </form>
-
-    <script>
-        window.onload = function() {
-            // Hide all programmatic horizontal select boxes when the page loads
-            var programmingLevels = document.querySelectorAll('.programming-level');
-            programmingLevels.forEach(function(levelDiv) {
-                levelDiv.style.display = 'none';
-            });
-            var languageLevels = document.querySelectorAll('.language-level');
-            languageLevels.forEach(function(levelDiv) {
-                levelDiv.style.display = 'none';
-            });
-        };
-        function showLanguageLevel(event) {
-            var checkbox = event.target;
-            // Get the parent element of the checkbox
-            var parentDiv = checkbox.parentNode;
-            // Find child elements with the language-level class in the parent element
-            var languageLevelDiv = parentDiv.querySelector('.language-level');
-            if (checkbox.checked) {
-                languageLevelDiv.style.display = 'block';
-            } else {
-                languageLevelDiv.style.display = 'none';
-            }
-        }
-    function showProgrammingLevel(event) {
-            var checkbox = event.target;
-            // Get the parent element of the checkbox
-            var parentDiv = checkbox.parentNode;
-            // Find child elements with the programming-level class in the parent element
-            var programmingLevelDiv = parentDiv.querySelector('.programming-level');
-            if (checkbox.checked) {
-                programmingLevelDiv.style.display = 'block';
-            } else {
-                programmingLevelDiv.style.display = 'none';
-            }
-        }
-    function showMajorDirection(selectedMajor) {
-    // Hide all MajorDirection containers
-        var directionContainers = document.querySelectorAll('.direction-container');
-        directionContainers.forEach(function (container) {
-              container.style.display = 'none';
-        });
-        var targetDirectionContainer = document.getElementById('direction_' + selectedMajor);
-        if (targetDirectionContainer) {
-            targetDirectionContainer.style.display = 'block';
-        }
-    }
-    </script>
+        </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 
 </html>

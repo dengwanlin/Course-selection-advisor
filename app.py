@@ -5,20 +5,44 @@ from flask import Flask, render_template, request, redirect, url_for,session
 from datetime import datetime
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
-from db.connection import connect_to_cluster, fetch_data
+from db.connection import connect_to_cluster
 import plotly.graph_objects as go
 import json
 import pandas as pd
+from model.cbf import *
+from sklearn.preprocessing import OneHotEncoder, MinMaxScaler, OrdinalEncoder
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.decomposition import PCA
+from dash import dcc, html, Dash, Input, Output, callback
+import plotly.express as px
 
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
 
+
+# Create the Dash app
+dash_app = Dash(
+    __name__,
+    server=app,
+    url_base_pathname='/dash/' , # Mounts the Dash app at '/dash/'
+    assets_folder='static',
+)
+
+# Create the Dash app
+# dash_dashboard_insights = Dash(
+#     # __other__,
+#     server=app,
+#     url_base_pathname='/dash/' , # Mounts the Dash app at '/dash/'
+#     assets_folder='static'
+# )
+
 client = connect_to_cluster()
 
 
+
 db = client['Course_Recommendation']
-student_collection = db['student']
-course_collection=db['course']
+student_collection = db['students']
+course_collection=db['processed_courses']
 enums_collection = db['enums']
 
 @app.route('/', methods=['GET', 'POST'])
@@ -30,7 +54,8 @@ def welcome():
         password = request.form.get('password')
 
         # Check if the account exists in the database
-        student = student_collection.find_one({'student_id': student_id})
+        # student = student_collection.find_one({'student_id': student_id})
+        student = fetch_single_data('students', {'student_id': student_id})
         if student:
             if student['password'] == password:
                 session['student_id'] = student_id  # Add this line to store the student number in the session
@@ -39,7 +64,6 @@ def welcome():
             else:
                 error = "The password and account do not match!"
         else:
-
             error = "The account does not exist, please enter <a href='{}'>register page</a> to register, or you can re-fill in your information to log in.".format(
                 url_for('register'))
     return render_template('welcome.html', error=error)
@@ -57,7 +81,8 @@ def register():
         register_time = datetime.now()
 
         # Check if the student ID already exists
-        existing_student = student_collection.find_one({'student_id': student_id})
+        # existing_student = student_collection.find_one({'student_id': student_id})
+        existing_student = fetch_single_data('students', {'student_id': student_id})
         if existing_student:
             message = "The student number has been registered, please enter <a href='{}'>welcome Page</a>to Log in, or you can re-fill in your information to register.".format(url_for('welcome'))
             return render_template('register.html', exist_message=message)
@@ -69,12 +94,10 @@ def register():
                 "password": password,
                 "register_time": register_time
             }
-            student_collection.insert_one(student_info)
+            # student_collection.insert_one(student_info)
+            insert_data('students', student_info)
             return render_template('register_success.html', welcome_url=url_for('welcome'))
     return render_template('register.html')
-
-
-#def login():
 
 
 @app.route('/home/<username>')
@@ -82,6 +105,7 @@ def home(username):
     if 'student_id' not in session:
         return redirect(url_for('welcome'))
     return render_template('home.html', username=username)
+
 
 
 @app.route('/logout')
@@ -119,8 +143,9 @@ def questionnaire():
                            programming_languages=programming_languages,
                            programming_levels=programming_levels,
                            student_majors = student_majors,
-                           student_math_levels=student_math_levels)
-
+                           student_math_levels=student_math_levels,
+                           username=session.get('username')
+                           )
 
 # Added a new route to handle questionnaire submission logic
 @app.route('/submit_status', methods=['POST'])
@@ -181,40 +206,129 @@ def submit_status():
 
 @app.route('/course')
 def course():
-    courses = course_collection.find({"Course_Name": {"$ne": None}}).sort("Course_Name", 1)
-    return render_template('course.html', courses=courses, username=session.get('username'))
+    student_id = session.get('student_id')
+    if student_id is None:
+        return redirect(url_for('welcome'))
+    
+    courses = fetch_local_data('processed_courses')
+    collection_name = 'students'
+    student_courses = fetch_single_data(collection_name, {"student_id": student_id})
+
+    return render_template('questionnaire.html', 
+                           courses=courses,
+                           student_courses=student_courses,
+                           username=session.get('username')
+                           )
+
+# Added a new route to handle questionnaire submission logic
+@app.route('/course', methods=['POST'])
+def get_recommendation():
+    courses = fetch_local_data('courses')
+    student_id = session.get('student_id')
+    if student_id is None:
+        return redirect(url_for('welcome'))
+    
+    collection_name = 'students'
+    student_courses = fetch_single_data(collection_name, {"student_id": student_id})
+    
+    user_input = {
+    "preferred_language": request.form.get('language'),
+    "math_level": request.form.get('teaching_style'),
+    "keywords": request.form.get('keywords'),
+    "module": request.form.get('module'),
+    "teaching_style": request.form.get('teaching_style'),
+    "weighting": {"textual": 0.7, "categorical": 0.3},
+    }
+
+    recommendations =  get_course_recommendations(user_input)
+
+    return render_template('questionnaire.html', recommendations=recommendations, courses=courses, username=session.get('username'), available_recommendations=True, student_courses=student_courses)
+
+
+
+@app.route('/course/<course_id>/<course_name>/<type>', methods=['GET'])
+def add_course(course_id, course_name, type):
+    student_id = session.get('student_id')
+    if student_id is None:
+        return redirect(url_for('welcome'))
+    
+    collection_name = 'students'
+    courses = fetch_local_data('courses')
+    
+
+
+    if type == 'add':
+        check_course = fetch_single_data(collection_name, {"my_courses.id": course_id, "student_id": student_id, })
+        student_courses = fetch_single_data(collection_name, {"student_id": student_id})
+        if check_course is None:
+            update_one_data(
+                        collection_name,
+                        {"student_id": student_id},
+                        {"$push": {"my_courses": {"name": course_name, "id": course_id}}}
+                    )
+            student_courses = fetch_single_data(collection_name, {"student_id": student_id})
+            return render_template('questionnaire.html', username=session.get('username'), student_courses=student_courses, courses=courses) #, available_recommendations=True
+        else:
+            return render_template('questionnaire.html', username=session.get('username'), error='course_add_clash', student_courses=student_courses, courses=courses)
+        
+    elif type == 'remove':
+        update_one_data(
+                        collection_name,
+                        {"student_id": student_id},
+                        {"$pull": {"my_courses": {"id": course_id}}}
+                    )
+        
+        student_courses = fetch_single_data(collection_name, {"student_id": student_id})
+        return render_template('questionnaire.html', username=session.get('username'), student_courses=student_courses, courses=courses) #, available_recommendations=True
+
+
+
+@app.route('/course', methods=['GET'])
+def get_my_courses():
+    student_id = session.get('student_id')
+    if student_id is None:
+        return redirect(url_for('welcome'))
+    
+    courses = fetch_local_data('courses')
+    collection_name = 'students'
+    student_courses = fetch_single_data(collection_name, {"student_id": student_id})
+       
+    return render_template('questionnaire.html', username=session.get('username'), student_courses=student_courses, courses=courses, active_tab='myCoursesTab')
+
+
+
+@app.route('/get_single_course/<course_id>', methods=['GET'])
+def get_single_course(course_id):
+    student_id = session.get('student_id')
+    if student_id is None:
+        return redirect(url_for('welcome'))
+     
+    course = fetch_single_data('courses', {"id": course_id})
+    # if not course:
+    #     return render_template('404.html', message="Course not found"), 404
+
+    # Render the template with course details
+    return render_template('coursedescription.html', course=course, username=session.get('username'),)
+
+
+
 @app.route('/insights')
 def insights():
-    # Query courses with Course_Level as Master_Level
-    master_level_courses = course_collection.find({"Course_Level": "Master level"})
-    english_count = 0
-    german_count = 0
-    for course in master_level_courses:
-        if course.get('Course_Language') == 'English':
-            english_count += 1
-        elif course.get('Course_Language') == 'German':
-            german_count += 1
-    # Create Plotly figure
-    fig = go.Figure(
-        data=[go.Bar(x=['English Courses', 'German Courses'], y=[english_count, german_count])],
-
-    )
-    fig.update_layout(
-        polar=dict(
-            radialaxis=dict(
-                visible=True,
-                range=[0, 5]
-            )),
-        title=f"Master course language",
-        title_x=0.5
-    )
-    # Convert the figure to JSON
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-    return render_template('insights.html', graphJSON=graphJSON, username=session.get('username'))
+        
+    student_id = session.get('student_id')
+    if student_id is None:
+        return redirect(url_for('welcome'))
+    
+    return render_template('insights.html', username=session.get('username'))
 
 @app.route('/setting')
 def setting():
     return render_template('setting.html', username=session.get('username'))
+
+@app.route('/dash/')
+def dash_index():
+    # Redirect directly to Dash if needed
+    return redirect('/dash/')
 
 
 @app.route('/change_password', methods=['POST'])
@@ -239,12 +353,147 @@ def change_password():
         return render_template('setting.html', error='New passwords do not match.')
 
     try:
-        #hashed_password = bcrypt.hashpw(new_password.encode('utf - 8'), bcrypt.gensalt())
         student_collection.update_one({'student_id': student_id}, {'$set': {'password': confirm_new_password}})
         session.pop('student_id', None)
         session.pop('username', None)
         return redirect(url_for('welcome'))
     except Exception as e:
         return render_template('setting.html', error=f'Password change failed: {str(e)}')
+
+courses = fetch_local_data('processed_courses')
+
+courses_df = pd.DataFrame(courses)
+
+def courses_scatter():
+      courses_df["core_concepts"] = courses_df["core_concepts"].apply(lambda x: ",".join(x))  # Join list of concepts into a string
+      concepts_array = courses_df[["core_concepts"]]  # Convert to DataFrame with single column
+      
+      encoder = OneHotEncoder()
+      concept_matrix = encoder.fit_transform(concepts_array).toarray()
+      
+      # Reduce dimensions
+      pca = PCA(n_components=2)
+      reduced_data = pca.fit_transform(concept_matrix)
+      
+      # Create a DataFrame
+      df_reduced = pd.DataFrame(reduced_data, columns=["x", "y"])
+      df_reduced["id"] = courses_df["id"]
+      
+      # Plot clustering
+      fig = px.scatter(
+          df_reduced, 
+          x="x", 
+          y="y", 
+          text="id",
+          size_max=200,
+          title="Course Clustering based on Extracted Concepts"
+      )
+      
+      
+      # Update the font size specifically for the text labels
+      fig.update_traces(
+          textfont=dict(
+              family="Courier New, monospace",
+              size=7,  # Set the desired font size
+              color="red"  # Optional: Change text color
+          ),
+          marker=dict(size=10)
+      )
+
+      return fig
+
+def course_modules():
+      # Count occurrences of each module
+    module_counts = courses_df["encoded_module"].value_counts().reset_index()
+    module_counts.columns = ["Module", "Count"]
+    print(f"Count of 'Modules' in 'Courses': {module_counts}")
+    
+    fig = px.pie(
+        module_counts,
+        names="Module",
+        values="Count",
+        title="Distribution of Modules",
+        color_discrete_sequence=px.colors.qualitative.Pastel1
+    )
+
+    return fig
+
+def course_lecturer():
+    fig = px.bar(courses_df, x="lecturer", title="Number of Courses by Teacher")
+
+    return fig
+
+
+def course_languages():
+    # Count occurrences of each module
+  language_counts = courses_df["encoded_language"].value_counts().reset_index()
+  language_counts.columns = ["Language", "Count"]
+  print(f"Count of 'Languages' in 'Courses': {language_counts}")
+
+  fig = px.pie(
+    language_counts,
+    names="Language",
+    values="Count",
+    title="Distribution of Languages",
+    color_discrete_sequence=px.colors.qualitative.Pastel1
+    )   
+  
+  return fig
+
+# def dash_application():
+# , 'display':'grid', 'gridTemplateColumns': '1fr 1fr', 'gap': '5px'
+dash_app.layout = dcc.Loading(
+    type="circle", 
+    children=html.Div(style={'height': '98vh' }, children=[
+     html.Div(
+           
+            style={
+                'display': 'flex',
+                'flexDirection':'column'
+            }
+            , children= [
+                html.Div(style={'display':'grid', 'gridTemplateColumns': '1fr 1fr', 'gap': '5px'},
+                         children=[dcc.Dropdown(['Course Scatter','Module', 'Languages', 'Lecturers'], 'Course Scatter', id='pie_type')]),
+                
+                html.Div( 
+                dcc.Graph(
+                id="pie-output",
+                ),
+            )
+            ]
+        ),
+    #  html.Div(
+    #         dcc.Graph(
+    #             id="scatter-graph",
+    #             figure=courses_scatter()
+    #         ),
+    #            style={
+    #             'border': '1px solid gray'
+    #         }
+    #     ),
+    ]) 
+)
+  
+#   return dash_graph
+
+@callback(
+    Output(component_id='pie-output', component_property='figure'),
+    Input(component_id='pie_type', component_property='value')
+  )
+def update_output_div(pie_type):
+    if pie_type=='Course Scatter':
+        return courses_scatter()
+    elif pie_type=='Module': 
+        return course_modules()
+    elif pie_type=='Lecturers': 
+        return course_lecturer()
+    elif pie_type=='Languages': 
+        return course_languages()
+
+
+# dash_application()
+
+
 if __name__ == '__main__':
     app.run(debug=True)
+

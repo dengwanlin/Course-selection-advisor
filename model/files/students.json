@@ -1,122 +1,285 @@
-[
+[{
+  "_id": {
+    "$oid": "6775671cb54e4d6d206a808d"
+  },
+  "language_level": [
     {
-        "Student_ID": "S001",
-        "Major": "Intelligent Networked Systems",
-        "Year": 1,
-        "GPA": 3.8,
-        "Preferred_Language": "English",
-        "Technical_Skills": [{"Language": "Python", "Level": "Intermediate"}],
-        "Preferred_Exam_Type": "Project-based",
-        "Interest_Areas": ["AI", "Computer Vision"],
-        "Course_Feedback": {"ZKD50032": 4.5, "ZGA42433": 4.0},
-        "Learning_Style": "Course+Exercise"
+      "Language ": "German",
+      "Level": "native"
     },
     {
-        "Student_ID": "S002",
-        "Major": "Interactive Systems and Visualization",
-        "Year": 2,
-        "GPA": 3.2,
-        "Preferred_Language": "German",
-        "Technical_Skills": [{"Language": "C++", "Level": "Proficient"}],
-        "Preferred_Exam_Type": "Oral",
-        "Interest_Areas": ["Graphics", "Rendering"],
-        "Course_Feedback": {"ZKD50032": 3.8, "ZKD50056": 4.2},
-        "Learning_Style": "Lecture+Exercise"
-    },
-    {
-        "Student_ID": "S003",
-        "Major": "Intelligent Networked Systems",
-        "Year": 3,
-        "GPA": 3.5,
-        "Preferred_Language": "English",
-        "Technical_Skills": [{"Language": "Java", "Level": "Beginner"}],
-        "Preferred_Exam_Type": "Written",
-        "Interest_Areas": ["Networking", "Distributed Systems"],
-        "Course_Feedback": {"ZKD50056": 4.0, "ZGA42431": 3.5},
-        "Learning_Style": "Hands-on Projects"
-    },
-    {
-        "Student_ID": "S004",
-        "Major": "Interactive Systems and Visualization",
-        "Year": 4,
-        "GPA": 3.9,
-        "Preferred_Language": "English",
-        "Technical_Skills": [{"Language": "C++", "Level": "Expert"}, {"Language": "Python", "Level": "Proficient"}],
-        "Preferred_Exam_Type": "Oral",
-        "Interest_Areas": ["AI", "Graphics"],
-        "Course_Feedback": {"ZKD50032": 4.7, "ZGA42431": 4.5},
-        "Learning_Style": "Course+Exercise"
-    },
-    {
-        "Student_ID": "S005",
-        "Major": "Intelligent Networked Systems",
-        "Year": 2,
-        "GPA": 3.1,
-        "Preferred_Language": "German",
-        "Technical_Skills": [{"Language": "Java", "Level": "Intermediate"}],
-        "Preferred_Exam_Type": "Project-based",
-        "Interest_Areas": ["Cybersecurity", "Cryptography"],
-        "Course_Feedback": {"ZKD50001": 3.6},
-        "Learning_Style": "Self-study"
-    },
-    {
-        "Student_ID": "S006",
-        "Major": "Interactive Systems and Visualization",
-        "Year": 1,
-        "GPA": 3.0,
-        "Preferred_Language": "English",
-        "Technical_Skills": [{"Language": "Python", "Level": "Beginner"}],
-        "Preferred_Exam_Type": "Written",
-        "Interest_Areas": ["Visualization", "Graphics"],
-        "Course_Feedback": {"ZKD50001": 4.0},
-        "Learning_Style": "Lecture+Exercise"
-    },
-    {
-        "Student_ID": "S007",
-        "Major": "Intelligent Networked Systems",
-        "Year": 3,
-        "GPA": 3.4,
-        "Preferred_Language": "English",
-        "Technical_Skills": [{"Language": "C++", "Level": "Proficient"}],
-        "Preferred_Exam_Type": "Project-based",
-        "Interest_Areas": ["AI", "Machine Learning"],
-        "Course_Feedback": {"ZKD50032": 4.3, "ZKD50001": 4.0},
-        "Learning_Style": "Course+Exercise"
-    },
-    {
-        "Student_ID": "S008",
-        "Major": "Interactive Systems and Visualization",
-        "Year": 4,
-        "GPA": 3.7,
-        "Preferred_Language": "German",
-        "Technical_Skills": [{"Language": "Java", "Level": "Expert"}],
-        "Preferred_Exam_Type": "Written",
-        "Interest_Areas": ["Computer Vision", "Graphics"],
-        "Course_Feedback": {"ZGA42431": 4.6, "ZKD60002": 4.8},
-        "Learning_Style": "Hands-on Projects"
-    },
-    {
-        "Student_ID": "S009",
-        "Major": "Intelligent Networked Systems",
-        "Year": 2,
-        "GPA": 3.0,
-        "Preferred_Language": "English",
-        "Technical_Skills": [{"Language": "Python", "Level": "Intermediate"}],
-        "Preferred_Exam_Type": "Oral",
-        "Interest_Areas": ["Networking", "Distributed Systems"],
-        "Course_Feedback": {"ZKD50001": 4.0},
-        "Learning_Style": "Self-study"
-    },
-    {
-        "Student_ID": "S010",
-        "Major": "Interactive Systems and Visualization",
-        "Year": 1,
-        "GPA": 2.8,
-        "Preferred_Language": "English",
-        "Technical_Skills": [{"Language": "Python", "Level": "Beginner"}],
-        "Preferred_Exam_Type": "Written",
-        "Interest_Areas": ["Visualization", "AI"],
-        "Course_Feedback": {"ZKD50032": 3.9},
-        "Learning_Style": "Course+Exercise"
+      "Language ": "English",
+      "Level": "professional"
     }
-]
+  ],
+  "major": {
+    "Major_Name": "Computer Engineering",
+    "Direction_Name": "Intelligent Networked Systems"
+  },
+  "math_background": [
+    {
+      "Subject_Name": "Calculous",
+      "Level": "Profecient"
+    },
+    {
+      "Subject_Name": "Linear_Algebra",
+      "Level": "qualified"
+    },
+    {
+      "Subject_Name": "Possibility",
+      "Level": "basic"
+    }
+  ],
+  "name": "Tom Bom",
+  "professional_background": [
+    "computer graphics"
+  ],
+  "programming_level": [
+    {
+      "Language": "Java:",
+      "Level": "qualified"
+    },
+    {
+      "Language": "C++",
+      "Level": "basic"
+    }
+  ],
+  "semester": "Winter 2024/25",
+  "num_of_courses": 3,
+  "weekly_self_study_hours": 10,
+  "﻿student_id": "3200056",
+  "password": "asdf"
+},
+{
+  "_id": {
+    "$oid": "677ac912d4ebfa4c251d4a6e"
+  },
+  "student_id": "1234",
+  "first_name": "Zimmerman",
+  "last_name": "Jens",
+  "password": "1234",
+  "register_time": {
+    "$date": "2025-01-05T19:01:54.750Z"
+  },
+  "language_level": [
+    {
+      "Language": "English",
+      "Level": "basic"
+    }
+  ],
+  "major": {
+    "Major_Name": "Computer Engineering",
+    "Direction_Name": "Interactive Systems and Visualization"
+  },
+  "math_background": "qualified ",
+  "professional_background": [
+    "computer graphics "
+  ],
+  "programming_level": [
+    {
+      "Language": "C++",
+      "Level": "basic"
+    },
+    {
+      "Language": "HTML",
+      "Level": "basic"
+    }
+  ],
+  "semester": "Sommer 2024",
+  "num_of_courses": 2,
+  "weekly_self_study_hours": 9,
+  "my_courses": [
+    {
+      "name": "Lineare und Diskrete Optimierung mit Anwendungen auf Graphen",
+      "id": "ZGA42431"
+    },
+    {
+      "name": "Intelligent Learning Environments",
+      "id": "ZKD50068"
+    },
+    {
+      "name": "Advanced Image Synthesis",
+      "id": "ZKD50032"
+    },
+    {
+      "name": "Learning Analytics",
+      "id": "ZKD50039"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "677ad18dc292063329a97b6e"
+  },
+  "student_id": "2313",
+  "first_name": "Zimmerman",
+  "last_name": "Jens",
+  "password": "2323",
+  "register_time": {
+    "$date": "2025-01-05T19:38:05.267Z"
+  },
+  "Semester": null,
+  "language_level": [
+    {
+      "Level": "blank",
+      "Language": "German"
+    },
+    {
+      "Level": "blank",
+      "Language": "German"
+    }
+  ],
+  "major": {
+    "Major_Name": "Computer Engineering",
+    "Direction_Name": "Intelligent Networked Systems"
+  },
+  "professional_background": null,
+  "semester": "Sommer 2024"
+},
+{
+  "_id": {
+    "$oid": "677bd2ead2883b89100c3fea"
+  },
+  "student_id": "182918",
+  "first_name": "Ankomah",
+  "last_name": "Kojo",
+  "password": "1234",
+  "register_time": {
+    "$date": "2025-01-06T13:56:10.236Z"
+  },
+  "Semester": null,
+  "language_level": [
+    {
+      "Level": "proficient ",
+      "Language": "German"
+    },
+    {
+      "Level": "proficient ",
+      "Language": "German"
+    }
+  ],
+  "major": {
+    "Major_Name": "Computer Engineering",
+    "Direction_Name": "Intelligent Networked Systems"
+  }
+},
+{
+  "_id": {
+    "$oid": "678153ee29882b90d684df17"
+  },
+  "student_id": "test1",
+  "first_name": "tester1",
+  "last_name": "tester1",
+  "password": "tester1",
+  "register_time": {
+    "$date": "2025-01-10T18:07:58.278Z"
+  },
+  "Semester": null,
+  "language_level": [
+    {
+      "Level": "basic",
+      "Language": "German"
+    },
+    {
+      "Level": "basic",
+      "Language": "German"
+    }
+  ],
+  "major": {
+    "Major_Name": "Others",
+    "Direction_Name": "Others"
+  }
+},
+{
+  "_id": {
+    "$oid": "6781839472833f9f8ac01c75"
+  },
+  "student_id": "test2",
+  "first_name": "tester2",
+  "last_name": "tester2",
+  "password": "tester2",
+  "register_time": {
+    "$date": "2025-01-10T21:31:16.775Z"
+  },
+  "Semester": "Winter 2024/25",
+  "language_level": [
+    {
+      "Level": "proficient ",
+      "Language": "German"
+    },
+    {
+      "Level": "proficient ",
+      "Language": "German"
+    }
+  ],
+  "major": {
+    "Major_Name": "Computer Engineering",
+    "Direction_Name": "Interactive Systems and Visualization"
+  }
+},
+{
+  "_id": {
+    "$oid": "678512672529caa276057be8"
+  },
+  "student_id": "4646",
+  "first_name": "Dengwan",
+  "last_name": "Jens",
+  "password": {
+    "$binary": {
+      "base64": "JDJiJDEyJHRiUnMxZWhRSVJyQmhBb3cyTzlMbXUvYzYyRE5EWVFxV0g4R2tjdURpM24wMVVZYW8vOWxH",
+      "subType": "00"
+    }
+  },
+  "register_time": {
+    "$date": "2025-01-13T14:17:27.498Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6786d9e0be42470284f2f558"
+  },
+  "student_id": "12345",
+  "first_name": "Haihua",
+  "last_name": "Jens",
+  "password": "12345",
+  "register_time": {
+    "$date": "2025-01-14T22:40:48.823Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6786db66be42470284f2f559"
+  },
+  "student_id": "123456",
+  "first_name": "12345",
+  "last_name": "wei",
+  "password": "123456",
+  "register_time": {
+    "$date": "2025-01-14T22:47:18.722Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6787a068df111b5a34e35030"
+  },
+  "student_id": "hazemmasa@gmail.com",
+  "first_name": "HAZEM",
+  "last_name": "AL-MASSALMEH",
+  "password": "1234",
+  "register_time": {
+    "$date": "2025-01-15T12:47:52.917Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "678e42098a0904b664dbeb51"
+  },
+  "student_id": "10680839",
+  "first_name": "Clement",
+  "last_name": "Ankomah",
+  "password": "WHITEdove23@",
+  "register_time": {
+    "$date": "2025-01-20T13:31:05.130Z"
+  },
+  "my_courses": []
+}]

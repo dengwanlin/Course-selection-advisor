@@ -1,275 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>homepage</title>
-    <style>
-        /* General Reset */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    color: #333;
-    box-sizing: border-box;
-}
-
-.dashboard-container {
-    display: flex;
-    height: 100vh;
-}
-
-/* Sidebar */
-.sidebar {
-    width: 250px;
-    background-color: #f9f9f9;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-}
-
-.logo h2 {
-    color: #6a1b9a;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.sidebar nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-.sidebar nav ul li {
-    margin: 15px 0;
-}
-
-.sidebar nav ul li a {
-    text-decoration: none;
-    font-weight: bold;
-    color: #333;
-    padding: 10px;
-    display: block;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.sidebar nav ul li a:hover,
-.sidebar nav ul li a.active {
-    background-color: #6a1b9a;
-    color: white;
-}
-
-.user-profile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: auto;
-}
-
-.user-profile img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-}
-
-.user-profile p {
-    font-weight: bold;
-}
-
-/* Main Content */
-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Header */
-.top-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 20px;
-    background-color: white;
-    border-bottom: 1px solid #ddd;
-    justify-content: flex-end;
-}
-
-.top-header nav {
-    display: flex;
-    gap: 15px;
-}
-
-.top-header nav a {
-    text-decoration: none;
-    color: #6a1b9a;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.top-header nav a.active {
-    text-decoration: underline;
-}
-
-.top-header nav a.logout {
-    color: #d9534f;
-}
-
-/* Fullscreen dropdown */
-.fullscreen-menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgb(135 46 189);
-    color: white;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.fullscreen-menu a {
-    color: white;
-    font-size: 1.5rem;
-    margin: 15px 0;
-    text-decoration: none;
-    transition: transform 0.3s ease, color 0.3s;
-}
-
-.fullscreen-menu a:hover {
-    color: #ffccff;
-    transform: scale(1.1);
-}
-
-.fullscreen-menu.show {
-    display: flex;
-}
-
-/* Close Button */
-.close-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2rem;
-    background: none;
-    border: none;
-    color: white;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.close-button:hover {
-    transform: scale(1.2);
-}
-
-/* Menu Button */
-.menu-button {
-    display: none;
-    font-size: 1.5rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #6a1b9a;
-}
-
-/* Settings Page */
-.settings-content {
-    padding: 20px;
-}
-
-.settings-content h3 {
-    font-size: 1.5rem;
-    color: #6a1b9a;
-    margin-bottom: 20px;
-}
-
-.change-password-form {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-.change-password-form h4 {
-    font-size: 1.2rem;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.change-password-form .form-group {
-    margin-bottom: 15px;
-}
-
-.change-password-form .form-group label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-    color: #333;
-}
-
-.change-password-form .form-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.change-password-form .submit-button {
-    padding: 10px 20px;
-    background-color: #6a1b9a;
-    color: white;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.change-password-form .submit-button:hover {
-    background-color: #854cb9;
-}
-
-/* Responsive Design */
-
-/* Tablet (<=1024px) */
-@media screen and (max-width: 1024px) {
-    .sidebar {
-        display: none; /* Hide sidebar */
-    }
-
-    .menu-button {
-        display: block; /* Show menu button */
-    }
-
-    .top-header nav {
-        display: none; /* Hide top nav */
-    }
-}
-
-/* Mobile (<=768px) */
-@media screen and (max-width: 768px) {
-    .change-password-form {
-        max-width: 90%;
-    }
-
-    .settings-content h3 {
-        text-align: center;
-    }
-}
-
-    </style>
+    <title>Settings</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+    <style></style>
 </head>
+
 <body>
     <!-- Sidebar -->
     <div class="dashboard-container">
@@ -279,16 +18,17 @@ main {
             </div>
             <nav>
                 <ul>
-                    <li><a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a></li>
-                    <li><a href="{{ url_for('course') }}">Courses</a></li>
-                    <li><a href="{{ url_for('insights') }}">Insights</a></li>
-                    <li><a href="{{ url_for('setting') }}">Setting</a></li>
-                    <li><a href="{{ url_for('questionnaire') }}">Questionnaire</a></li>
+                <li><a href="{{ url_for('home', username=username) }}" class="">Dashboard</a></li>
+                <li><a href="{{ url_for('course') }}">Courses</a></li>
+                <li><a href="{{ url_for('insights') }}">Insights</a></li>
+                <!-- <li><a href="{{ url_for('course') }}">Questionnaire</a></li> -->
+                <li><a href="{{ url_for('setting') }}">Setting</a></li>
+              
                 </ul>
             </nav>
             <div class="user-profile">
-                <img src="https://via.placeholder.com/50" alt="User Profile">
-                <p>Welcome back {{ username }}</p>
+                <img src="{{ url_for('static', filename='images/user_image.png') }}" alt="User Profile">
+                <p>Hey {{ username }}</p>
             </div>
         </aside>
 
@@ -298,22 +38,22 @@ main {
             <header class="top-header">
                 <button class="menu-button" id="menuButton">☰</button>
                 <nav>
-                    <a href="#">Home</a>
-                    <a href="#" class="active">Dashboard</a>
-                    <a href="#">About Us</a>
-                    <a href="#">Contact Us</a>
-                    <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
+                    <a href="home.html">Home</a>
+                    <a href="dashboard.html" class="active">Dashboard</a>
+                    <a href="about.html">About Us</a>
+                    <a href="contact.html">Contact Us</a>
+                    <a href="{{ url_for('logout') }}"  class="logout">Log Out</a>
                 </nav>
             </header>
 
             <!-- Fullscreen Menu -->
             <div class="fullscreen-menu" id="fullscreenMenu">
                 <button class="close-button" id="closeButton">✖</button>
-                <a href="#">Home</a>
-                <a href="#" class="active">Dashboard</a>
-                <a href="#">About Us</a>
-                <a href="#">Contact Us</a>
-                <a href="#" class="logout">Log Out</a>
+                <a href="home.html">Home</a>
+                <a href="dashboard.html" class="active">Dashboard</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="logout.html" class="logout">Log Out</a>
             </div>
 
             <!-- Settings Content -->
@@ -321,79 +61,27 @@ main {
                 <h3>Profile</h3>
                 <div class="change-password-form">
                     <h4>Change Password</h4>
-<form method="post" action="{{ url_for('change_password') }}">
-    <div class="form-group">
-        <label for="current_password">Current Password:</label>
-        <input type="password" id="current_password" name="current_password" required>
-    </div>
-    <div class="form-group">
-        <label for="new_password">New Password:</label>
-        <input type="password" id="new_password" name="new_password" required>
-    </div>
-    <div class="form-group">
-        <label for="confirm_new_password">Confirm New Password:</label>
-        <input type="password" id="confirm_new_password" name="confirm_new_password" required>
-    </div>
-        <input type="submit" value="Change Password" class="submit-button" style="margin-top: 15px;">
-        {% if error %}
-        <p class="error">{{ error }}</p>
-        {% endif %}
-        {% if success %}
-        <p class="success">{{ success }}</p>
-        <script>
-            // when it is successful, jump to welcome page
-            window.location.href = "{{ url_for('welcome') }}";
-        </script>
-        {% endif %}
-    </form>
+                    <form method="post" action="{{ url_for('change_password') }}">
+                        <div class="form-group">
+                            <label for="current_password">Old Password</label>
+                            <input type="password" id="current_password" name="current_password" placeholder="Enter old password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new_password">Enter New Password</label>
+                            <input type="password" placeholder="Enter new password" id="new_password" name="new_password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_new_password">Confirm New Password</label>
+                            <input type="password" id="confirm_new_password" name="confirm_new_password" placeholder="Confirm new password" required>
+                        </div>
+                        <button value="Change Password" type="submit" class="submit-button">Change</button>
+                    </form>
                 </div>
             </section>
         </main>
     </div>
-    <script>
-        // Ensure DOM is loaded before running the script
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuButton = document.getElementById('menuButton');
-            const fullscreenMenu = document.getElementById('fullscreenMenu');
-            const closeButton = document.getElementById('closeButton');
-
-            // Open the fullscreen menu
-            menuButton.addEventListener('click', () => {
-                fullscreenMenu.classList.add('show');
-            });
-
-            // Close the fullscreen menu
-            closeButton.addEventListener('click', () => {
-                fullscreenMenu.classList.remove('show');
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchCoursesTab = document.getElementById('searchCoursesTab');
-            const myCoursesTab = document.getElementById('myCoursesTab');
-            const searchCoursesForm = document.getElementById('searchCoursesForm');
-
-            searchCoursesTab.addEventListener('click', () => {
-                searchCoursesTab.classList.add('active');
-                myCoursesTab.classList.remove('active');
-                searchCoursesForm.style.display = 'block';
-            });
-
-            myCoursesTab.addEventListener('click', () => {
-                searchCoursesTab.classList.remove('active');
-                myCoursesTab.classList.add('active');
-                searchCoursesForm.style.display = 'none';
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const links = document.querySelectorAll('.sidebar nav a');
-            links.forEach(link => {
-                if (link.href === window.location.href) {
-                    link.classList.add('active');
-                }
-            });
-        });
-    </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script  src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
+
 </html>

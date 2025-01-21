@@ -137,20 +137,12 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
-    <h1>Welcome to our website</h1>
-    <a href="{{ url_for('login') }}"style="font-size: 20px;">log in</a>
-    <br>
-    <a href="{{ url_for('register') }}"style="font-size: 20px;">sign up</a>
-</body>
-=======
     <div class="container">
         <!-- Left Panel -->
         <div class="left-panel">
             <img src="logo.png" alt="Smart CS Logo">
             <h1>Smarter way of selecting courses</h1>
         </div>
->>>>>>> 7bb097a8d45a466ac5239a05497b81e023972660
 
         <!-- Right Panel -->
         <div class="right-panel">
@@ -159,17 +151,19 @@
                 <h2>Welcome Back!</h2>
                 <p>We're excited to see you again!</p>
 
+                {% if error %}
+                <p style="margin-top: 20px; font-size: 14px; font-size: 15px; color: red;">{{ error|safe }}</p>
+                {% endif %}
+
                     <form method="post">
 
-                        <div class="form-group"><label for="student_id" style="font-size: 20px;">student_ID:</label><input type="text" id="student_id" name="student_id" required></div>
+                        <div class="form-group"><label for="student_id" style="font-size: 20px;">Student ID</label><input type="text" id="student_id" name="student_id" required></div>
 
-                        <div class="form-group"><label for="password" style="font-size: 20px;">password</label><input type="password" id="password" name="password" required><br>
+                        <div class="form-group"><label for="password" style="font-size: 20px;">Password</label><input type="password" id="password" name="password" required><br>
                         </div>
                         <input class="btn" type="submit" value="login">
                     </form>
-                {% if error %}
-                        <p>{{ error|safe }}</p>
-                {% endif %}
+               
 
                 <p style="margin-top: 20px; font-size: 14px;">
                     Need an account? <a href="{{ url_for('register') }}">Register</a>
