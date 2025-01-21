@@ -7,9 +7,13 @@ import pandas as pd
 import plotly.express as px
 
 
+
+
+
+
 # Create a new client and connect to the server
 client = connect_to_cluster()
-db = client['Course_Recommendation']
+db = client[get_dbname()]
 
 #functions for crud operations
 def fetch_local_data(collection):
