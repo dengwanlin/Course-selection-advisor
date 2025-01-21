@@ -1,27 +1,41 @@
-import numpy as np
+from sklearn.preprocessing import OneHotEncoder, MinMaxScaler, OrdinalEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer, ENGLISH_STOP_WORDS
 from sklearn.metrics.pairwise import cosine_similarity
-import numpy as np
-from pymongo import MongoClient
-from pymongo.server_api import ServerApi
-# from ..config.settings import MONGODB_CONFIG
+from sklearn.decomposition import PCA
+from db.connection import *
+import pandas as pd
+import plotly.express as px
 
-uri = "mongodb+srv://whhxsg:whhxsg@coursecluster.ecl2n.mongodb.net/?retryWrites=true&w=majority&appName=CourseCluster"
 
 # Create a new client and connect to the server
-client = MongoClient(uri, server_api=ServerApi('1'))
-# client  = MongoClient(
-#             host='localhost',
-#             port=27017
-#         )
-
+client = connect_to_cluster()
 db = client['Course_Recommendation']
-# db = client['course_recommendation']
-collection = db['processed_courses']
-X = collection.find()
-courses_data = list(X)
+
+#functions for crud operations
+def fetch_local_data(collection):
+    return list(db[collection].find())
+
+def fetch_single_data(collection_name, query):
+    collection = db[collection_name]
+    result = collection.find_one(query)
+    # result = list(result)
+    return result
+
+def update_one_data(collection_name, filter, data):
+    collection = db[collection_name]
+    result = collection.update_one(filter, data)
+    return result
+
+def insert_data(collection_name, data):
+    collection = db[collection_name]
+    result = collection.insert_one(data)
+    return result
+
+
+courses_data = fetch_local_data('processed_courses')
 stop_words  = ENGLISH_STOP_WORDS
 
+#helper function to preprocess course
 def preprocess_course(course):
     course_text = course["description"] + " " + " ".join(course["core_concepts"])
     return [word for word in course_text.lower().split() if word not in stop_words]
@@ -125,32 +139,83 @@ def get_course_recommendations(user_input, courses=courses_data, top_n=5,):
 
     return recommendations[:top_n]
 
-# User input
-user_input = {
-    "preferred_language": "English",
-    "math_level": "None",
-    "keywords": "Data Analysis, hhee",
-    "module": "Basics",
-    "teaching_style": "Course+Exercise",
-    "weighting": {"textual": 0.7, "categorical": 0.3},
-}
+
+#get data for graphs
+courses_df = pd.DataFrame(courses_data)
+
+def courses_scatter():
+      courses_df["core_concepts"] = courses_df["core_concepts"].apply(lambda x: ",".join(x))  # Join list of concepts into a string
+      concepts_array = courses_df[["core_concepts"]]  # Convert to DataFrame with single column
+      
+      encoder = OneHotEncoder()
+      concept_matrix = encoder.fit_transform(concepts_array).toarray()
+      
+      # Reduce dimensions
+      pca = PCA(n_components=2)
+      reduced_data = pca.fit_transform(concept_matrix)
+      
+      # Create a DataFrame
+      df_reduced = pd.DataFrame(reduced_data, columns=["x", "y"])
+      df_reduced["id"] = courses_df["id"]
+      
+      # Plot clustering
+      fig = px.scatter(
+          df_reduced, 
+          x="x", 
+          y="y", 
+          text="id",
+          size_max=200,
+          title="Course Clustering based on Extracted Concepts"
+      )
+      
+      
+      # Update the font size specifically for the text labels
+      fig.update_traces(
+          textfont=dict(
+              family="Courier New, monospace",
+              size=7,  # Set the desired font size
+              color="red"  # Optional: Change text color
+          ),
+          marker=dict(size=10)
+      )
+
+      return fig
+
+def course_modules():
+      # Count occurrences of each module
+    module_counts = courses_df["encoded_module"].value_counts().reset_index()
+    module_counts.columns = ["Module", "Count"]
+    print(f"Count of 'Modules' in 'Courses': {module_counts}")
+    
+    fig = px.pie(
+        module_counts,
+        names="Module",
+        values="Count",
+        title="Distribution of Modules",
+        color_discrete_sequence=px.colors.qualitative.Pastel1
+    )
+
+    return fig
+
+def course_lecturer():
+    fig = px.bar(courses_df, x="lecturer", title="Number of Courses by Teacher")
+
+    return fig
 
 
-def fetch_local_data(collection):
-    return list(db[collection].find())
+def course_languages():
+    # Count occurrences of each module
+  language_counts = courses_df["encoded_language"].value_counts().reset_index()
+  language_counts.columns = ["Language", "Count"]
+  print(f"Count of 'Languages' in 'Courses': {language_counts}")
 
-def fetch_single_data(collection_name, query):
-    collection = db[collection_name]
-    result = collection.find_one(query)
-    # result = list(result)
-    return result
+  fig = px.pie(
+    language_counts,
+    names="Language",
+    values="Count",
+    title="Distribution of Languages",
+    color_discrete_sequence=px.colors.qualitative.Pastel1
+    )   
+  
+  return fig
 
-def update_one_data(collection_name, filter, data):
-    collection = db[collection_name]
-    result = collection.update_one(filter, data)
-    return result
-
-def insert_data(collection_name, data):
-    collection = db[collection_name]
-    result = collection.insert_one(data)
-    return result

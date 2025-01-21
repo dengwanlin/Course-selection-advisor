@@ -28,30 +28,3 @@ def connect_to_cluster():
     except Exception as e:
         print(e)
 
-def get_collections():
-   client = connect_to_cluster()
-   db = client['Course_Recommendation']
-
-   collections = db.list_collection_names()
-    # Print the collections
-   print("List of collections")
-   for coll in collections:
-        print(coll)
-
-
-def fetch_data(collection_name):
-    client = connect_to_cluster()
-    db = client['Course_Recommendation']
-    collection = db[collection_name]
-    X = collection.find()
-    return list(X)
-
-def fetch_local_data(collection_name):
-    client = get_connection()
-    db = client['course_recommendation']
-    collection = db[collection_name]
-    X = collection.find()
-    return list(X)
-
-
-

@@ -1,20 +1,9 @@
 import bcrypt
-import plotly
 from flask import Flask, render_template, request, redirect, url_for,session
-#from pymongo import MongoClient
 from datetime import datetime
-from pymongo.mongo_client import MongoClient
-from pymongo.server_api import ServerApi
-from db.connection import connect_to_cluster
-import plotly.graph_objects as go
-import json
-import pandas as pd
-from model.cbf import *
-from sklearn.preprocessing import OneHotEncoder, MinMaxScaler, OrdinalEncoder
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.decomposition import PCA
+from cbf import *
 from dash import dcc, html, Dash, Input, Output, callback
-import plotly.express as px
+
 
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
@@ -36,15 +25,6 @@ dash_app = Dash(
 #     assets_folder='static'
 # )
 
-client = connect_to_cluster()
-
-
-
-db = client['Course_Recommendation']
-student_collection = db['students']
-course_collection=db['processed_courses']
-enums_collection = db['enums']
-
 @app.route('/', methods=['GET', 'POST'])
 #@app.route('/welcome', methods=['GET', 'POST'])
 def welcome():
@@ -54,7 +34,6 @@ def welcome():
         password = request.form.get('password')
 
         # Check if the account exists in the database
-        # student = student_collection.find_one({'student_id': student_id})
         student = fetch_single_data('students', {'student_id': student_id})
         if student:
             if student['password'] == password:
@@ -81,7 +60,6 @@ def register():
         register_time = datetime.now()
 
         # Check if the student ID already exists
-        # existing_student = student_collection.find_one({'student_id': student_id})
         existing_student = fetch_single_data('students', {'student_id': student_id})
         if existing_student:
             message = "The student number has been registered, please enter <a href='{}'>welcome Page</a>to Log in, or you can re-fill in your information to register.".format(url_for('welcome'))
@@ -94,7 +72,6 @@ def register():
                 "password": password,
                 "register_time": register_time
             }
-            # student_collection.insert_one(student_info)
             insert_data('students', student_info)
             return render_template('register_success.html', welcome_url=url_for('welcome'))
     return render_template('register.html')
@@ -122,7 +99,7 @@ def favicon():
 # Add a new route to display the questionnaire page
 @app.route('/questionnaire')
 def questionnaire():
-    enums_data = enums_collection.find_one({})
+    enums_data = fetch_single_data('enums', {})
 
     student_professional_backgrounds = enums_data.get('Course_Recommended_Background', [])
     terms = enums_data.get('Student_Term', [])
@@ -176,7 +153,7 @@ def submit_status():
     available_exercise_time_per_week = request.form.get('available_exercise_time_per_week')
 
 
-    student_doc = student_collection.find_one({'student_id': student_id})
+    student_doc = fetch_single_data('students', {'student_id': student_id})
 
     if student_doc:
         student_doc['Student_Language_Level'] = language_levels
@@ -195,7 +172,7 @@ def submit_status():
         student_doc['Number_Courses_To_Choose'] = int(number_courses_to_choose) if number_courses_to_choose else 0
         student_doc['Available_Exercise_Time_Per_Week'] = int(available_exercise_time_per_week) if available_exercise_time_per_week else 0
         try:
-            result = student_collection.update_one({'student_id': student_id}, {'$set': student_doc})
+            result = update_one_data('students', {'student_id': student_id}, {'$set': student_doc})
             print(f"Database update result: {result.modified_count} records were modified")
         except Exception as e:
             print(f"Database update error: {e}")
@@ -342,7 +319,7 @@ def change_password():
     new_password = request.form.get('new_password')
     confirm_new_password = request.form.get('confirm_new_password')
 
-    student = student_collection.find_one({'student_id': student_id})
+    student = fetch_single_data('students', {'student_id': student_id})
     if not student:
         return redirect(url_for('welcome'))
 
@@ -353,92 +330,12 @@ def change_password():
         return render_template('setting.html', error='New passwords do not match.')
 
     try:
-        student_collection.update_one({'student_id': student_id}, {'$set': {'password': confirm_new_password}})
+        update_one_data('students', {'student_id': student_id}, {'$set': {'password': confirm_new_password}})
         session.pop('student_id', None)
         session.pop('username', None)
         return redirect(url_for('welcome'))
     except Exception as e:
         return render_template('setting.html', error=f'Password change failed: {str(e)}')
-
-courses = fetch_local_data('processed_courses')
-
-courses_df = pd.DataFrame(courses)
-
-def courses_scatter():
-      courses_df["core_concepts"] = courses_df["core_concepts"].apply(lambda x: ",".join(x))  # Join list of concepts into a string
-      concepts_array = courses_df[["core_concepts"]]  # Convert to DataFrame with single column
-      
-      encoder = OneHotEncoder()
-      concept_matrix = encoder.fit_transform(concepts_array).toarray()
-      
-      # Reduce dimensions
-      pca = PCA(n_components=2)
-      reduced_data = pca.fit_transform(concept_matrix)
-      
-      # Create a DataFrame
-      df_reduced = pd.DataFrame(reduced_data, columns=["x", "y"])
-      df_reduced["id"] = courses_df["id"]
-      
-      # Plot clustering
-      fig = px.scatter(
-          df_reduced, 
-          x="x", 
-          y="y", 
-          text="id",
-          size_max=200,
-          title="Course Clustering based on Extracted Concepts"
-      )
-      
-      
-      # Update the font size specifically for the text labels
-      fig.update_traces(
-          textfont=dict(
-              family="Courier New, monospace",
-              size=7,  # Set the desired font size
-              color="red"  # Optional: Change text color
-          ),
-          marker=dict(size=10)
-      )
-
-      return fig
-
-def course_modules():
-      # Count occurrences of each module
-    module_counts = courses_df["encoded_module"].value_counts().reset_index()
-    module_counts.columns = ["Module", "Count"]
-    print(f"Count of 'Modules' in 'Courses': {module_counts}")
-    
-    fig = px.pie(
-        module_counts,
-        names="Module",
-        values="Count",
-        title="Distribution of Modules",
-        color_discrete_sequence=px.colors.qualitative.Pastel1
-    )
-
-    return fig
-
-def course_lecturer():
-    fig = px.bar(courses_df, x="lecturer", title="Number of Courses by Teacher")
-
-    return fig
-
-
-def course_languages():
-    # Count occurrences of each module
-  language_counts = courses_df["encoded_language"].value_counts().reset_index()
-  language_counts.columns = ["Language", "Count"]
-  print(f"Count of 'Languages' in 'Courses': {language_counts}")
-
-  fig = px.pie(
-    language_counts,
-    names="Language",
-    values="Count",
-    title="Distribution of Languages",
-    color_discrete_sequence=px.colors.qualitative.Pastel1
-    )   
-  
-  return fig
 
 # def dash_application():
 # , 'display':'grid', 'gridTemplateColumns': '1fr 1fr', 'gap': '5px'
