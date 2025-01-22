@@ -21,8 +21,7 @@
                     <li><a href="{{ url_for('home', username=username) }}" class="">Dashboard</a></li>
                     <li><a href="{{ url_for('course') }}">Courses</a></li>
                     <li><a href="{{ url_for('insights') }}">Insights</a></li>
-                    <!-- <li><a href="{{ url_for('course') }}">Questionnaire</a></li> -->
-                    <li><a href="{{ url_for('setting') }}">Setting</a></li>
+                    <li><a href="{{ url_for('setting') }}">Settings</a></li>
                 </ul>
             </nav>
             <div class="user-profile">
@@ -39,8 +38,6 @@
                 <nav>
                     <a href="#">Home</a>
                     <a href="#" class="active">Dashboard</a>
-                    <!-- <a href="#">About Us</a> -->
-                    <!-- <a href="#">Contact Us</a> -->
                     <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
                 </nav>
             </header>
@@ -50,9 +47,7 @@
                 <button class="close-button" id="closeButton">✖</button>
                 <a href="#">Home</a>
                 <a href="#" class="active">Dashboard</a>
-                <a href="#">About Us</a>
-                <a href="#">Contact Us</a>
-                <a href="#" class="logout">Log Out</a>
+                <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
             </div>
     
             <!-- Dashboard Content -->

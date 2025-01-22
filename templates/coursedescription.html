@@ -19,7 +19,7 @@
                 <li><a href="{{ url_for('home', username=username) }}">Dashboard</a></li>
                 <li><a href="{{ url_for('course') }}"  class="active">Courses</a></li>
                 <li><a href="{{ url_for('insights') }}">Insights</a></li>
-                <li><a href="{{ url_for('setting') }}">Setting</a></li>
+                <li><a href="{{ url_for('setting') }}">Settings</a></li>
                 </ul>
             </nav>
             <div class="user-profile">
@@ -42,11 +42,9 @@
       <!-- Fullscreen Menu -->
       <div class="fullscreen-menu" id="fullscreenMenu">
         <button class="close-button" id="closeButton">✖</button>
-        <a href="home.html">Home</a>
-        <a href="dashboard.html" class="active">Dashboard</a>
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="logout.html" class="logout">Log Out</a>
+        <a href="{{ url_for('home', username=username) }}">Home</a>
+        <a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a>
+        <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
     </div>
 
 

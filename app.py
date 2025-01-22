@@ -73,7 +73,6 @@ def register():
                 "register_time": register_time
             }
             insert_data('students', student_info)
-            return render_template('register_success.html', welcome_url=url_for('welcome'))
     return render_template('register.html')
 
 
