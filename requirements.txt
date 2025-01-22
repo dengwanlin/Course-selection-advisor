@@ -4,3 +4,5 @@ plotly
 flask-wtf
 scikit-learn 
 numpy
+dash
+python-dotenv
