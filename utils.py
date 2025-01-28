@@ -1,3 +1,4 @@
+
 from sklearn.preprocessing import OneHotEncoder, MinMaxScaler, OrdinalEncoder
 from sklearn.feature_extraction.text import TfidfVectorizer, ENGLISH_STOP_WORDS
 from sklearn.metrics.pairwise import cosine_similarity
@@ -5,15 +6,23 @@ from sklearn.decomposition import PCA
 from db.connection import *
 import pandas as pd
 import plotly.express as px
-
-
-
+from gensim.corpora import Dictionary
+from gensim.models import TfidfModel
+from gensim.similarities import SparseTermSimilarityMatrix, WordEmbeddingSimilarityIndex
+import gensim.downloader as api
+from nltk import download
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
 
 
 
 # Create a new client and connect to the server
 client = connect_to_cluster()
 db = client[get_dbname()]
+
+#download resources
+word_embeddings = api.load('word2vec-google-news-300')
+
 
 #functions for crud operations
 def fetch_local_data(collection):
@@ -43,6 +52,53 @@ stop_words  = ENGLISH_STOP_WORDS
 def preprocess_course(course):
     course_text = course["description"] + " " + " ".join(course["core_concepts"])
     return [word for word in course_text.lower().split() if word not in stop_words]
+
+# Text preprocessing function
+def preprocess_text(text):
+    tokens = word_tokenize(text.lower())  # Tokenize and convert to lowercase
+    tokens = [token for token in tokens if token.isalnum() and token not in stop_words]  # Remove stopwords and non-alphanumeric
+    return tokens
+
+# Create a dictionary and similarity matrix for courses
+def create_similarity_resources(courses):
+    # Preprocess text for all courses
+    texts = [preprocess_text(course["description"] + " " + " ".join(course["core_concepts"])) for course in courses]
+    
+    # Create a dictionary and Bag-of-Words representations
+    dictionary = Dictionary(texts)
+    bow_corpus = [dictionary.doc2bow(text) for text in texts]
+    
+    # Create a TF-IDF model
+    tfidf = TfidfModel(bow_corpus)
+    tfidf_corpus = [tfidf[doc] for doc in bow_corpus]
+    
+    # Create a WordEmbeddingSimilarityIndex and TermSimilarityMatrix
+    termsim_index = WordEmbeddingSimilarityIndex(word_embeddings)
+    termsim_matrix = SparseTermSimilarityMatrix(termsim_index, dictionary, tfidf)
+    
+    return dictionary, tfidf, termsim_matrix, tfidf_corpus
+
+
+# Precompute similarity resources
+dictionary, tfidf, termsim_matrix, tfidf_corpus = create_similarity_resources(courses_data)
+
+# Calculate soft cosine similarity
+def calculate_soft_cosine_similarity(user_text, courses=courses_data):
+    # Preprocess and convert user input into Bag-of-Words and TF-IDF
+    user_tokens = preprocess_text(user_text)
+    user_bow = dictionary.doc2bow(user_tokens)
+    user_tfidf = tfidf[user_bow]
+    
+    # Compute similarities for all courses
+    similarities = []
+    for idx, course_id in enumerate(courses):
+        course_tfidf = tfidf_corpus[idx]
+        similarity = termsim_matrix.inner_product(user_tfidf, course_tfidf, normalized=(True, True))
+        similarities.append((course_id, similarity))
+    
+    print(similarities
+          )
+    return similarities
 
 
 # Helper functions for encoding categorical and numerical features
@@ -88,7 +144,7 @@ course_texts = [" ".join(preprocess_course(course)) for course in courses_data]
 tfidf_matrix = tfidf_vectorizer.fit_transform(course_texts)
 
 # Recommendation function
-def get_course_recommendations(user_input, courses=courses_data, top_n=5,):
+def get_course_recommendations(user_input, courses=courses_data, dictionary=dictionary, tfidf=tfidf, termsim_matrix=termsim_matrix, tfidf_corpus=tfidf_corpus, top_n=5,):
     # Encode user input
     user_encoded_input = encode_user_input(user_input)
 
@@ -102,13 +158,21 @@ def get_course_recommendations(user_input, courses=courses_data, top_n=5,):
 
     # User TF-IDF vector
     user_keywords_text = user_input["keywords"].replace(',', '')
-    user_tfidf_vector = tfidf_vectorizer.transform([user_keywords_text])
+    # user_tfidf_vector = tfidf_vectorizer.transform([user_keywords_text])
+        # User TF-IDF vector
+    user_tokens = preprocess_text(user_keywords_text)  # Preprocess user keywords
+    user_bow = dictionary.doc2bow(user_tokens)
+    user_tfidf_vector = tfidf[user_bow]
 
     recommendations = []
     for idx, course in enumerate(courses):
         # # Textual similarity
-        course_tfidf_vector = tfidf_matrix[idx]
-        text_similarity = cosine_similarity(user_tfidf_vector, course_tfidf_vector)[0][0]
+        # course_tfidf_vector = tfidf_matrix[idx]
+        # text_similarity = cosine_similarity(user_tfidf_vector, course_tfidf_vector)[0][0]
+        course_tfidf_vector = tfidf_corpus[idx]
+        text_similarity = termsim_matrix.inner_product(
+            user_tfidf_vector, course_tfidf_vector, normalized=(True, True)
+        )
 
         # Categorical similarity
         course_categorical_vector = [
@@ -223,3 +287,4 @@ def course_languages():
   
   return fig
 
+calculate_soft_cosine_similarity('Data Science')
