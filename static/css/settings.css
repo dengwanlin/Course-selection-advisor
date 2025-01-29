@@ -7,6 +7,222 @@ body, html {
     box-sizing: border-box;
 }
 
+.form-container {
+    background: #fff;
+    width: 1080px;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    height: 60vh;
+    overflow: scroll;
+}
+
+h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.form-container input,
+select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.form-section {
+    margin-bottom: 25px;
+}
+
+/* Semester (like worker type selection) */
+.radio-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.radio-group input {
+    display: none;
+}
+
+.radio-group label {
+    padding: 10px 20px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #f4f4f4;
+    transition: 0.3s;
+}
+
+.radio-group input:checked+label {
+    background: #4a90e2;
+    color: white;
+    border-color: #4a90e2;
+}
+
+/* Checkbox Buttons */
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.checkbox-group input {
+    display: none;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #f4f4f4;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.checkbox-group input:checked+label {
+    background: #4a90e2;
+    color: white;
+    border-color: #4a90e2;
+}
+
+/* Language & Programming Level Sections */
+.toggle-section {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 5px;
+}
+
+/* Form Footer */
+.form-footer {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.form-footer input {
+    background: #4a90e2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-footer input:hover {
+    background: #3578c8;
+}
+
+
+.profile-container {
+    background: #fff;
+    width: 1080px;
+    padding: 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    height: 63vh;
+    position: relative;
+    display: block;
+}
+
+/* Header Background */
+.profile-header {
+    background: #fde9d9;
+    height: 120px;
+    border-radius: 10px 10px 0 0;
+    position: relative;
+}
+
+/* Profile Image */
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    position: absolute;
+    top: 60px;
+    left: 30px;
+    border: 4px solid #fff;
+}
+
+/* User Info */
+.profile-info {
+    margin-left: 150px;
+    margin-top: 20px;
+}
+
+.profile-info h2 {
+    margin: 10px 0;
+    font-size: 22px;
+}
+
+.location {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Tags for Languages & Skills */
+.tag-container {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    background: #eef1f7;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+/* Buttons */
+.buttons {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+}
+
+.edit-btn {
+    background: #4a90e2;
+    color: white;
+    position: absolute;
+    right: 60px;
+    top: 100px;
+}
+
+.edit-btn:hover {
+    background: #3578c8;
+}
+
 .dashboard-container {
     display: flex;
     height: 100vh;
@@ -76,6 +292,31 @@ main {
     flex: 1;
     display: flex;
     flex-direction: column;
+}
+
+.tabs {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 20px;
+}
+
+.tab {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.tab.active {
+    color: #6a1b9a;
+    border-bottom: 2px solid #6a1b9a;
+}
+
+.tab:hover {
+    color: #6a1b9a;
 }
 
 /* Header */
@@ -187,6 +428,7 @@ main {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     max-width: 400px;
     margin: 0 auto;
+    display: none;
 }
 
 .change-password-form h4 {
@@ -210,7 +452,7 @@ main {
 }
 
 .change-password-form .form-group input {
-    /* width: ; */
+    /* width: 94%; */
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;

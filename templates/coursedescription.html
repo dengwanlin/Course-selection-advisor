@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Description</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/coursedescription.css') }}">
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
    
 </head>
 <body>
@@ -56,6 +57,7 @@
                     <h1>{{ course.name }}</h1>
                     <p><strong>Math Level:</strong> <span class="math-level">{{ course.math_level }}</span></p>
                     
+                    
                     <div class="grid-container">
                         <div style="display: flex; flex-direction: column;">
                             {% if course.core_concepts %}
@@ -74,12 +76,18 @@
                                 <textarea name="" disabled>{{ course.description }}</textarea>
                             </div>
                         </div>
+                        {% if radar == 'chart' %}
+                        <div style="display: flex; height: 500px; width: 100%;" id="graph">
+                            {{ graph | safe }}
+                        </div>
+                        {% endif %}
                     </div>                   
                 </div>
                 {% endif %}
             </section>
         </main>
     </div>
-    <script src="../script.js" ></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
 </body>
 </html>

@@ -219,6 +219,15 @@ main {
     margin-bottom: 10px;
 }
 
+#plotly-chart {
+    flex-grow: 1;
+    overflow-y: auto;
+    /* Enables scrolling for this section only */
+    padding: 20px;
+    height: calc(100vh - 60px);
+    /* Adjust height to fit under header */
+}
+
 .course-explanation textarea {
     padding: 10px;
     height: 150px;

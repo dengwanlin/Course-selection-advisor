@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Settings</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
-    <style></style>
+    <style>      /* General Styles */
+  
+
+    </style>
 </head>
 
 <body>
@@ -54,29 +57,181 @@
             <!-- Settings Content -->
             <section class="settings-content">
                 <h3>Profile</h3>
-                <div class="change-password-form">
-                    <h4>Change Password</h4>
-                    <form method="post" action="{{ url_for('change_password') }}">
-                        <div class="form-group">
-                            <label for="current_password">Old Password</label>
-                            <input type="password" id="current_password" name="current_password" placeholder="Enter old password" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="new_password">Enter New Password</label>
-                            <input type="password" placeholder="Enter new password" id="new_password" name="new_password" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirm_new_password">Confirm New Password</label>
-                            <input type="password" id="confirm_new_password" name="confirm_new_password" placeholder="Confirm new password" required>
-                        </div>
-                        <button value="Change Password" type="submit" class="submit-button">Change</button>
-                    </form>
+
+                    
+                <div class="tabs">
+                
+                    <button class="tab active" id="myPreferencesTab">My Preferences</button>
+                    <button class="tab" id="generalTab">General</button>
                 </div>
+                    <div class="change-password-form" id="generalTabContent">
+                        <h4>Change Password</h4>
+                        <form method="post" action="{{ url_for('change_password') }}">
+                            <div class="form-group">
+                                <label for="current_password">Old Password</label>
+                                <input type="password" id="current_password" name="current_password" placeholder="Enter old password"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="new_password">Enter New Password</label>
+                                <input type="password" placeholder="Enter new password" id="new_password" name="new_password" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_new_password">Confirm New Password</label>
+                                <input type="password" id="confirm_new_password" name="confirm_new_password"
+                                    placeholder="Confirm new password" required>
+                            </div>
+                            <button value="Change Password" type="submit" class="submit-button">Change</button>
+                        </form>
+                    </div>
+   
+<div style="display: flex;" id="myPreferencesContent">
+{% if student_data.profile_updated == true %}
+<div class="profile-container" id="profileContainer">
+    <div class="profile-header"></div>
+
+    <!-- Profile Picture -->
+    <img src="{{ url_for('static', filename='images/user_image.png') }}" alt="User Image" class="profile-pic">
+
+    <!-- Profile Info -->
+    <div class="profile-info">
+        <h2>{{ student_data.first_name }} {{student_data.last_name}}</h2>
+        <p class="location">📍 Duisburg, Germany</p>
+        <p>Student at University of Duisburg - Essen</p>
+
+        <!-- Languages -->
+        <h3>Languages</h3>
+        <div class="tag-container">
+            {% for lang in student_data.Student_Language_Level %}
+            {% if lang != "null" %}
+            <span class="tag">{{lang.Language}}: {{lang.Level}}</span>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Programming Skills -->
+        <h3>Programming Skills</h3>
+        <div class="tag-container">
+            {% for prog in student_data.Student_Programming_Level %}
+            {% if prog != "null" %}
+            <span class="tag">{{prog.Language}}: {{prog.Level}}</span>
+            {% endif %}
+            {% endfor %}
+        </div>
+
+        <!-- Available Time -->
+        <h3>Available Hours Per Week</h3>
+        <div class="tag-container">
+            <div class="tag">{{student_data.Available_Exercise_Time_Per_Week}} hour(s)</div>
+        </div>
+       
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <a href="" class="btn edit-btn" id="editbtn">Edit Profile</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="form-container" id="formContainer" {% if student_data.profile_updated %}style="display: none;"{% else %}style="display: block;"{% endif %}>
+    <form method="post" action="{{ url_for('submit_status') }}">
+        <!-- Select Term -->
+        <div class="form-section">
+            <h2>Select Term</h2>
+            <div class="radio-group">
+                {% for term in terms %}
+                {% if term != "null" %}
+                <input type="radio" id="term_{{ term }}" name="terms" value="{{ term }}" required>
+                <label for="term_{{ term }}">{{ term }}</label>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Professional Background -->
+        <div class="form-section">
+            <h2>Your Professional Background</h2>
+            <div class="checkbox-group">
+                {% for background in student_professional_backgrounds %}
+                <input type="checkbox" id="bg_{{ background }}" name="student_professional_background"
+                    value="{{ background }}">
+                <label for="bg_{{ background }}">{{ background }}</label>
+                {% endfor %}
+            </div>
+        </div>
+
+    <!-- Languages & Levels -->
+    <div class="form-section">
+        <h2>Select Languages</h2>
+        <div class="checkbox-group">
+            {% for language in languages %}
+            <input type="checkbox" id="lang_{{ language }}" name="languages" value="{{ language }}"
+                onchange="toggleSection(event, 'lang_{{ language }}_level')" required>
+            <label for="lang_{{ language }}">{{ language }}</label>
+            {% endfor %}
+        </div>
+        {% for language in languages %}
+        <div id="lang_{{ language }}_level" class="toggle-section">
+            <label>Language Level:</label>
+            <select name="{{ language }}_level">
+                {% for level in language_levels %}
+                <option value="{{ level }}">{{ level }}</option>
+                {% endfor %}
+            </select required>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Programming Skills -->
+    <div class="form-section">
+        <h2>Your Programming Skills</h2>
+        <div class="checkbox-group">
+            {% for programming_language in programming_languages %}
+            <input type="checkbox" id="prog_{{ programming_language }}" name="programming_languages"
+                value="{{ programming_language }}" onchange="toggleSection(event, 'prog_{{ programming_language }}_level')">
+            <label for="prog_{{ programming_language }}">{{ programming_language }}</label>
+            {% endfor %}
+        </div>
+        {% for programming_language in programming_languages %}
+        <div id="prog_{{ programming_language }}_level" class="toggle-section">
+            <label>Programming Level:</label>
+            <select name="{{ programming_language }}_level">
+                {% for level in programming_levels %}
+                <option value="{{ level }}">{{ level }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <!-- Number of Courses -->
+    <div class="form-section">
+        <h2>Number of Courses</h2>
+        <input type="number" id="number_courses_to_choose" name="number_courses_to_choose" required>
+    </div>
+    
+    <!-- Available Exercise Time -->
+    <div class="form-section">
+        <h2>Available Exercise Time Per Week (hours)</h2>
+        <input type="number" id="available_exercise_time_per_week" name="available_exercise_time_per_week" required> 
+    </div>
+
+        <!-- Submit -->
+        <div class="form-footer">
+            <input type="submit" value="Submit">
+        </div>
+    </form>
+</div>
+
+</div>
+
             </section>
         </main>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script  src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
+
 
 </html>
