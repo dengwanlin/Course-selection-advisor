@@ -1,7 +1,9 @@
 import bcrypt
-from flask import Flask, render_template, request, redirect, url_for,session
+from flask import Flask, render_template, request, redirect, url_for,session, jsonify
 from datetime import datetime
 from utils import *
+import ast
+import json
 from dash import dcc, html, Dash, Input, Output, callback
 
 
@@ -17,13 +19,14 @@ dash_app = Dash(
     assets_folder='static',
 )
 
-# Create the Dash app
-# dash_dashboard_insights = Dash(
-#     # __other__,
-#     server=app,
-#     url_base_pathname='/dash/' , # Mounts the Dash app at '/dash/'
-#     assets_folder='static'
-# )
+home_dash_app = Dash(
+    __name__,
+    server=app,
+    url_base_pathname='/home_dash/' , # Mounts the Dash app at '/home_dash/'
+    assets_folder='static',
+)
+
+student_professional_backgrounds, terms, languages, language_levels, programming_languages, programming_levels, student_majors, student_math_levels = get_enums_data()
 
 @app.route('/', methods=['GET', 'POST'])
 #@app.route('/welcome', methods=['GET', 'POST'])
@@ -98,19 +101,6 @@ def favicon():
 # Add a new route to display the questionnaire page
 @app.route('/questionnaire')
 def questionnaire():
-    enums_data = fetch_single_data('enums', {})
-
-    student_professional_backgrounds = enums_data.get('Course_Recommended_Background', [])
-    terms = enums_data.get('Student_Term', [])
-    languages = enums_data.get('Student_Languge', [])
-    language_levels = enums_data.get('Student_Language_Level', [])
-    programming_languages = enums_data.get('Course_Required_Programming_Language', [])
-    programming_levels = enums_data.get('Course_Required_Programming_Language_Level', [])
-    student_majors = enums_data.get('Student_Major', [])
-    for major in student_majors:
-        if 'Direction_Name' not in major:
-            major['Direction_Name'] = []
-    student_math_levels = enums_data.get('Student_Math_Level', [])
 
     return render_template('questionnaire.html', terms=terms,
                            languages=languages,
@@ -170,6 +160,7 @@ def submit_status():
         student_doc['Student_Math_Background'] = student_math_background
         student_doc['Number_Courses_To_Choose'] = int(number_courses_to_choose) if number_courses_to_choose else 0
         student_doc['Available_Exercise_Time_Per_Week'] = int(available_exercise_time_per_week) if available_exercise_time_per_week else 0
+        student_doc['profile_updated'] = True
         try:
             result = update_one_data('students', {'student_id': student_id}, {'$set': student_doc})
             print(f"Database update result: {result.modified_count} records were modified")
@@ -185,6 +176,8 @@ def course():
     student_id = session.get('student_id')
     if student_id is None:
         return redirect(url_for('welcome'))
+
+
     
     courses = fetch_local_data('processed_courses')
     collection_name = 'students'
@@ -193,6 +186,14 @@ def course():
     return render_template('questionnaire.html', 
                            courses=courses,
                            student_courses=student_courses,
+                           terms=terms,
+                           languages=languages,
+                           language_levels=language_levels,
+                           student_professional_backgrounds=student_professional_backgrounds,
+                           programming_languages=programming_languages,
+                           programming_levels=programming_levels,
+                           student_majors = student_majors,
+                           student_math_levels=student_math_levels,
                            username=session.get('username')
                            )
 
@@ -206,6 +207,8 @@ def get_recommendation():
     
     collection_name = 'students'
     student_courses = fetch_single_data(collection_name, {"student_id": student_id})
+
+    
     
     user_input = {
     "preferred_language": request.form.get('language'),
@@ -216,9 +219,36 @@ def get_recommendation():
     "weighting": {"textual": 0.7, "categorical": 0.3},
     }
 
-    recommendations =  get_course_recommendations(user_input)
+    if student_courses.get('profile_updated') is None or student_courses.get('profile_updated') == False:
+        return render_template('questionnaire.html', username=session.get('username'), 
+                           student_courses=student_courses, courses=courses, 
+                           error='profile_not_updated', 
+                           terms=terms,
+                           languages=languages,
+                           language_levels=language_levels,
+                           student_professional_backgrounds=student_professional_backgrounds,
+                           programming_languages=programming_languages,
+                           programming_levels=programming_levels,
+                           student_majors = student_majors,
+                           student_math_levels=student_math_levels,)    
+    # recommendations =  get_course_recommendations(user_input)
 
-    return render_template('questionnaire.html', recommendations=recommendations, courses=courses, username=session.get('username'), available_recommendations=True, student_courses=student_courses)
+
+    recommendations = get_course_recommendations_2(user_input, student_courses)
+
+    return render_template('questionnaire.html', 
+                           recommendations=recommendations, 
+                           courses=courses, username=session.get('username'), 
+                           available_recommendations=True, 
+                           student_courses=student_courses, 
+                           terms=terms,
+                           languages=languages,
+                           language_levels=language_levels,
+                           student_professional_backgrounds=student_professional_backgrounds,
+                           programming_languages=programming_languages,
+                           programming_levels=programming_levels,
+                           student_majors = student_majors,
+                           student_math_levels=student_math_levels,)
 
 
 
@@ -255,8 +285,79 @@ def add_course(course_id, course_name, type):
                     )
         
         student_courses = fetch_single_data(collection_name, {"student_id": student_id})
-        return render_template('questionnaire.html', username=session.get('username'), student_courses=student_courses, courses=courses) #, available_recommendations=True
+        return render_template('questionnaire.html', 
+                               username=session.get('username'), 
+                               student_courses=student_courses, courses=courses, terms=terms,
+                               languages=languages,
+                               language_levels=language_levels,
+                               student_professional_backgrounds=student_professional_backgrounds,
+                               programming_languages=programming_languages,
+                               programming_levels=programming_levels,
+                               student_majors = student_majors,
+                               student_math_levels=student_math_levels,) #, available_recommendations=True
 
+
+@app.route('/get_single_course/<course_id>/<radar>', methods=['GET'])
+def get_single_course(course_id, radar):
+    student_id = session.get('student_id')
+    if student_id is None:
+        return redirect(url_for('welcome'))
+     
+    course = fetch_single_data('courses', {"id": course_id})
+    # if not course:
+    #     return render_template('404.html', message="Course not found"), 404
+
+    # Render the template with course details
+    return render_template('coursedescription.html', course=course, username=session.get('username'), radar=radar)
+
+@app.route('/get_single_course/<course_id>/<radar>', methods=['POST', 'GET'])
+def update_course_data(course_id, radar):
+
+    student_id = session.get('student_id')
+    if student_id is None:
+        return redirect(url_for('welcome'))
+
+    # Fetch course from database
+    course = fetch_single_data('courses', {"id": course_id})
+    if not course:
+        return {"error": "Course not found"}, 404  # Handle missing course
+
+    # Retrieve form data
+    name = request.form.get("name")  # Fix trailing comma issue
+    similarity_scores = request.form.get("similarities")  # Fix trailing comma issue
+
+    # Debugging: Print the received data
+    print("Raw similarities received:", similarity_scores)
+    print("Type of similarities:", type(similarity_scores))
+    print("Received name:", name)
+    print("Course ID:", course_id)
+
+    # Handle cases where data might be missing
+    if similarity_scores:
+        try:
+            similarities_dict = ast.literal_eval(similarity_scores)  # Convert to dictionary
+        except (ValueError, SyntaxError) as e:
+            print(f"Error parsing similarities: {e}")
+            similarities_dict = {}  # Default to empty if parsing fails
+    else:
+        similarities_dict = {}  # Ensure it's always a dictionary
+
+    # Prepare course dictionary
+    course_details = {"name": name,"similarity_scores": similarities_dict}
+    
+    # Debugging: Print final course data
+    print(f"Final course data: {course_details}")
+
+    # Generate the radar chart
+    graph = plot_top_course_radar(course_details)
+
+    return render_template('coursedescription.html', 
+                           course=course, 
+                           username=session.get('username'), 
+                           radar=radar, 
+                           graph=graph)
+
+    
 
 
 @app.route('/course', methods=['GET'])
@@ -269,24 +370,17 @@ def get_my_courses():
     collection_name = 'students'
     student_courses = fetch_single_data(collection_name, {"student_id": student_id})
        
-    return render_template('questionnaire.html', username=session.get('username'), student_courses=student_courses, courses=courses, active_tab='myCoursesTab')
-
-
-
-@app.route('/get_single_course/<course_id>', methods=['GET'])
-def get_single_course(course_id):
-    student_id = session.get('student_id')
-    if student_id is None:
-        return redirect(url_for('welcome'))
-     
-    course = fetch_single_data('courses', {"id": course_id})
-    # if not course:
-    #     return render_template('404.html', message="Course not found"), 404
-
-    # Render the template with course details
-    return render_template('coursedescription.html', course=course, username=session.get('username'),)
-
-
+    return render_template('questionnaire.html', username=session.get('username'), 
+                           student_courses=student_courses, courses=courses, 
+                           active_tab='myCoursesTab', 
+                           terms=terms,
+                           languages=languages,
+                           language_levels=language_levels,
+                           student_professional_backgrounds=student_professional_backgrounds,
+                           programming_languages=programming_languages,
+                           programming_levels=programming_levels,
+                           student_majors = student_majors,
+                           student_math_levels=student_math_levels,)
 
 @app.route('/insights')
 def insights():
@@ -299,12 +393,32 @@ def insights():
 
 @app.route('/setting')
 def setting():
-    return render_template('setting.html', username=session.get('username'))
+    student_id = session.get('student_id')
+    if student_id is None:
+        return redirect(url_for('welcome'))
+    
+    collection_name = 'students'
+    student_data = fetch_single_data(collection_name, {"student_id": student_id})
+
+    return render_template('setting.html',  terms=terms,
+                           student_data=student_data,
+                           languages=languages,
+                           language_levels=language_levels,
+                           student_professional_backgrounds=student_professional_backgrounds,
+                           programming_languages=programming_languages,
+                           programming_levels=programming_levels,
+                           student_majors = student_majors,
+                           student_math_levels=student_math_levels, username=session.get('username'))
 
 @app.route('/dash/')
 def dash_index():
     # Redirect directly to Dash if needed
     return redirect('/dash/')
+
+@app.route('/home_dash/')
+def home_index():
+    # Redirect directly to Dash if needed
+    return redirect('/home_dash/')
 
 
 @app.route('/change_password', methods=['POST'])
@@ -336,58 +450,240 @@ def change_password():
     except Exception as e:
         return render_template('setting.html', error=f'Password change failed: {str(e)}')
 
+
+
+# Sample options (Replace with dynamic DB fetch)
+module_options = ["All"] + ["Basics", "Intelligent Networked Systems", "Interactive Systems and Visualization"]
+semester_options = ["All", "Winter 24/25", "Sommer"]
+language_options = ["All", "English", "German"]
+math_level_options = ["All"] + [str(i) for i in range(1, 5)]  # Math levels 1-5
+
 # def dash_application():
 # , 'display':'grid', 'gridTemplateColumns': '1fr 1fr', 'gap': '5px'
 dash_app.layout = dcc.Loading(
     type="circle", 
-    children=html.Div(style={'height': '98vh' }, children=[
+    children=html.Div(style={'height': '80vh'}, children=[
+        html.Div(
+            style={'display': 'flex', 'flexDirection': 'column', 'height': '80vh'}, 
+            children=[
+                # Top Dropdown Selector
+                html.Div(
+                    style={'display': 'grid', 'gridTemplateColumns': 'repeat(4, 1fr)', 'gap': '5px'},
+                    children=[
+                        dcc.Dropdown(
+                            id='pie_type',
+                            options=[{'label': 'Lecturers', 'value': 'Lecturers'}, 
+                                     {'label': 'Knowledge Graph', 'value': 'Knowledge Graph'},
+                                    #  {'label': 'Self-Study Hours per Lecture Hour', 'value': 'Self-Study Hours per Lecture Hour '},
+                                     {'label': 'Self-Study Hours vs Lecture Duration', 'value': 'Self-Study Hours vs Lecture Duration'},
+                                     
+                                     ],
+                            value='Knowledge Graph'  # Default Selection
+                        )
+                        
+                    ]
+                ),
+
+                # Conditional Filters (Initially Visible)
+                html.Div(
+                    id='filters-container',
+                    style={'display':'grid', 'gridTemplateColumns': 'repeat(4, 1fr)', 'gap': '5px', 'marginTop':'10px'},  # Initially visible
+                    children=[
+                        html.Div(children=[
+                        html.Label("Filter by Module:"),
+                        dcc.Dropdown(
+                            id='module-dropdown',
+                            options=[{'label': module, 'value': module} for module in module_options],
+                            value='All',
+                            multi=False
+                        ),
+                        ]),
+                        html.Div(children=[
+                             html.Label("Filter by Semester:"),
+                        dcc.Dropdown(
+                            id='semester-dropdown',
+                            options=[{'label': semester, 'value': semester} for semester in semester_options],
+                            value='All',
+                            multi=False
+                        ),
+                        ]),
+                        html.Div(children=[
+                        html.Label("Filter by Language:"),
+                        dcc.Dropdown(
+                            id='language-dropdown',
+                            options=[{'label': lang, 'value': lang} for lang in language_options],
+                            value='All',
+                            multi=False
+                        ),
+                        ]),
+                        html.Div(children=[
+                          html.Label("Filter by Math Level:"),
+                        dcc.Dropdown(
+                            id='math-level-dropdown',
+                            options=[{'label': level, 'value': level} for level in math_level_options],
+                            value='All',
+                            multi=False
+                        ),
+                        ]),
+                      
+
+                   
+
+                    
+
+                     
+                    ]
+                ),
+
+
+                # Graph Output
+                html.Div(
+                    dcc.Graph(id="pie-output"),
+                    # style={'width': '100%', 'height': '80vh'} 
+                )
+            ]
+        ),
+    ])
+)
+
+@dash_app.callback(
+    Output('pie-output', 'figure'),
+    [
+        Input('pie_type', 'value'),
+        Input('module-dropdown', 'value'),
+        Input('semester-dropdown', 'value'),
+        Input('language-dropdown', 'value'),
+        Input('math-level-dropdown', 'value')
+    ]
+)
+def update_graph(pie_type, selected_module, selected_semester, selected_language, selected_math_level):
+    if pie_type == "Lecturers":
+        return course_lecturer()  # Call existing lecturer visualization
+    elif pie_type == "Self-Study Hours vs Lecture Duration":
+        return plot_self_study_analysis()[0] 
+    # elif pie_type == "Self-Study Hours per Lecture Hour": 
+    #     return plot_self_study_analysis()[1]  
+
+    elif pie_type == "Knowledge Graph":
+        # Fetch courses
+
+
+
+        # Apply filters dynamically
+        filtered_courses = [
+            course for course in courses_data
+            if (selected_module == "All" or course.get("encoded_module") == selected_module)
+            and (selected_semester == "All" or (selected_semester in course.get("semester", "")))  
+            and (selected_language == "All" or course.get("encoded_language") == selected_language)
+            and (selected_math_level == "All" or str(course.get("math_level", "")) == selected_math_level)
+        ]
+
+        # If no matching courses, return an empty graph
+        if not filtered_courses:
+            return {
+                "data": [],
+                "layout": {"title": "No courses found for the selected filters"}
+            }
+
+        # Recalculate course correlation based on filtered courses
+        correlations = calculate_course_correlation(filtered_courses)
+        nodes, links = prepare_plotly_data(correlations)
+
+        # Generate updated visualization
+        return visualize_course_correlation(nodes, links, filtered_courses)
+
+    return {}  # Default empty output
+  
+@dash_app.callback(
+    Output('filters-container', 'style'),
+    Input('pie_type', 'value')
+)
+def toggle_filters(pie_type):
+    if pie_type == "Knowledge Graph":
+        return {'display':'grid', 'gridTemplateColumns': 'repeat(4, 1fr)', 'gap': '5px', 'marginTop':'10px'}  # Show filters
+    else:
+        return {'display': 'none'}  # Hide filters
+
+
+@dash_app.callback(
+    Output('knowledge-graph-output', 'figure'),
+    [
+        Input('module-dropdown', 'value'),
+        Input('semester-dropdown', 'value'),
+        Input('language-dropdown', 'value'),
+        Input('math-level-dropdown', 'value')
+    ]
+)
+def update_knowledge_graph(selected_module, selected_semester, selected_language, selected_math_level):
+    # Fetch all courses
+
+    # Apply filters dynamically
+    filtered_courses = [
+        course for course in courses_data
+        if (selected_module == "All" or course.get("encoded_module") == selected_module)
+        and (selected_semester == "All" or (selected_semester in course.get("semester", "")))  # Handles "Sommer 2024"
+        and (selected_language == "All" or course.get("encoded_language") == selected_language)
+        and (selected_math_level == "All" or str(course.get("math_level", "")) == selected_math_level)
+    ]
+
+    # If no matching courses, return an empty graph
+    if not filtered_courses:
+        return {
+            "data": [],
+            "layout": {"title": "No courses found for the selected filters"}
+        }
+
+    # Recalculate course correlation based on filtered courses
+    correlations = calculate_course_correlation(filtered_courses)
+    nodes, links = prepare_plotly_data(correlations)
+
+    # Generate updated visualization
+    return visualize_course_correlation(nodes, links, filtered_courses)
+
+
+home_dash_app.layout = dcc.Loading(
+    type="circle", 
+    children=html.Div(children=[
      html.Div(
            
             style={
                 'display': 'flex',
-                'flexDirection':'column'
+                'flexDirection':'column',
+                'height': '80vh'
+
             }
             , children= [
                 html.Div(style={'display':'grid', 'gridTemplateColumns': '1fr 1fr', 'gap': '5px'},
-                         children=[dcc.Dropdown(['Course Scatter','Module', 'Languages', 'Lecturers'], 'Course Scatter', id='pie_type')]),
+                         children=[dcc.Dropdown(['Module', 'Languages', 'Teaching Style'], 'Languages', id='graph')]),
                 
                 html.Div( 
                 dcc.Graph(
-                id="pie-output",
+                id="graph_type",
                 ),
+                style={'width': '100%', 'height': '80vh'} 
             )
             ]
         ),
-    #  html.Div(
-    #         dcc.Graph(
-    #             id="scatter-graph",
-    #             figure=courses_scatter()
-    #         ),
-    #            style={
-    #             'border': '1px solid gray'
-    #         }
-    #     ),
     ]) 
 )
   
-#   return dash_graph
 
-@callback(
-    Output(component_id='pie-output', component_property='figure'),
-    Input(component_id='pie_type', component_property='value')
+@home_dash_app.callback(
+    Output(component_id='graph_type', component_property='figure'),
+    Input(component_id='graph', component_property='value')
   )
-def update_output_div(pie_type):
-    if pie_type=='Course Scatter':
-        return courses_scatter()
-    elif pie_type=='Module': 
-        return course_modules()
-    elif pie_type=='Lecturers': 
-        return course_lecturer()
-    elif pie_type=='Languages': 
+def update_div(graph):
+    if graph=='Languages': 
         return course_languages()
+    elif graph=='Module': 
+        return course_modules()
+    elif graph=='Teaching Style': 
+        return courses_by_teaching_style()
+    
 
 
-# dash_application()
+
+
 
 
 if __name__ == '__main__':
