@@ -17,13 +17,11 @@
 
 ## 🚀 About
 
-**Abblix OIDC Server** is a .NET library designed to provide comprehensive support for OAuth2 and OpenID Connect on the server side. It adheres to high standards of flexibility, reusability, and reliability, utilizing well-known software design patterns, including modular and hexagonal architectures. These patterns ensure the following benefits:
+**Smart Course Selector** is an intelligent course recommendation tool designed to help students find courses that best match their preferences, interests, and academic goals. By analyzing various factors such as preferred semester, past programming experiences, language proficiency among others, the app provides personalized course recommendations to optimize the learning experience.
 
-- **Modularity**: Different parts of the library can function independently, enhancing the library's modularity and allowing for easier maintenance and updates.
-- **Testability**: Improved separation of concerns makes the code more testable.
-- **Maintainability**: Clear structure and separation facilitate better management of the codebase.
-
-The library also supports Dependency Injection through the standard .NET DI container, aiding in the organization and management of code. Specifically tailored for seamless integration with ASP.NET WebApi, Abblix OIDC Server employs standard controller classes, binding, and routing mechanisms, simplifying the integration of OpenID Connect into your services.
+- **Personalized Course Suggestions**: Tailored recommendations based on your unique learning preferences.
+- **Interest & Concept-Based Selection**: Find courses that align with topics and subjects you enjoy.
+- **Data-Driven Insights**: Leverages intelligent algorithms to provide meaningful and accurate recommendations.
 
 ## 🎓 Certification
 
