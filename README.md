@@ -2,7 +2,8 @@
 <img src="static/images/banner.png">
 <img src="https://img.shields.io/badge/language-python-green"/>
 <img src="https://img.shields.io/badge/Course-Learning Analytics-red"/>
-<img src="https://img.shields.io/badge/Recommendations-Content Based Filtering-yellow"/>
+<img src="https://img.shields.io/badge/Recommendations Type-Content Based Filtering-yellow"/>
+<img src="https://img.shields.io/badge/University-Uni DUE-orange"/>
 
 <!-- ⭐ Star us on GitHub — it motivates us a lot! -->
 
