@@ -19,6 +19,8 @@
 
 **Smart Course Selector** is an intelligent course recommendation tool designed to help students find courses that best match their preferences, interests, and academic goals. By analyzing various factors such as preferred semester, past programming experiences, language proficiency among others, the app provides personalized course recommendations to optimize the learning experience.
 
+**Key Features**
+
 - **Personalized Course Suggestions**: Tailored recommendations based on your unique learning preferences.
 - **Interest & Concept-Based Selection**: Find courses that align with topics and subjects you enjoy.
 - **Data-Driven Insights**: Leverages intelligent algorithms to provide meaningful and accurate recommendations.
