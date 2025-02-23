@@ -8,7 +8,7 @@
 ## Table of Contents
 
 - [About](#-about)
-- [Certification](#-certification)
+- [Architecture](#-architecture)
 - [How to Build](#-how-to-build)
 - [Documentation](#-documentation)
 - [Feedback and Contributions](#-feedback-and-contributions)
@@ -25,13 +25,9 @@
 - **Interest & Concept-Based Selection**: Find courses that align with topics and subjects you enjoy.
 - **Data-Driven Insights**: Leverages intelligent algorithms to provide meaningful and accurate recommendations.
 
-## 🎓 Certification
+## 🎓 Architecture
 
-[![OpenID_Foundation_Certification](https://resources.abblix.com/imgs/svg/abblix-oidc-server-openid-foundation-certification-mark.svg)](https://openid.net/certification/#OPENID-OP-P)
-
-We are certified in all profiles. During the certification process, we skipped ZERO tests and received NO warnings. All **630** tests ![Passed](https://img.shields.io/badge/PASSED-brightgreen). We are extremely proud of this achievement. It reflects our overall approach to any endeavor. For more details, click the links ([Certified OpenID Providers & Profiles](https://openid.net/certification/#OPENID-OP-P), [Certified OpenID Providers for Logout Profiles](https://openid.net/certification/#OPENID-OP-LP)).
-
-For convenience, the certification information is provided in the tables below:
+<img src="static/images/tech_architecture.jpg"/>
 
 ### Regular Profiles
 
