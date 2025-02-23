@@ -239,9 +239,6 @@ def get_course_recommendations(user_input, courses=courses_data, dictionary=dict
 
     return recommendations[:top_n]
 
-
-
-
 # Time matching
 def time_match(student_time, course):
     total_course_time = course['self_study_hours'] + course['lecture_duration']
@@ -283,7 +280,6 @@ def math_match(student_math, course_math):
     if student_level >= course_level:
         return 1.0  # Meets or exceeds the requirement
     return student_level / course_level if course_level > 0 else 0.0
-
 
 def get_course_recommendations_2(user_input, student, courses=courses_data, dictionary=dictionary, tfidf=tfidf, termsim_matrix=termsim_matrix, tfidf_corpus=tfidf_corpus, top_n=5,): 
    
@@ -412,7 +408,6 @@ def course_lecturer():
 
     return fig
 
-
 def course_languages():
     # Count occurrences of each module
   language_counts = courses_df["encoded_language"].value_counts().reset_index()
@@ -430,9 +425,6 @@ def course_languages():
   return fig
 
 calculate_soft_cosine_similarity('Data Science')
-
-
-
 
 #kknowlege graph
 # Preprocess concepts

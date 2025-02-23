@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeButton = document.getElementById("closeButton");
 
   // Open the fullscreen menu
-  menuButton.addEventListener("click", () => {
+  menuButton?.addEventListener("click", () => {
     fullscreenMenu.classList.add("show");
   });
 
   // Close the fullscreen menu
-  closeButton.addEventListener("click", () => {
+  closeButton?.addEventListener("click", () => {
     fullscreenMenu.classList.remove("show");
   });
 });
@@ -104,7 +104,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const links = document.querySelectorAll(".sidebar nav a");
 
-  console.log(links);
   links.forEach((link) => {
     if (window.location.href.includes(link.href.split("/")[3])) {
       link.classList.add("active");

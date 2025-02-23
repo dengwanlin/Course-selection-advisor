@@ -10,8 +10,7 @@ from dash import dcc, html, Dash, Input, Output, callback
 app = Flask(__name__)
 app.secret_key = 'my_secret_key'
 
-
-# Create the Dash app
+# Create the Dash apps
 dash_app = Dash(
     __name__,
     server=app,
@@ -50,7 +49,6 @@ def welcome():
                 url_for('register'))
     return render_template('welcome.html', error=error)
 
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -78,14 +76,17 @@ def register():
             insert_data('students', student_info)
     return render_template('register.html')
 
-
 @app.route('/home/<username>')
 def home(username):
-    if 'student_id' not in session:
+    student_id = session.get('student_id')
+    if student_id is None:
         return redirect(url_for('welcome'))
-    return render_template('home.html', username=username)
+    
+    courses = fetch_local_data('processed_courses')
+    collection_name = 'students'
+    student_courses = fetch_single_data(collection_name, {"student_id": student_id})
 
-
+    return render_template('home.html', username=username, courses=len(courses), my_courses=student_courses)
 
 @app.route('/logout')
 def logout():
@@ -250,8 +251,6 @@ def get_recommendation():
                            student_majors = student_majors,
                            student_math_levels=student_math_levels,)
 
-
-
 @app.route('/course/<course_id>/<course_name>/<type>', methods=['GET'])
 def add_course(course_id, course_name, type):
     student_id = session.get('student_id')
@@ -295,7 +294,6 @@ def add_course(course_id, course_name, type):
                                programming_levels=programming_levels,
                                student_majors = student_majors,
                                student_math_levels=student_math_levels,) #, available_recommendations=True
-
 
 @app.route('/get_single_course/<course_id>/<radar>', methods=['GET'])
 def get_single_course(course_id, radar):
@@ -357,21 +355,19 @@ def update_course_data(course_id, radar):
                            radar=radar, 
                            graph=graph)
 
-    
-
-
 @app.route('/course', methods=['GET'])
 def get_my_courses():
     student_id = session.get('student_id')
     if student_id is None:
         return redirect(url_for('welcome'))
     
-    courses = fetch_local_data('courses')
+    courses = fetch_local_data('process_courses')
     collection_name = 'students'
     student_courses = fetch_single_data(collection_name, {"student_id": student_id})
        
     return render_template('questionnaire.html', username=session.get('username'), 
-                           student_courses=student_courses, courses=courses, 
+                           student_courses=student_courses, 
+                           courses=courses, 
                            active_tab='myCoursesTab', 
                            terms=terms,
                            languages=languages,
@@ -420,7 +416,6 @@ def home_index():
     # Redirect directly to Dash if needed
     return redirect('/home_dash/')
 
-
 @app.route('/change_password', methods=['POST'])
 def change_password():
     student_id = session.get('student_id')
@@ -450,16 +445,12 @@ def change_password():
     except Exception as e:
         return render_template('setting.html', error=f'Password change failed: {str(e)}')
 
-
-
-# Sample options (Replace with dynamic DB fetch)
+# Sample options
 module_options = ["All"] + ["Basics", "Intelligent Networked Systems", "Interactive Systems and Visualization"]
 semester_options = ["All", "Winter 24/25", "Sommer"]
 language_options = ["All", "English", "German"]
 math_level_options = ["All"] + [str(i) for i in range(1, 5)]  # Math levels 1-5
 
-# def dash_application():
-# , 'display':'grid', 'gridTemplateColumns': '1fr 1fr', 'gap': '5px'
 dash_app.layout = dcc.Loading(
     type="circle", 
     children=html.Div(style={'height': '80vh'}, children=[
@@ -473,12 +464,12 @@ dash_app.layout = dcc.Loading(
                         dcc.Dropdown(
                             id='pie_type',
                             options=[{'label': 'Lecturers', 'value': 'Lecturers'}, 
-                                     {'label': 'Knowledge Graph', 'value': 'Knowledge Graph'},
+                                     {'label': 'Network Graph', 'value': 'Network Graph'},
                                     #  {'label': 'Self-Study Hours per Lecture Hour', 'value': 'Self-Study Hours per Lecture Hour '},
                                      {'label': 'Self-Study Hours vs Lecture Duration', 'value': 'Self-Study Hours vs Lecture Duration'},
                                      
                                      ],
-                            value='Knowledge Graph'  # Default Selection
+                            value='Network Graph'  # Default Selection
                         )
                         
                     ]
@@ -524,14 +515,7 @@ dash_app.layout = dcc.Loading(
                             value='All',
                             multi=False
                         ),
-                        ]),
-                      
-
-                   
-
-                    
-
-                     
+                        ]),  
                     ]
                 ),
 
@@ -564,7 +548,7 @@ def update_graph(pie_type, selected_module, selected_semester, selected_language
     # elif pie_type == "Self-Study Hours per Lecture Hour": 
     #     return plot_self_study_analysis()[1]  
 
-    elif pie_type == "Knowledge Graph":
+    elif pie_type == "Network Graph":
         # Fetch courses
 
 
@@ -599,21 +583,22 @@ def update_graph(pie_type, selected_module, selected_semester, selected_language
     Input('pie_type', 'value')
 )
 def toggle_filters(pie_type):
-    if pie_type == "Knowledge Graph":
+    if pie_type == "Network Graph":
         return {'display':'grid', 'gridTemplateColumns': 'repeat(4, 1fr)', 'gap': '5px', 'marginTop':'10px'}  # Show filters
     else:
         return {'display': 'none'}  # Hide filters
 
 
-@dash_app.callback(
-    Output('knowledge-graph-output', 'figure'),
-    [
-        Input('module-dropdown', 'value'),
-        Input('semester-dropdown', 'value'),
-        Input('language-dropdown', 'value'),
-        Input('math-level-dropdown', 'value')
-    ]
-)
+# @dash_app.callback(
+#     Output('knowledge-graph-output', 'figure'),
+#     [
+#         Input('module-dropdown', 'value'),
+#         Input('semester-dropdown', 'value'),
+#         Input('language-dropdown', 'value'),
+#         Input('math-level-dropdown', 'value')
+#     ]
+# )
+
 def update_knowledge_graph(selected_module, selected_semester, selected_language, selected_math_level):
     # Fetch all courses
 

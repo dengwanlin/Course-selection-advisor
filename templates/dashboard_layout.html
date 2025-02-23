@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/courses.css') }}">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/scs_logo.png') }}" alt="Smart CS Logo">
+                <h2 style="margin: 0;">Smart CS</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('home', username=username) }}" class="">Dashboard</a></li>
+                    <li><a href="{{ url_for('course') }}">Courses</a></li>
+                    <li><a href="{{ url_for('insights') }}">Insights</a></li>
+                    <li><a href="{{ url_for('setting') }}">Settings</a></li>
+                </ul>
+            </nav>
+            <div class="user-profile">
+                <img src="{{ url_for('static', filename='images/user_image.png') }}" alt="User Profile">
+                <p>Hey {{ username }}</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Header -->
+            <header class="top-header">
+                <button class="menu-button" id="menuButton">☰</button>
+                <nav>
+                    <a href="{{ url_for('home', username=username) }}">Home</a>
+                    <a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a>
+                    <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
+                </nav>
+            </header>
+
+            <!-- Fullscreen Menu -->
+            <div class="fullscreen-menu" id="fullscreenMenu">
+                <button class="close-button" id="closeButton">✖</button>
+                <a href="{{ url_for('home', username=username) }}">Home</a>
+                <a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a>
+                <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
+            </div>
+                {% block content %}{% endblock %}
+        </main>
+    </div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

@@ -1,66 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Description</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/coursedescription.css') }}">
-   
 
 
-</head>
-
-<body>
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="logo">
-                <h2>Smart CS</h2>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="{{ url_for('home', username=username ) }}">Dashboard</a></li>
-                    <li><a href="{{ url_for('course') }}">Courses</a></li>
-                    <li><a href="{{ url_for('insights') }} " class="active">Insights</a></li>
-                    <li><a href="{{ url_for('setting') }}">Settings</a></li>
-                </ul>
-            </nav>
-            <div class="user-profile">
-                <img src="{{ url_for('static', filename='images/user_image.png') }}" alt="User Profile">
-                <p>Hey {{ username }}</p>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main>
-            <header class="top-header">
-                <button class="menu-button" id="menuButton">☰</button>
-                <nav>
-                    <a href="{{ url_for('home', username=username) }}">Home</a>
-                    <a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a>
-                    <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
-                </nav>
-            </header>
-
-            <!-- Fullscreen Menu -->
-            <div class="fullscreen-menu" id="fullscreenMenu">
-                <button class="close-button" id="closeButton">✖</button>
-                <a href="{{ url_for('home', username=username) }}">Home</a>
-                <a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a>
-                <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
-            </div>
-
-
-            <div id="plotly-chart" style="padding: 20px; height: 100vh; display: flex;">
-                <iframe src="{{ url_for('dash_index') }}" style="width: 100%; height: 100vh; border: none;"></iframe>
-            </div>
-           
-
-        </main>
+{% extends 'dashboard_layout.html' %}
+{% block title %}Insights{% endblock %}
+{% block content %}
+<main>
+    <div id="plotly-chart" style="padding: 20px; height: 100vh; display: flex;">
+        <iframe src="{{ url_for('dash_index') }}" style="width: 100%; height: 100vh; border: none;"></iframe>
     </div>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-</body>
-
-</html>
+</main>
+{% endblock %}

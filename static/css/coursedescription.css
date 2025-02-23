@@ -22,6 +22,13 @@ body, html {
     padding: 20px;
 }
 
+.logo {
+    display: flex;
+    gap: 2px;
+    justify-content: center;
+    align-items: center;
+}
+
 .logo h2 {
     color: #6a1b9a;
     text-align: center;

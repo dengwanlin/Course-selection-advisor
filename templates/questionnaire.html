@@ -1,205 +1,159 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'dashboard_layout.html' %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<!-- Courses Content -->
+<section class="courses-content">
+    <div class="tabs">
+        <button class="tab active" id="searchCoursesTab">Search Courses</button>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Courses Page</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/courses.css') }}">
-</head>
+        <button class="tab" id="myCoursesTab">My Courses</button>
+        <button class="tab" id="allCoursesTab">All Courses</button>
+    </div>
 
-<body>
-    <!-- Sidebar -->
-    <div class="dashboard-container">
-        <aside class="sidebar">
-            <div class="logo">
-                <h2>Smart CS</h2>
+    <!-- Form Content -->
+    <div class="form-and-rec-content">
+
+        <div class="course-list" id="recommendationContent">
+            <!-- {% if recommendations %} -->
+            <div class="results-header">
+                <h3>Below are a list of courses we believe fit your criteria</h3>
+
+                <a class="back-button" href="{{ url_for('course') }}"> ← Back to Search Courses</a>
             </div>
-            <nav>
-                <ul>
-                <li><a href="{{ url_for('home', username=username) }}" class="">Dashboard</a></li>
-                <li><a href="{{ url_for('course') }}">Courses</a></li>
-                <li><a href="{{ url_for('insights') }}">Insights</a></li>
-                <li><a href="{{ url_for('setting') }}">Settings</a></li>
-                </ul>
-            </nav>
-            <div class="user-profile">
-                <img src="{{ url_for('static', filename='images/user_image.png') }}" alt="User Profile">
-                <p>Hey {{ username }}</p>
+            {% for rec in recommendations %}
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="{{ url_for('static', filename='images/lesen.png') }}" alt="Course Image">
+                </div>
+                <div class="course-info">
+                    <!-- <p class="course-type">ELECTIVE <span>📍 Campus, Duisburg</span></p> -->
+                    <h4 class="course-title">{{ rec.name }}</h4>
+                    <p class="course-semester">{{ rec.semester }}</p>
+                    <p class="course-details">
+                        <strong> Match Score:</strong> <span class="score-level">{{ rec.score }}%</span><br>
+                        <!-- <strong>Programming Languages:</strong> C++... -->
+                    </p>
+                </div>
+                <div class="course-actions">
+                    <form action="{{ url_for('update_course_data', course_id=rec.id, radar='chart') }}" method="post">
+                        <input type="hidden" name="name" value="{{ rec.name }}">
+                        <input type="hidden" name="id" value="{{ rec.id }}">
+                        <input type="hidden" name="similarities" value="{{ rec.similarity_scores }}">
+                        <button class="view-button" type="submit">View</button>
+                    </form>
+                    <a href="{{ url_for('add_course', course_id=rec.id, course_name=rec.name, type='add') }}"
+                        method="post">
+                        <button class="add-button">Add</button>
+                    </a>
+                </div>
             </div>
-        </aside>
+            {% endfor %}
+            <!-- {% endif %} -->
+        </div>
 
-        <!-- Main Content -->
-        <main>
-            <!-- Header -->
-            <header class="top-header">
-                <button class="menu-button" id="menuButton">☰</button>
-                <nav>
-                    <a href="{{ url_for('home', username=username) }}">Home</a>
-                    <a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a>
-                    <a href="{{ url_for('logout') }}"  class="logout">Log Out</a>
-                </nav>
-            </header>
-
-            <!-- Fullscreen Menu -->
-            <div class="fullscreen-menu" id="fullscreenMenu">
-                <button class="close-button" id="closeButton">✖</button>
-            <a href="{{ url_for('home', username=username) }}">Home</a>
-            <a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a>
-            <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
-            </div>
-
-            <!-- Courses Content -->
-            <section class="courses-content">
-                <div class="tabs">
-                    <button class="tab active" id="searchCoursesTab">Search Courses</button>
-                    
-                    <button class="tab" id="myCoursesTab">My Courses</button>
-                    <button class="tab" id="allCoursesTab">All Courses</button>
+        {% if student_courses.profile_updated == true %}
+        <div class="form-container" id="searchCoursesForm">
+            <h3>Answer these questions to get the best selections</h3>
+            <form method="post" action="{{ url_for('course') }}">
+                <div class="form-group">
+                    <label for="keywords">Enter concept you would like your courses to be about *</label>
+                    <input type="text" id="keywords" name="keywords" placeholder="Enter concepts separated by commas"
+                        required>
                 </div>
 
-                <!-- Form Content -->
-                 <div class="form-and-rec-content">
-                
-                        <div class="course-list"  id="recommendationContent" >
-                        <!-- {% if recommendations %} -->
-                        <div class="results-header">
-                            <h3>Below are a list of courses we believe fit your criteria</h3>
-                        
-                            <a class="back-button" href="{{ url_for('course') }}"> ← Back to Search Courses</a>
-                        </div>
-                        {% for rec in recommendations %}
-                        <div class="course-card">
-                            <div class="course-image">
-                                <img src="{{ url_for('static', filename='images/lesen.png') }}" alt="Course Image">
-                            </div>
-                            <div class="course-info">
-                                <!-- <p class="course-type">ELECTIVE <span>📍 Campus, Duisburg</span></p> -->
-                                <h4 class="course-title">{{ rec.name }}</h4>
-                                <p class="course-semester">{{ rec.semester }}</p>
-                                <p class="course-details">
-                                    <strong> Match Score:</strong> <span class="score-level">{{ rec.score }}%</span><br>
-                                    <!-- <strong>Programming Languages:</strong> C++... -->
-                                </p>
-                            </div>
-                            <div class="course-actions">
-                                <form action="{{ url_for('update_course_data', course_id=rec.id, radar='chart') }}" method="post">
-                                    <input type="hidden" name="name" value="{{ rec.name }}">
-                                    <input type="hidden" name="id" value="{{ rec.id }}">
-                                    <input type="hidden" name="similarities" value="{{ rec.similarity_scores }}">
-                                    <button class="view-button" type="submit">View</button>
-                                </form>
-                                <a href="{{ url_for('add_course', course_id=rec.id, course_name=rec.name, type='add') }}" method="post">
-                                <button class="add-button" >Add</button>
-                                </a>
-                            </div>
-                        </div>
-                        {% endfor %}
-                        <!-- {% endif %} -->
-                        </div>
-                         
-                        {% if student_courses.profile_updated == true %} 
-                        <div class="form-container" id="searchCoursesForm">
-                             <h3>Answer these questions to get the best selections</h3>
-                                    <form method="post" action="{{ url_for('course') }}">
-                                        <div class="form-group">
-                                            <label for="keywords">Enter concept you would like your courses to be about *</label>
-                                            <input type="text" id="keywords" name="keywords" placeholder="Enter concepts separated by commas" required>
-                                        </div>
-                                
-                                
-                                        <button type="submit" class="submit-button">
-                                            <a class="submit-button"> Search Courses
-                                                <span>🔍</span></a>
-                                        </button>
-                                    </form>
-                        </div>
-                        {% else %}
-                        <div class="form-container" style="display: flex; flex-direction: column; gap: 20px;" id="fillPreferences">First set your preferences
-                            <div class="result-header">
-                                <a class="back-button" href="{{ url_for('setting') }}"> ← Fill Preferences</a>
-                            </div>
-                        {% endif %}
 
-                  
-                 </div>
-                
+                <button type="submit" class="submit-button">
+                    <a class="submit-button"> Search Courses
+                        <span>🔍</span></a>
+                </button>
+            </form>
+        </div>
+        {% else %}
+        <div class="form-container" style="display: flex; flex-direction: column; gap: 20px;" id="fillPreferences">First
+            set your preferences
+            <div class="result-header">
+                <a class="back-button" href="{{ url_for('setting') }}"> ← Fill Preferences</a>
+            </div>
+            {% endif %}
 
-                <!-- All Courses Content -->
-                    <div class="course-list" id="allCoursesContent">
 
-                      
-                        {% for course in courses %}
-                        <div class="course-card">
-                            <div class="course-image">
-                                <img src="{{ url_for('static', filename='images/lesen.png') }}" alt="Course Image">
-                            </div>
-                            <div class="course-info">
-                                <!-- <p class="course-type">ELECTIVE <span>📍 Campus, Duisburg</span></p> -->
-                                <h4 class="course-title">{{ course.name }}</h4>
-                                <p class="course-semester">{{ course.semester }}</p>
-                                <p class="course-details">
-                                    <strong>Math Level:</strong> <span class="math-level">Very High</span><br>
-                                </p>
-                            </div>
-                            <div class="course-actions">
-                                <a href="{{ url_for('get_single_course', course_id=course.id, radar='none') }}">
-                                    <button class="view-button" type="submit">View</button>
-                                </a>
-                                <a class="add-button">Add</a>
-                            </div>
-                        </div>
-                      {% endfor %}
+        </div>
+
+
+        <!-- All Courses Content -->
+        <div class="course-list" id="allCoursesContent">
+
+
+            {% for course in courses %}
+            <div class="course-card">
+                <div class="course-image">
+                    <img src="{{ url_for('static', filename='images/lesen.png') }}" alt="Course Image">
+                </div>
+                <div class="course-info">
+                    <!-- <p class="course-type">ELECTIVE <span>📍 Campus, Duisburg</span></p> -->
+                    <h4 class="course-title">{{ course.name }}</h4>
+                    <p class="course-semester">{{ course.semester }}</p>
+                    <p class="course-details">
+                        <strong>Language:</strong> <span class="math-level" {% if course.encoded_language=='English'
+                            %}style="color: red;" {% else %}style="color: green;" {% endif %}>{{ course.encoded_language
+                            }}</span><br>
+                    </p>
+                </div>
+                <div class="course-actions">
+                    <a href="{{ url_for('get_single_course', course_id=course.id, radar='none') }}">
+                        <button class="view-button" type="submit">View</button>
+                    </a>
+                    <!-- <a class="add-button">Add</a> -->
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- All Recommendation Content -->
+
+        <section class="search-results-content">
+            <div class="course-list" id="myCoursesContent">
+                {% if student_courses.my_courses %}
+                {% for course in student_courses.my_courses %}
+                <div class="course-card">
+                    <div class="course-image">
+                        <img src="{{ url_for('static', filename='images/lesen.png') }}" alt="Course Image">
                     </div>
-
-                <!-- All Recommendation Content -->
-                   
-                <section class="search-results-content" >
-                    <div class="course-list"  id="myCoursesContent">
-                        {% if student_courses.my_courses %}
-                        {% for course in student_courses.my_courses %}
-                        <div class="course-card">
-                            <div class="course-image">
-                                <img src="{{ url_for('static', filename='images/lesen.png') }}" alt="Course Image">
-                            </div>
-                            <div class="course-info">
-                                <!-- <p class="course-type">ELECTIVE <span>📍 Campus, Duisburg</span></p> -->
-                                <h4 class="course-title">{{ course.name }}</h4>
-                                <p class="course-semester">{{ course.semester }}</p>
-                                <p class="course-details">
-                                    <strong>Math Level:</strong> <span class="math-level">Very High</span><br>
-                                </p>
-                            </div>
-                            <div class="course-actions">
-                                <a href="{{ url_for('get_single_course', course_id=course.id, radar='chart') }}">
-                                    <button class="view-button" type="submit">View</button>
-                                </a>
-                                <a class="remove-button" href="{{ url_for('add_course', course_id=course.id, course_name=course.name, type='remove') }}">Remove</a>
-                            </div>
-                        </div>
-                        {% endfor %}
-                        {% else %}
-                        <div class="form-container" style="display: flex; flex-direction: column; gap: 20px;">Fill form to see your
-                            recommendations
-                            <div class="result-header">
-                                <a class="back-button" href="{{ url_for('course') }}"> ← Back to Search Courses</a>
-                            </div>
-                        </div>
-                        {% endif %}
+                    <div class="course-info">
+                        <!-- <p class="course-type">ELECTIVE <span>📍 Campus, Duisburg</span></p> -->
+                        <h4 class="course-title">{{ course.name }}</h4>
+                        <p class="course-semester">{{ course.semester }}</p>
+                        <p class="course-details">
+                            <strong>Math Level:</strong> <span class="math-level">Very High</span><br>
+                        </p>
                     </div>
-                
-                </section>
-               
-              
-            </section>
-        </main>
-    </div>
-        <script>
-            const activeTab = "{{ active_tab }}"
-            const available_recommendations = "{{ available_recommendations }}";
-            const error = "{{ error }}";
-        </script>
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-</body>
+                    <div class="course-actions">
+                        <a href="{{ url_for('get_single_course', course_id=course.id, radar='chart') }}">
+                            <button class="view-button" type="submit">View</button>
+                        </a>
+                        <a class="remove-button"
+                            href="{{ url_for('add_course', course_id=course.id, course_name=course.name, type='remove') }}">Remove</a>
+                    </div>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="form-container" style="display: flex; flex-direction: column; gap: 20px;">Fill form to see
+                    your
+                    recommendations
+                    <div class="result-header">
+                        <a class="back-button" href="{{ url_for('course') }}"> ← Back to Search Courses</a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
 
-</html>
+        </section>
+
+
+</section>
+<script>
+    const activeTab = "{{ active_tab }}"
+    const available_recommendations = "{{ available_recommendations }}";
+    const error = "{{ error }}";
+</script>
+{% endblock %}

@@ -1,93 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Description</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/coursedescription.css') }}">
-<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-   
-</head>
-<body>
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="logo">
-                <h2>Smart CS</h2>
-            </div>
-            <nav>
-                <ul>
-                <li><a href="{{ url_for('home', username=username) }}">Dashboard</a></li>
-                <li><a href="{{ url_for('course') }}"  class="active">Courses</a></li>
-                <li><a href="{{ url_for('insights') }}">Insights</a></li>
-                <li><a href="{{ url_for('setting') }}">Settings</a></li>
-                </ul>
-            </nav>
-            <div class="user-profile">
-                <img src="{{ url_for('static', filename='images/user_image.png') }}" alt="User Profile">
-                <p>Hey {{ username }}</p>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main>
-            <header class="top-header">
-                <button class="menu-button" id="menuButton">☰</button>
-                <nav>
-                    <a href="home.html">Home</a>
-                    <a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a>
-                    <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
-                </nav>
-            </header>
-            
-      <!-- Fullscreen Menu -->
-      <div class="fullscreen-menu" id="fullscreenMenu">
-        <button class="close-button" id="closeButton">✖</button>
-        <a href="{{ url_for('home', username=username) }}">Home</a>
-        <a href="{{ url_for('home', username=username) }}" class="active">Dashboard</a>
-        <a href="{{ url_for('logout') }}" class="logout">Log Out</a>
-    </div>
 
 
-
-            <section class="course-description-content">
-                {% if course %}
-                <div class="course-header">
-                    <h3>A look into the course</h3>
-                    <h1>{{ course.name }}</h1>
-                    <p><strong>Math Level:</strong> <span class="math-level">{{ course.math_level }}</span></p>
-                    
-                    
+{% extends 'dashboard_layout.html' %}
+{% block title %}Course Description{% endblock %}
+{% block content %}
+<!-- Course Content -->
+    <section class="course-description-content">
+        {% if course %}
+        <div class="course-header">
+            <h3>A look into the course</h3>
+            <h1>{{ course.name }}</h1>
+            <p><strong>Math Level:</strong> <span class="math-level">{{ course.math_level }}</span></p>
+    
+    
+            <div class="grid-container">
+                <div style="display: flex; flex-direction: column;">
+                    {% if course.core_concepts %}
+                    <p><strong>Core concepts</strong> </p>
                     <div class="grid-container">
-                        <div style="display: flex; flex-direction: column;">
-                            {% if course.core_concepts %}
-                            <p><strong>Core concepts</strong> </p>
-                            <div class="grid-container">
-                                {% for concept in course.core_concepts %}
-                                <div class="grid-item">
-                                    {{ concept }}
-                                </div>
-                                {% endfor %}
-                            </div>
-                            {% endif %}
-
-                            <p><strong>Description</strong> </p>
-                            <div class="course-explanation">
-                                <textarea name="" disabled>{{ course.description }}</textarea>
-                            </div>
+                        {% for concept in course.core_concepts %}
+                        <div class="grid-item">
+                            {{ concept }}
                         </div>
-                        {% if radar == 'chart' %}
-                        <div style="display: flex; height: 500px; width: 100%;" id="graph">
-                            {{ graph | safe }}
-                        </div>
-                        {% endif %}
-                    </div>                   
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+    
+                    <p><strong>Description</strong> </p>
+                    <div class="course-explanation">
+                        <textarea name="" disabled>{{ course.description }}</textarea>
+                    </div>
+                </div>
+                {% if radar == 'chart' %}
+                <div style="display: flex; height: 500px; width: 100%;" id="graph">
+                    {{ graph | safe }}
                 </div>
                 {% endif %}
-            </section>
-        </main>
-    </div>
-<script src="{{ url_for('static', filename='js/script.js') }}"></script>
-
-</body>
-</html>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+{% endblock %}
