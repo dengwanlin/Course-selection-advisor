@@ -1,9 +1,8 @@
 <a name="top"></a>
 <img src="static/images/banner.png">
-[![language](https://img.shields.io/badge/language-python-green)]
-[![course](https://img.shields.io/badge/Course-Learning Analytics-red)]
-[![concepts](https://img.shields.io/badge/Recommendations-Content Based Filtering-yellow)]
-[![university](https://img.shields.io/badge/University-Uni DUE-orange)]
+<img src="https://img.shields.io/badge/language-python-green"/>
+<img src="https://img.shields.io/badge/Course-Learning Analytics-red"/>
+<img src="https://img.shields.io/badge/Recommendations-Content Based Filtering-yellow"/>
 
 <!-- ⭐ Star us on GitHub — it motivates us a lot! -->
 
