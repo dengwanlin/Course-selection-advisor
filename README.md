@@ -1,4 +1,5 @@
-<a name="top"></a>
+# SMART COURSE SELECTOR
+
 <img src="static/images/banner.png">
 <img src="https://img.shields.io/badge/language-python-green"/>
 <img src="https://img.shields.io/badge/Course-Learning Analytics-red"/>
