@@ -4,7 +4,7 @@ from datetime import datetime
 from utils import *
 import ast
 import json
-from dash import dcc, html, Dash, Input, Output, callback
+from dash import dcc, html, Dash, Input, Output
 
 
 app = Flask(__name__)
@@ -74,6 +74,7 @@ def register():
                 "register_time": register_time
             }
             insert_data('students', student_info)
+        return redirect(url_for('welcome'))
     return render_template('register.html')
 
 @app.route('/home/<username>')
@@ -98,21 +99,6 @@ def logout():
 @app.route('/favicon.ico')
 def favicon():
     return '', 204
-
-# Add a new route to display the questionnaire page
-@app.route('/questionnaire')
-def questionnaire():
-
-    return render_template('questionnaire.html', terms=terms,
-                           languages=languages,
-                           language_levels=language_levels,
-                           student_professional_backgrounds=student_professional_backgrounds,
-                           programming_languages=programming_languages,
-                           programming_levels=programming_levels,
-                           student_majors = student_majors,
-                           student_math_levels=student_math_levels,
-                           username=session.get('username')
-                           )
 
 # Added a new route to handle questionnaire submission logic
 @app.route('/submit_status', methods=['POST'])
@@ -201,7 +187,7 @@ def course():
 # Added a new route to handle questionnaire submission logic
 @app.route('/course', methods=['POST'])
 def get_recommendation():
-    courses = fetch_local_data('courses')
+    courses = fetch_local_data('processed_courses')
     student_id = session.get('student_id')
     if student_id is None:
         return redirect(url_for('welcome'))
@@ -361,7 +347,7 @@ def get_my_courses():
     if student_id is None:
         return redirect(url_for('welcome'))
     
-    courses = fetch_local_data('process_courses')
+    courses = fetch_local_data('processed_courses')
     collection_name = 'students'
     student_courses = fetch_single_data(collection_name, {"student_id": student_id})
        

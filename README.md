@@ -38,6 +38,8 @@
 
 ### Application Flow
 
+<img src="static/images/screenshots/flow/final-flow.jpg"/>
+
 ### Closer look at visualizations
 
 ## 📝 Running the app
