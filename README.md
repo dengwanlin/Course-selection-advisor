@@ -9,9 +9,9 @@
 ## Table of Contents
 
 - [About](#-about)
-- [Architecture](#-architecture)
+- [Architecture](#%EF%B8%8F-architecture)
 - [Libraries and Algorithms](#-libraries-and-algorithms)
-- [A Look at the App](#-a-look-at-app)
+- [A Look at the App](#-a-look-at-the-app)
 - [Running the app](#-running-the-app)
 - [Feedback and Contributions](#-feedback-and-contributions)
 - [Authors](#-authors)
@@ -40,7 +40,7 @@
 
 ### Closer look at visualizations
 
-## 📝 How to Build
+## 📝 Running the app
 
 To build the packages, follow these steps:
 
