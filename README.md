@@ -10,9 +10,11 @@
 
 - [About](#-about)
 - [Architecture](#-architecture)
-- [How to Build](#-how-to-build)
-- [Documentation](#-documentation)
+- [Libraries and Algorithms](#-libraries-and-algorithms)
+- [A Look at the App](#-look-at-app)
+- [Running the app](#-running-the-app)
 - [Feedback and Contributions](#-feedback-and-contributions)
+- [Authors](#-authors)
 - [License](#-license)
 - [Contacts](#%EF%B8%8F-contacts)
 
@@ -26,9 +28,17 @@
 - **Interest & Concept-Based Selection**: Find courses that align with topics and subjects you enjoy.
 - **Data-Driven Insights**: Leverages intelligent algorithms to provide meaningful and accurate recommendations.
 
-## 🎓 Architecture
+## ⚙️ Architecture
 
 <img src="static/images/tech_architecture.jpg"/>
+
+## 📚 Libraries and Algorithms
+
+## 📸 A Look at the App
+
+### Application Flow
+
+### Closer look at visualizations
 
 ## 📝 How to Build
 
