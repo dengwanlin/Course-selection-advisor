@@ -11,7 +11,7 @@
 - [About](#-about)
 - [Architecture](#-architecture)
 - [Libraries and Algorithms](#-libraries-and-algorithms)
-- [A Look at the App](#-look-at-app)
+- [A Look at the App](#-a-look-at-app)
 - [Running the app](#-running-the-app)
 - [Feedback and Contributions](#-feedback-and-contributions)
 - [Authors](#-authors)
@@ -103,6 +103,8 @@ We've made every effort to implement all the main aspects of the OpenID protocol
 Please feel free to contribute by [submitting an issue](https://github.com/Abblix/Oidc.Server/issues) or [joining the discussions](https://github.com/orgs/Abblix/discussions). Each contribution helps us grow and improve.
 
 We appreciate your support and look forward to making our product even better with your help!
+
+## 👥 Authors
 
 ## 📃 License
 
