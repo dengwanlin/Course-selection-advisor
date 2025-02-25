@@ -48,7 +48,7 @@
 
 ## 📝 Running the app
 
-To build the packages, follow these steps:
+To run the app locally, follow these steps:
 
 ```shell
 # Open a terminal (Command Prompt or PowerShell for Windows, Terminal for macOS or Linux)
@@ -57,20 +57,16 @@ To build the packages, follow these steps:
 # Visit https://git-scm.com to download and install console Git if not already installed
 
 # Clone the repository
-git clone https://github.com/Abblix/Oidc.Server.git
+git clone https://github.com/dengwanlin/Course-selection-advisor.git
 
 # Navigate to the project directory
-cd Oidc.Server
+cd Course-selection-advisor
 
-# Check if .NET SDK is installed
-dotnet --version  # Check the installed version of .NET SDK
-# Visit the official Microsoft website to install or update it if necessary
+# Install required libraries
+pip install -r requirements.txt
 
-# Restore dependencies
-dotnet restore
-
-# Compile the project
-dotnet build
+# Run app
+python app.py
 
 ```
 
