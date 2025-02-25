@@ -34,11 +34,14 @@ def welcome():
     if request.method == 'POST':
         student_id = request.form.get('student_id')
         password = request.form.get('password')
+        password = password.encode('utf-8') 
 
         # Check if the account exists in the database
         student = fetch_single_data('students', {'student_id': student_id})
         if student:
-            if student['password'] == password:
+            stored_hash = student['password']
+            result = bcrypt.checkpw(password, stored_hash.encode('utf-8')) 
+            if result == True:
                 session['student_id'] = student_id  # Add this line to store the student number in the session
                 session['username'] = student['first_name']  # Store first_name in session
                 return redirect(url_for('home', username=student['first_name']))
@@ -56,7 +59,10 @@ def register():
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
         password = request.form.get('password')
-
+        password = password.encode('utf-8')
+        salt = bcrypt.gensalt()
+        hashed_password = bcrypt.hashpw(password, salt).decode('utf-8')
+        
         # Get the current time as the registration time
         register_time = datetime.now()
 
@@ -70,7 +76,7 @@ def register():
                 "student_id": student_id,
                 "first_name": first_name,
                 "last_name": last_name,
-                "password": password,
+                "password": hashed_password,
                 "register_time": register_time
             }
             insert_data('students', student_info)
