@@ -13,10 +13,11 @@
 - [Libraries and Algorithms](#-libraries-and-algorithms)
 - [A Look at the App](#-a-look-at-the-app)
 - [Running the app](#-running-the-app)
-- [Feedback and Contributions](#-feedback-and-contributions)
+- [Demo](#-demo)
+<!-- - [Feedback and Contributions](#-feedback-and-contributions) -->
 - [Authors](#-authors)
 - [License](#-license)
-- [Contacts](#%EF%B8%8F-contacts)
+<!-- - [Contacts](#%EF%B8%8F-contacts) -->
 
 ## 🚀 About
 
@@ -110,6 +111,13 @@ Please feel free to contribute by [submitting an issue](https://github.com/Abbli
 We appreciate your support and look forward to making our product even better with your help!
 
 ## 👥 Authors
+
+- Clement Ankomah - [@kojobaffoe011](https://github.com/@kojobaffoe011)
+- Shafika Islam
+- Haihua Wang
+- Marta Zhao Ladrón de Guevara Cano
+- Laura María García Pulido
+- Hazem Al Massalmeh
 
 ## 📃 License
 
