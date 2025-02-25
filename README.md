@@ -42,6 +42,10 @@
 
 ### Closer look at visualizations
 
+<img src="static/images/screenshots/visualization/v1.png"/>
+<img src="static/images/screenshots/visualization/v2.png"/>
+<img src="static/images/screenshots/visualization/v3.png"/>
+
 ## 📝 Running the app
 
 To build the packages, follow these steps:
