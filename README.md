@@ -14,10 +14,9 @@
 - [A Look at the App](#-a-look-at-the-app)
 - [Running the app](#-running-the-app)
 - [Demo](#-demo)
-<!-- - [Feedback and Contributions](#-feedback-and-contributions) -->
+- [Feedback and Contributions](#-feedback-and-contributions)
 - [Authors](#-authors)
 - [License](#-license)
-<!-- - [Contacts](#%EF%B8%8F-contacts) -->
 
 ## 🚀 About
 
@@ -34,6 +33,8 @@
 <img src="static/images/tech_architecture.jpg"/>
 
 ## 📚 Libraries and Algorithms
+
+Libraries and algorithms go here
 
 ## 📸 A Look at the App
 
@@ -74,6 +75,10 @@ python app.py
 
 ```
 
+## 🤝 Demo
+
+Demo goes here
+
 ## 🤝 Feedback and Contributions
 
 > [!IMPORTANT]
@@ -93,12 +98,5 @@ We appreciate your support and look forward to making our product even better wi
 ## 📃 License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-## 🗨️ Contacts
-
-For more details about our products, services, or any general information regarding the Abblix OIDC Server, feel free to reach out to us. We are here to provide support and answer any questions you may have. Below are the best ways to contact our team:
-
-- **Email**: Send us your inquiries or support requests at [support@abblix.com](mailto:support@abblix.com).
-- **Website**: Visit the official Abblix OIDC Server page for more information: [Abblix OIDC Server](https://www.abblix.com/abblix-oidc-server).
 
 [Back to top](#top)
