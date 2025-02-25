@@ -65,6 +65,9 @@ cd Course-selection-advisor
 # Install required libraries
 pip install -r requirements.txt
 
+# Contact any of the authors for our .env file to access the database
+# Paste the .env file in the root of the  Course-selection-advisor folder
+
 # Run app
 python app.py
 
