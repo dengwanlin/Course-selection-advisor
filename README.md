@@ -172,11 +172,11 @@ We appreciate your support and look forward to making our product even better wi
 ## 👥 Authors
 
 - Clement Ankomah - [@kojobaffoe011](https://github.com/@kojobaffoe011)
-- Shafika Islam
-- Haihua Wang
+- Shafika Islam - [@shafika005](https://github.com/@shafika005)
+- Haihua Wang - [@dengwanlin](https://github.com/@dengwanlin)
+- Hazem Al Massalmeh - [@Hazemmasa](https://github.com/@Hazemmasa)
 - Marta Zhao Ladrón de Guevara Cano
 - Laura María García Pulido
-- Hazem Al Massalmeh
 
 ## 📃 License
 
