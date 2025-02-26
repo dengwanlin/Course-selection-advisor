@@ -356,7 +356,7 @@ def get_single_course(course_id, radar):
     #     return render_template('404.html', message="Course not found"), 404
 
     # Render the template with course details
-    return render_template('coursedescription.html', course=course, username=session.get('username'), radar=radar, graph=graph, explanation=match_explanation) #
+    return render_template('coursedescription.html', course=course, username=session.get('username'), radar=radar, graph=graph if check_course is not None else None, explanation=match_explanation if check_course is not None else None) #
 
 @app.route('/get_single_course/<course_id>/<radar>', methods=['POST', 'GET'])
 def update_course_data(course_id, radar):
@@ -519,7 +519,7 @@ dash_app.layout = dcc.Loading(
                             id='pie_type',
                             options=[{'label': 'Lecturers', 'value': 'Lecturers'}, 
                                      {'label': 'Network Graph', 'value': 'Network Graph'},
-                                     {'label': 'Course Similarity Breakdown', 'value': 'Course Similarity Breakdown'},
+                                    #  {'label': 'Course Similarity Breakdown', 'value': 'Course Similarity Breakdown'},
                                      {'label': 'Self-Study Hours vs Lecture Duration', 'value': 'Self-Study Hours vs Lecture Duration'},
                                      
                                      ],
