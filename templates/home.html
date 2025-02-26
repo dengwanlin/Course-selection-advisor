@@ -23,30 +23,7 @@
           <h2>Course Distribution by Attributes</h2>
           <iframe id="similarity-chart-frame" src="{{ url_for('home_index') }}" style="width: 100%; height: 500px; border: none"></iframe>
         </div>
-      <!-- </div> -->
 
-      <!-- Pass data to Dash app -->
-      <script>
-        document.addEventListener('DOMContentLoaded', function () {
-          // Get the student data passed from Flask
-          const studentData = {{ student_data| safe
-        }};
-
-        // Get the similarity chart iframe
-        const chartFrame = document.getElementById('similarity-chart-frame');
-
-        // When iframe loads, pass the data to it
-        chartFrame.onload = function () {
-          const studentDataStore = chartFrame.contentDocument.getElementById('student-data-store');
-          if (studentDataStore) {
-            studentDataStore.textContent = JSON.stringify(studentData);
-            // Trigger change event to update chart
-            const event = new Event('change');
-            studentDataStore.dispatchEvent(event);
-          }
-        };
-            });
-      </script>
     </section>
         
 
