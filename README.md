@@ -158,7 +158,7 @@ python app.py
 
 ## 🤝 Demo Video
 
-[![Smart Course Advisor](https://img.youtube.com/vi/LqJigVvI2raKsFcs/0.jpg)](https://youtu.be/fjyngh9PJAY?si=LqJigVvI2raKsFcs)
+[![Smart Course Advisor](https://youtu.be/fjyngh9PJAY?si=LqJigVvI2raKsFcs)]
 
 _Click the image above to watch a demonstration of the Course Recommendation System in action._
 
