@@ -9,12 +9,12 @@
         <div class="course-header">
             <h3>A look into the course</h3>
             <h1>{{ course.name }}</h1>
-            <p><strong>Math Level:</strong> <span class="math-level">{{ course.math_level }}</span></p>
+            <p><strong>Math Level:</strong> <span class="math-level">{{ course.math_level | format_math_level }}</span></p>
     
     
             <div class="grid-container">
                 <div style="display: flex; flex-direction: column;">
-                    {% if course.core_concepts %}
+                    {% if explanation == undefined %}
                     <p><strong>Core concepts</strong> </p>
                     <div class="grid-container">
                         {% for concept in course.core_concepts %}
@@ -29,9 +29,33 @@
                     <div class="course-explanation">
                         <textarea name="" disabled>{{ course.description }}</textarea>
                     </div>
+                    <div style="height: 30rem; overflow: scroll; ">
+                        {% if explanation %}
+                        {% for key, details in explanation.items() %}
+                        <div class="card">
+                            <h3>{{ key.replace('_', ' ').title() }}</h3>
+                            <p class="score">Score: {{ details.score }}</p>
+                            <p><strong>Details:</strong></p>
+                            <ul>
+                                {% for k, v in details.items() if k != 'score' %}
+                                <li><strong>{{ k.replace('_', ' ').title() }}:</strong>
+                                    {% if k in ['student_skills', 'course_requirements', 'student_languages'] %}
+                                    {{ v | format_skills }}
+                                    {% else %}
+                                    {{ v }}
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+
                 </div>
                 {% if radar == 'chart' %}
-                <div style="display: flex; height: 500px; width: 100%;" id="graph">
+                <div style="display: flex; flex-direction: column; height: 500px; width: 100%;" id="graph">
                     {{ graph | safe }}
                 </div>
                 {% endif %}

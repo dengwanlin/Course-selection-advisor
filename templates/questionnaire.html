@@ -41,10 +41,10 @@
                         <input type="hidden" name="similarities" value="{{ rec.similarity_scores }}">
                         <button class="view-button" type="submit">View</button>
                     </form>
-                    <a href="{{ url_for('add_course', course_id=rec.id, course_name=rec.name, type='add') }}"
-                        method="post">
-                        <button class="add-button">Add</button>
-                    </a>
+                    <!-- <a href="{{ url_for('add_course', course_id=rec.id, course_name=rec.name, type='add') }}"
+                        method="post"> -->
+                        <button class="add-button" onclick="addCourse({{ rec  }})">Add</button>
+                    <!-- </a> -->
                 </div>
             </div>
             {% endfor %}
@@ -124,7 +124,7 @@
                         <h4 class="course-title">{{ course.name }}</h4>
                         <p class="course-semester">{{ course.semester }}</p>
                         <p class="course-details">
-                            <strong>Math Level:</strong> <span class="math-level">Very High</span><br>
+                            <strong>Math Level:</strong> <span class="math-level">{{course.math_level | format_math_level}}</span><br>
                         </p>
                     </div>
                     <div class="course-actions">

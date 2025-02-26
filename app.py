@@ -5,6 +5,7 @@ from utils import *
 import ast
 import json
 from dash import dcc, html, Dash, Input, Output
+from bson import json_util
 
 
 app = Flask(__name__)
@@ -25,7 +26,18 @@ home_dash_app = Dash(
     assets_folder='static',
 )
 
+
 student_professional_backgrounds, terms, languages, language_levels, programming_languages, programming_levels, student_majors, student_math_levels = get_enums_data()
+def get_loggedin_student():
+     student_id = session.get('student_id')
+     student_data = fetch_single_data('students', {'student_id': student_id})
+
+     return student_data
+
+
+# Register the custom filter
+app.jinja_env.filters['format_skills'] = format_skills
+app.jinja_env.filters['format_math_level'] = format_math_level
 
 @app.route('/', methods=['GET', 'POST'])
 #@app.route('/welcome', methods=['GET', 'POST'])
@@ -46,7 +58,7 @@ def welcome():
                 session['username'] = student['first_name']  # Store first_name in session
                 return redirect(url_for('home', username=student['first_name']))
             else:
-                error = "The password and account do not match!"
+                error = "Invalid student id or password"
         else:
             error = "The account does not exist, please enter <a href='{}'>register page</a> to register, or you can re-fill in your information to log in.".format(
                 url_for('register'))
@@ -92,6 +104,7 @@ def home(username):
     courses = fetch_local_data('processed_courses')
     collection_name = 'students'
     student_courses = fetch_single_data(collection_name, {"student_id": student_id})
+    student_json = json_util.dumps(student_courses)
 
     return render_template('home.html', username=username, courses=len(courses), my_courses=student_courses)
 
@@ -100,7 +113,6 @@ def logout():
     session.pop('username', None)
     session.pop('student_id', None)
     return redirect(url_for('welcome'))
-
 
 @app.route('/favicon.ico')
 def favicon():
@@ -252,8 +264,6 @@ def add_course(course_id, course_name, type):
     collection_name = 'students'
     courses = fetch_local_data('courses')
     
-
-
     if type == 'add':
         check_course = fetch_single_data(collection_name, {"my_courses.id": course_id, "student_id": student_id, })
         student_courses = fetch_single_data(collection_name, {"student_id": student_id})
@@ -287,18 +297,66 @@ def add_course(course_id, course_name, type):
                                student_majors = student_majors,
                                student_math_levels=student_math_levels,) #, available_recommendations=True
 
+
+@app.route('/add_course_alt', methods=['POST'])
+def add_course_alt():
+    student_id = session.get('student_id')
+    if student_id is None:
+        return jsonify({"success": False, "error": "Not logged in"})
+    
+    data = request.json
+    type = data.get('type')
+    course = data.get('course')
+    collection_name = 'students'
+    
+    if type == 'add':
+        check_course = fetch_single_data(collection_name, {"my_courses.id": course['id'], "student_id": student_id})
+        
+        if check_course is None:
+            # Create enhanced course object with similarity and explanation
+            enhanced_course = course.copy()  # Copy the course data
+            enhanced_course['added_date'] = datetime.now().isoformat()
+            
+            update_one_data(
+                collection_name,
+                {"student_id": student_id},
+                {"$push": {"my_courses": enhanced_course}}
+            )
+            return jsonify({"success": True})
+        else:
+            return jsonify({"success": False, "error": "Course already added"})
+    
+    elif type == 'remove':
+        update_one_data(
+            collection_name,
+            {"student_id": student_id},
+            {"$pull": {"my_courses": {"id": course['id']}}}
+        )
+        return jsonify({"success": True})
+    
+    return jsonify({"success": False, "error": "Invalid operation"})
+
 @app.route('/get_single_course/<course_id>/<radar>', methods=['GET'])
 def get_single_course(course_id, radar):
     student_id = session.get('student_id')
     if student_id is None:
         return redirect(url_for('welcome'))
      
-    course = fetch_single_data('courses', {"id": course_id})
+    course = fetch_single_data('processed_courses', {"id": course_id})
+    check_course = fetch_single_data('students', {"my_courses.id": course_id, "student_id": student_id, })
+    student_profile = fetch_single_data('students', {"student_id": student_id, })
+    if check_course is not None:
+        my_courses = check_course['my_courses']
+        course_match = [item for item in my_courses if item["id"] == course_id]
+        course_details = {"name": course_match[0]['name'], "similarity_scores": course_match[0]['similarity_scores']}
+        match_explanation = explain_matching(student_profile,course)
+        graph = plot_top_course_radar(course_details)
+     
     # if not course:
     #     return render_template('404.html', message="Course not found"), 404
 
     # Render the template with course details
-    return render_template('coursedescription.html', course=course, username=session.get('username'), radar=radar)
+    return render_template('coursedescription.html', course=course, username=session.get('username'), radar=radar, graph=graph, explanation=match_explanation) #
 
 @app.route('/get_single_course/<course_id>/<radar>', methods=['POST', 'GET'])
 def update_course_data(course_id, radar):
@@ -308,19 +366,16 @@ def update_course_data(course_id, radar):
         return redirect(url_for('welcome'))
 
     # Fetch course from database
-    course = fetch_single_data('courses', {"id": course_id})
+    course = fetch_single_data('processed_courses', {"id": course_id})
+    student_profile = fetch_single_data('students', {"student_id": student_id})
     if not course:
         return {"error": "Course not found"}, 404  # Handle missing course
 
     # Retrieve form data
-    name = request.form.get("name")  # Fix trailing comma issue
-    similarity_scores = request.form.get("similarities")  # Fix trailing comma issue
-
-    # Debugging: Print the received data
-    print("Raw similarities received:", similarity_scores)
-    print("Type of similarities:", type(similarity_scores))
-    print("Received name:", name)
-    print("Course ID:", course_id)
+    name = request.form.get("name") 
+    similarity_scores = request.form.get("similarities") 
+    
+    match_explanation = explain_matching(student_profile,course)
 
     # Handle cases where data might be missing
     if similarity_scores:
@@ -333,7 +388,7 @@ def update_course_data(course_id, radar):
         similarities_dict = {}  # Ensure it's always a dictionary
 
     # Prepare course dictionary
-    course_details = {"name": name,"similarity_scores": similarities_dict}
+    course_details = {"name": name, "similarity_scores": similarities_dict}
     
     # Debugging: Print final course data
     print(f"Final course data: {course_details}")
@@ -342,6 +397,7 @@ def update_course_data(course_id, radar):
     graph = plot_top_course_radar(course_details)
 
     return render_template('coursedescription.html', 
+                           explanation=match_explanation,
                            course=course, 
                            username=session.get('username'), 
                            radar=radar, 
@@ -388,7 +444,8 @@ def setting():
     collection_name = 'students'
     student_data = fetch_single_data(collection_name, {"student_id": student_id})
 
-    return render_template('setting.html',  terms=terms,
+    return render_template('setting.html',  
+                           terms=terms,
                            student_data=student_data,
                            languages=languages,
                            language_levels=language_levels,
@@ -397,6 +454,7 @@ def setting():
                            programming_levels=programming_levels,
                            student_majors = student_majors,
                            student_math_levels=student_math_levels, username=session.get('username'))
+
 
 @app.route('/dash/')
 def dash_index():
@@ -407,6 +465,7 @@ def dash_index():
 def home_index():
     # Redirect directly to Dash if needed
     return redirect('/home_dash/')
+
 
 @app.route('/change_password', methods=['POST'])
 def change_password():
@@ -439,9 +498,12 @@ def change_password():
 
 # Sample options
 module_options = ["All"] + ["Basics", "Intelligent Networked Systems", "Interactive Systems and Visualization"]
-semester_options = ["All", "Winter 24/25", "Sommer"]
+semester_options = ["All", "Winter", "Summer"]
 language_options = ["All", "English", "German"]
-math_level_options = ["All"] + [str(i) for i in range(1, 5)]  # Math levels 1-5
+math_mapping = {"None": 3, "Low": 1, "Moderate": 2, "High": 0, 'Very High': 4, 'All': 'All' }
+math_level_options = ['All', "None", "Low", "Moderate", "High", 'Very High']
+
+
 
 dash_app.layout = dcc.Loading(
     type="circle", 
@@ -457,7 +519,7 @@ dash_app.layout = dcc.Loading(
                             id='pie_type',
                             options=[{'label': 'Lecturers', 'value': 'Lecturers'}, 
                                      {'label': 'Network Graph', 'value': 'Network Graph'},
-                                    #  {'label': 'Self-Study Hours per Lecture Hour', 'value': 'Self-Study Hours per Lecture Hour '},
+                                     {'label': 'Course Similarity Breakdown', 'value': 'Course Similarity Breakdown'},
                                      {'label': 'Self-Study Hours vs Lecture Duration', 'value': 'Self-Study Hours vs Lecture Duration'},
                                      
                                      ],
@@ -503,13 +565,15 @@ dash_app.layout = dcc.Loading(
                           html.Label("Filter by Math Level:"),
                         dcc.Dropdown(
                             id='math-level-dropdown',
-                            options=[{'label': level, 'value': level} for level in math_level_options],
+                            options=[{'label': level, 'value': math_mapping.get(level)} for level in math_level_options],
                             value='All',
                             multi=False
                         ),
                         ]),  
+
                     ]
                 ),
+               
 
 
                 # Graph Output
@@ -541,17 +605,13 @@ def update_graph(pie_type, selected_module, selected_semester, selected_language
     #     return plot_self_study_analysis()[1]  
 
     elif pie_type == "Network Graph":
-        # Fetch courses
-
-
-
         # Apply filters dynamically
         filtered_courses = [
             course for course in courses_data
             if (selected_module == "All" or course.get("encoded_module") == selected_module)
             and (selected_semester == "All" or (selected_semester in course.get("semester", "")))  
             and (selected_language == "All" or course.get("encoded_language") == selected_language)
-            and (selected_math_level == "All" or str(course.get("math_level", "")) == selected_math_level)
+            and (selected_math_level == "All" or course.get("math_level", "") == selected_math_level)
         ]
 
         # If no matching courses, return an empty graph
@@ -579,17 +639,7 @@ def toggle_filters(pie_type):
         return {'display':'grid', 'gridTemplateColumns': 'repeat(4, 1fr)', 'gap': '5px', 'marginTop':'10px'}  # Show filters
     else:
         return {'display': 'none'}  # Hide filters
-
-
-# @dash_app.callback(
-#     Output('knowledge-graph-output', 'figure'),
-#     [
-#         Input('module-dropdown', 'value'),
-#         Input('semester-dropdown', 'value'),
-#         Input('language-dropdown', 'value'),
-#         Input('math-level-dropdown', 'value')
-#     ]
-# )
+    
 
 def update_knowledge_graph(selected_module, selected_semester, selected_language, selected_math_level):
     # Fetch all courses
@@ -631,14 +681,30 @@ home_dash_app.layout = dcc.Loading(
             }
             , children= [
                 html.Div(style={'display':'grid', 'gridTemplateColumns': '1fr 1fr', 'gap': '5px'},
-                         children=[dcc.Dropdown(['Module', 'Languages', 'Teaching Style'], 'Languages', id='graph')]),
-                
-                html.Div( 
-                dcc.Graph(
-                id="graph_type",
-                ),
-                style={'width': '100%', 'height': '80vh'} 
-            )
+                children=[
+               
+            html.Div(style={'display': 'flex', 'flexDirection': 'column'}, 
+                     children=[
+                         dcc.Dropdown(['Module', 'Languages', 'Teaching Style'], 'Languages', id='graph'), 
+                         html.Div( 
+                         dcc.Graph(
+                         id="graph_type",
+                         ),
+                         style={'width': '100%', 'height': '80vh'} 
+                        ),
+                     ]),
+                     
+                # html.Div( 
+                #          dcc.Graph(
+                #          id='similarity-chart'
+                #          ),
+                #          style={'width': '100%', 'height': '80vh'} 
+                #         ),
+                ]),
+                    # Hidden div to store student data
+                # html.Div(id='student-data-store', style={'display': 'none'})
+            
+            
             ]
         ),
     ]) 
@@ -658,8 +724,28 @@ def update_div(graph):
         return courses_by_teaching_style()
     
 
-
-
+# Callback to update the chart when data is available
+@dash_app.callback(
+    Output('similarity-chart', 'figure'),
+    [Input('student-data-store', 'children')]
+)
+def update_chart(student_data_json):
+    if not student_data_json:
+        # Default empty state
+        return go.Figure(layout=dict(
+            title="No student data available",
+            annotations=[dict(
+                text="Waiting for student data...",
+                showarrow=False,
+                font=dict(size=20)
+            )]
+        ))
+    
+    # Parse student data
+    student_data = json.loads(student_data_json)
+    
+    # Generate and return the chart
+    return generate_course_similarity_chart(student_data)
 
 
 

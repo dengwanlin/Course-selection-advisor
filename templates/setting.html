@@ -107,6 +107,17 @@
                             {% endfor %}
                         </div>
                     </div>
+
+                    <!-- Math level -->
+                    <h2>How proficient are you in math?</h2>
+                    <div class="radio-group">
+                        {% for level in student_math_levels %}
+                        {% if level != "null" %}
+                        <input type="radio" id="level_{{ level }}" name="student_math_background" value="{{ level }}" required>
+                        <label for="level_{{ level }}">{{ level }}</label>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
     
                     <!-- Languages & Levels -->
                     <div class="form-section">

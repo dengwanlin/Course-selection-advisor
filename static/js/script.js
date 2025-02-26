@@ -234,3 +234,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+function addCourse(course) {
+  fetch("/add_course_alt", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      course: course,
+      type: "add",
+    }),
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert("course added to your courses successfully");
+        window.location.reload();
+      } else {
+        alert(data.error);
+      }
+    });
+}
