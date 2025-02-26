@@ -27,20 +27,15 @@ home_dash_app = Dash(
 )
 
 
-student_professional_backgrounds, terms, languages, language_levels, programming_languages, programming_levels, student_majors, student_math_levels = get_enums_data()
-def get_loggedin_student():
-     student_id = session.get('student_id')
-     student_data = fetch_single_data('students', {'student_id': student_id})
-
-     return student_data
-
-
 # Register the custom filter
 app.jinja_env.filters['format_skills'] = format_skills
 app.jinja_env.filters['format_math_level'] = format_math_level
 
+
+student_professional_backgrounds, terms, languages, language_levels, programming_languages, programming_levels, student_majors, student_math_levels = get_enums_data()
+
+
 @app.route('/', methods=['GET', 'POST'])
-#@app.route('/welcome', methods=['GET', 'POST'])
 def welcome():
     error = None
     if request.method == 'POST':

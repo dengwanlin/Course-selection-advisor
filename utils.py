@@ -205,9 +205,9 @@ def language_match_distance(student_languages, course_language):
     if np.sum(student_vec) == 0 or np.sum(course_vec) == 0:
         return 0
     
-    # Calculate similarity - cosine_similarity returns a 1x1 matrix
+    # Calculate similarity
     similarity = cosine_similarity(student_vec, course_vec)[0][0]
-    return similarity  # Already returns a similarity score between 0-1
+    return similarity 
 
 # Programming language matching
 def programming_match_multiple(student_programming, course_programming_requirements):
@@ -350,8 +350,6 @@ def explain_matching(student_profile, course):
     }
 
     return explanation
-
-
 
 def get_dynamic_weights(scores):
     """
@@ -596,8 +594,6 @@ def calculate_course_correlation(courses):
             correlations.append((course_name_list[i], course_name_list[j], similarity))
 
     return correlations
-
-
 # Preparing data for Plotly visualization
 def prepare_plotly_data(correlations):
     nodes = list(set([corr[0] for corr in correlations] + [corr[1] for corr in correlations]))
@@ -710,8 +706,6 @@ def visualize_course_correlation(nodes, links, courses):
     fig = go.Figure(data=[link_trace, node_trace, text_trace])
     fig.update_layout(showlegend=False,  height=1000, autosize=False,)
     return fig
-
-course = {'id': 'ZKD50068', 'name': 'Intelligent Learning Environments', 'lecturer': 'Prof. Dr. Irene-Angelica Chounta', 'semester': 'Sommer 2024', 'core_concepts': ['Educational technology', 'Cognitive modeling', 'Learning environment', 'Technology application'], 'math_level': 1, 'score': 63.63, 'similarity_scores': {'Content Similarity': 0.1918661, 'Math Match': 1.0, 'Time Match': 1.0, 'Language Match': 1.0}}
 
 def plot_top_course_radar(course):
     # Get the top course for the first student
@@ -826,7 +820,6 @@ def courses_by_teaching_style(df=courses_df):
         color_discrete_sequence=px.colors.qualitative.Pastel1)
     
     return fig
-
 
 def generate_course_similarity_chart(student_data):
 
