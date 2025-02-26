@@ -104,10 +104,10 @@ This metric is particularly useful for:
 The system calculates a composite matching score based on multiple factors:
 
 - **Content Similarity**: Semantic matching between student interests and course content (cosine similarity of Word2Vec vectors)
-- **Math Level Compatibility**: Alignment between course mathematical requirements and student background (Euclidean distance)
-- **Time Availability Match**: Comparison of course workload to student's available time (normalized Euclidean distance)
-- **Language Proficiency**: Match between course language and student's language abilities (weighted similarity score)
-- **Programming Requirements**: Alignment of student's programming skills with course needs (feature-based matching)
+- **Math Level Compatibility**: Alignment between course mathematical requirements and student background (Euclidean distance + Threshold-Based Scoring)
+- **Time Availability Match**: Comparison of course workload to student's available time (Normalized Euclidean distance)
+- **Language Proficiency**: Match between course language and student's language abilities (Proficiency-Weighted Cosine Similarity)
+- **Programming Requirements**: Alignment of student's programming skills with course needs (Multi-dimensional Comparison)
 
 ### Model Persistence
 
@@ -158,7 +158,7 @@ python app.py
 
 ## 🤝 Demo Video
 
-[![Course Recommendation System Demo](https://img.youtube.com/vi/LqJigVvI2raKsFcs/0.jpg)](https://youtu.be/fjyngh9PJAY?si=LqJigVvI2raKsFcs)
+[![Smart Course Advisor](https://img.youtube.com/vi/LqJigVvI2raKsFcs/0.jpg)](https://youtu.be/fjyngh9PJAY?si=LqJigVvI2raKsFcs)
 
 _Click the image above to watch a demonstration of the Course Recommendation System in action._
 
