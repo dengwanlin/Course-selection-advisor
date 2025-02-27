@@ -8,3 +8,4 @@ dash
 python-dotenv
 bcrypt
 pandas
+gensim
